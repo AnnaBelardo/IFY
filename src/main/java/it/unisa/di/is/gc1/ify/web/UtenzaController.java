@@ -1,7 +1,5 @@
 package it.unisa.di.is.gc1.ify.web;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +20,9 @@ public class UtenzaController {
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String visualizzaLibri(Model model) {
+	public String visualizzaHome(Model model) {
 		
 		return "homepage";
 	  }
+
 }

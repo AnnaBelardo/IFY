@@ -31,6 +31,20 @@ public class Studente extends Utente{
 		this.domandeTirocinio = new ArrayList<DomandaTirocinio>();
 	}
 	
+	
+	
+	
+	public Studente(String nome, String cognome, String sesso, String email, String indirizzo, String password, String matricola, LocalDate dataNascita, String telefono) {
+		super(nome,  cognome,  sesso,  email,  indirizzo,  password);
+		this.matricola = matricola;
+		this.dataNascita = dataNascita;
+		this.telefono = telefono;
+		this.domandeTirocinio = new ArrayList<DomandaTirocinio>();
+	}
+
+
+
+
 	public String getMatricola() {
 		return matricola;
 	}
@@ -72,13 +86,16 @@ public class Studente extends Utente{
 	private List<DomandaTirocinio> domandeTirocinio;
 	
 	  /** Espressione regolare che definisce il formato del campo matricola. */
-	  public static final String NATRICOLA_PATTERN = "^[0-9]{10}$";
+	  public static final String MATRICOLA_PATTERN = "^[0-9]{10}$";
 	  
 	  /** Espressione regolare che definisce il formato del campo telefono. */
 	  public static final String TELEFONO_PATTERN = "^[0-9]{3}[\\-]?[0-9]{7}$";
+	 	  
+	 /**Espressione regolare che definisce il formato del campo Email Studente*/
+	  public static final String EMAIL_STUDENTE_PATTERN = "^([a-z].[a-z]+[1-9]?[0-9]*)@studenti.unisa.it$";
 	  
 	  /** Valore che definisce la minima data di nascita accettabile. */
-	  public static final LocalDate MIN_DATE = LocalDate.of(1990, Month.JANUARY, 1);
+	  public static final LocalDate MIN_DATE = LocalDate.of(1900, Month.JANUARY, 1);
 	  
 	  /** Valore che definisce la massima data di nascita accettabile. */
 	  public static final LocalDate MAX_DATE = LocalDate.now().minusYears(19L);

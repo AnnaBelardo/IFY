@@ -21,6 +21,13 @@ public class RichiestaIscrizione {
 		
 	}
 	
+	
+	
+	public RichiestaIscrizione(String stato, Studente studente) {
+		this.stato = stato;
+		this.studente = studente;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -45,7 +52,7 @@ public class RichiestaIscrizione {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String stato;
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "richiesta_iscrizione")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Studente studente;
 	
 		/**
