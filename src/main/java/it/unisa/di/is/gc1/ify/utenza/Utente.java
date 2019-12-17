@@ -1,5 +1,6 @@
 package it.unisa.di.is.gc1.ify.utenza;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -80,6 +81,7 @@ public abstract class Utente {
 	protected String nome;
 	protected String cognome;
 	protected String sesso;
+	@Column(unique=true)
 	protected String email;
 	protected String indirizzo;
 	protected String password;

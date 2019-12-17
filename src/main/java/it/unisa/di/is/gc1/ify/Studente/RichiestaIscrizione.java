@@ -1,5 +1,6 @@
 package it.unisa.di.is.gc1.ify.Studente;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class RichiestaIscrizione {
 	public void setStato(String stato) {
 		this.stato = stato;
 	}
+	
 	public Studente getStudente() {
 		return studente;
 	}
@@ -43,7 +45,7 @@ public class RichiestaIscrizione {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String stato;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "richiesta_iscrizione")
 	private Studente studente;
 	
 		/**
