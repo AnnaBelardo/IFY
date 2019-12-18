@@ -92,11 +92,20 @@ public class Studente extends Utente{
 	  public static final String TELEFONO_PATTERN = "^[0-9]{3}[\\-]?[0-9]{7}$";
 	 	  
 	 /**Espressione regolare che definisce il formato del campo Email Studente*/
-	  public static final String EMAIL_STUDENTE_PATTERN = "^([a-z].[a-z]+[1-9]?[0-9]*)@studenti.unisa.it$";
+	  public static final String EMAIL_STUDENTE_PATTERN = "^([a-z]\\.[a-z]+[1-9]?[0-9]*)@studenti.unisa.it$";
 	  
 	  /** Valore che definisce la minima data di nascita accettabile. */
 	  public static final LocalDate MIN_DATE = LocalDate.of(1900, Month.JANUARY, 1);
 	  
 	  /** Valore che definisce la massima data di nascita accettabile. */
 	  public static final LocalDate MAX_DATE = LocalDate.now().minusYears(19L);
+	  
+	  /** Costante che definisce la minima lunghezza dei campi nome, cognome e indirizzo. */
+	  public static final int MIN_LUNGHEZZA_TELEFONO = 10;
+	  
+	  /** Costante che definisce la minima lunghezza dei campi nome, cognome e indirizzo. */
+	  public static final int MAX_LUNGHEZZA_TELEFONO = 11;
+	  
+	  /** Costante che definisce la lunghezza del campo matricola. */
+	  public static final int LUNGHEZZA_MATRICOLA = 10;
 }

@@ -106,7 +106,7 @@ public abstract class Utente {
 	  public static final String COGNOME_PATTERN = "^[a-z A-Zàéèìòù]{2,255}$";
 	  
 	  /** Costante che rappresenta il genere maschile per l'utente. */
-	  public static final String SESSO_PATTERN = "^[MF]{1}";
+	  public static final String SESSO_PATTERN = "^[MF]{1}$";
 	  
 	 
 	  /** Espressione regolare che definisce il formato del campo email. */
@@ -126,10 +126,20 @@ public abstract class Utente {
 	  /** Espressione regolare che definisce il formato del campo password. */
 	  public static final String PASSWORD_PATTERN = "^(?=([^\\s])*[0-9])(?=([^\\s])*[a-zA-Z])([^\\s]){8,24}$";
 	  
-	  /** Costante che definisce la minima lunghezza dei campi nome, cognome e indirizzo. */
+	  /** Costante che definisce la minima lunghezza dei campi nome, cognome , indirizzo. */
 	  public static final int MIN_LUNGHEZZA_CAMPO = 2;
 	  
-	  /** Costante che definisce la massima lunghezza dei campi nome,  cognome e indirizzo. */
+	  /** Costante che definisce la massima lunghezza dei campi nome, cognome e indirizzo. */
 	  public static final int MAX_LUNGHEZZA_CAMPO = 255;
 	  
+	  /** Costante che definisce la massima lunghezza del campo mail. */
+	  public static final int MAX_LUNGHEZZA_MAIL = 256;
+	  
+	  /** Costante che definisce la minima lunghezza dei campo password. */
+	  public static final int MIN_LUNGHEZZA_PASSWORD = 8;
+	  
+	  /** Costante che definisce la massima lunghezza dei campo password. */
+	  public static final int MAX_LUNGHEZZA_PASSWORD = 24;
+	  
+	 
 }

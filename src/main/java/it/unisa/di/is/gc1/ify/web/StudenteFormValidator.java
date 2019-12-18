@@ -44,9 +44,10 @@ public class StudenteFormValidator implements Validator {
 		StudenteForm form = (StudenteForm) target;
 		try {
 			richiestaIscrizioneService.validaRichiestaIscrizione(form);
-		} catch (RichiestaIscrizioneNonValidaException) {
-			errors.reject("form", "Campi form non validi");
+		} catch (RichiestaIscrizioneNonValidaException e ) {
+			errors.reject("richiestaIscrizione",e.getMessage());
 		}
+		
 	}
 
 }

@@ -11,12 +11,31 @@ import javax.persistence.Column;
  * 
  * @author Giusy Castaldo, Alessia Natale
  */
-public abstract class StudenteForm {
+public class StudenteForm {
 	
 	public StudenteForm() {
 		
 	}
 	
+	
+	
+	public StudenteForm(String nome, String cognome, String indirizzo, String telefono, LocalDate dataNascita,
+			String sesso, String matricola, String email, String password, String confermaPsw, String condizioni) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indirizzo = indirizzo;
+		this.telefono = telefono;
+		this.dataNascita = dataNascita;
+		this.sesso = sesso;
+		this.matricola = matricola;
+		this.email = email;
+		this.password = password;
+		this.confermaPsw = confermaPsw;
+		this.condizioni = condizioni;
+	}
+
+
+
 	public String getNome() {
 		return nome;
 	}
@@ -77,7 +96,7 @@ public abstract class StudenteForm {
 	public void setConfermaPsw(String confermaPsw) {
 		this.confermaPsw = confermaPsw;
 	}
-	public String isCondizioni() {
+	public String getCondizioni() {
 		return condizioni;
 	}
 	public void setCondizioni(String condizioni) {
