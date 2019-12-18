@@ -38,7 +38,6 @@ public class RichiestaIscrizioneService {
 	@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione salvaRichiestaIscrizione(Studente studente) {
 		RichiestaIscrizione richiestaIscrizione = new RichiestaIscrizione(RichiestaIscrizione.IN_ATTESA, studente);
-		System.out.println(studente.getCognome());
 	
 		studente = studenteRepository.save(studente);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);

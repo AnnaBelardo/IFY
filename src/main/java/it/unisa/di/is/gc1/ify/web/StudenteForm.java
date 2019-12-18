@@ -1,8 +1,7 @@
 package it.unisa.di.is.gc1.ify.web;
 
 import java.time.LocalDate;
-
-import javax.persistence.Column;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Oggetto utilizzato per mappare i campi di un form di uno studente. Questo oggetto
@@ -19,7 +18,7 @@ public class StudenteForm {
 	
 	
 	
-	public StudenteForm(String nome, String cognome, String indirizzo, String telefono, LocalDate dataNascita,
+	public StudenteForm(String nome, String cognome, String indirizzo, String telefono, String dataNascita,
 			String sesso, String matricola, String email, String password, String confermaPsw, String condizioni) {
 		this.nome = nome;
 		this.cognome = cognome;
@@ -60,10 +59,14 @@ public class StudenteForm {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
 	public LocalDate getDataNascita() {
-		return dataNascita;
+		LocalDate tmp = LocalDate.parse(this.dataNascita);
+	
+		return tmp;
 	}
-	public void setDataNascita(LocalDate dataNascita) {
+	
+	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 	public String getSesso() {
@@ -102,12 +105,13 @@ public class StudenteForm {
 	public void setCondizioni(String condizioni) {
 		this.condizioni = condizioni;
 	}
+	
 
 	private String nome;
 	private String cognome;
 	private String indirizzo;
 	private String telefono;
-	private LocalDate dataNascita;
+	private String dataNascita;
 	private String sesso;
 	private String matricola;
 	private String email;

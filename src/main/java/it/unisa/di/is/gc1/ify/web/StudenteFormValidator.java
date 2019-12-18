@@ -1,13 +1,13 @@
 package it.unisa.di.is.gc1.ify.web;
 
-import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.executable.ExecutableValidator;
-import javax.validation.metadata.BeanDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneNonValidaException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 
@@ -41,13 +41,19 @@ public class StudenteFormValidator implements Validator {
 	 */
 	@Override
 	public void validate(Object target, Errors errors) {
-		StudenteForm form = (StudenteForm) target;
+		StudenteForm studenteForm = (StudenteForm) target;
 		try {
-			richiestaIscrizioneService.validaRichiestaIscrizione(form);
-		} catch (RichiestaIscrizioneNonValidaException e ) {
+			richiestaIscrizioneService.validaRichiestaIscrizione(studenteForm);
+		} catch (RichiestaIscrizioneNonValidaException e) {
 			errors.reject("richiestaIscrizione",e.getMessage());
 		}
 		
 	}
+	
+	@RequestMapping(value = "/prova", method = RequestMethod.GET)
+	public String prova(Model model) {
+		
+		return "richiestaIscrizioneForm";
+	  }
 
 }
