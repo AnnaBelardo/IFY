@@ -1,0 +1,89 @@
+body {
+    background: url('http://rowingsicilia.org/wp-content/uploads/2016/12/sfondo-nero-striato.jpg') fixed;
+    background-size: cover;
+}
+
+.badge{
+	max-width: 100%;
+	height: auto;
+	overflow: scroll;
+}
+
+*[role="form"] {
+    max-width: 800px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+}
+
+*[role="form"] h3 { 
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+#reg {
+	background-color: #ffa500;
+	border: 2px solid #ffa500;
+	color: #fff;
+}
+
+#reg:hover {
+	border-color: #0a0a0a;
+	color: #0a0a0a;
+	box-shadow: 0 0 3px #0a0a0a, insert 0 0 4px 1px #0a0a0a;
+}
+
+
+.alert {
+    border: 0;
+    border-radius: 0;
+    padding: 5px !important;
+    line-height: 20px;
+    font-weight: 300;
+    font-size: 12px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.alert .alert-icon {
+    display: block;
+    float: left;
+    margin-right: 1.071rem;
+}
+
+.alert b {
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+.alert .close {
+    color: #fff;
+    text-shadow: none;
+    opacity: .9;
+}
+.alert .close i {
+    font-size: 20px;
+}
+.alert .close:hover{
+    opacity: 1;
+    color: #fff;
+}
+
+.alert.alert-danger {
+    background-color: #f55145;
+    color: #fff;
+}
