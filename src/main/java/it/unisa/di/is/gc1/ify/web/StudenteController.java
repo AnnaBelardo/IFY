@@ -4,13 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 
+/**
+ * 
+ * @author Giusy Castaldo Alessia Natale
+ *
+ */
 @Controller
 public class StudenteController {
 	
@@ -22,13 +29,20 @@ public class StudenteController {
 	
 	@RequestMapping(value = "/richiestaIscrizione", method = RequestMethod.POST)
 	public String invioRichiestaIscrizione(@ModelAttribute("studenteForm") StudenteForm studenteForm,
-			BindingResult result, RedirectAttributes redirectAttribute) {
+			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
 		
 		studenteFormValidator.validate(studenteForm, result);
 		if(result.hasErrors()) {
+			//se ci sono errori il metodo controller setta tutti i parametri 
+			
 			redirectAttribute.addFlashAttribute("studenteForm", studenteForm);
-			String error = result.getGlobalError().getDefaultMessage();
-			return "redirect:/";
+			
+			for(ObjectError x: result.getGlobalErrors()) {
+				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
+				System.out.println(x.getCode());
+			}
+			
+			return "redirect:/prova";
 		}
 		
 		Studente studente = new Studente();
@@ -49,6 +63,13 @@ public class StudenteController {
 		}
 		
 		return "redirect:/";
+	}
+	
+	
+	@RequestMapping(value = "/prova", method = RequestMethod.GET)
+	public String prova(Model model) {
+
+		return "/RichiestaIscrizione";
 	}
 	
 }

@@ -82,27 +82,6 @@ public class RichiestaIscrizioneService {
 	}
 
 	
-	/**
-	 * Il metodo fornisce la funzionalità di validazione lato server per una generica richiesta d'iscrizione
-	 * 
-	 * @param studenteForm
-	 * @return true se i dati inviati sono validi
-	 * @throws RichiestaIscrizioneNonValidaException
-	 */
-	public boolean validaRichiestaIscrizione(StudenteForm studenteForm) throws RichiestaIscrizioneNonValidaException {
-		validaNome(studenteForm.getNome());
-		validaCognome(studenteForm.getCognome());
-		validaIndirizzo(studenteForm.getIndirizzo());
-		validaTelefono(studenteForm.getTelefono());
-		validaDataNascita(studenteForm.getDataNascita());
-		validaMatricola(studenteForm.getMatricola());
-		validaSesso(studenteForm.getSesso());
-		validaEmail(studenteForm.getEmail());
-		validaPassword(studenteForm.getPassword());
-		validaConfermaPassword(studenteForm.getPassword(), studenteForm.getConfermaPsw());
-
-		return true;
-	}
 	
 	/**
 	 * Il metodo fornisce i controlli di validazione del parametro nome di un generico studente
@@ -110,19 +89,18 @@ public class RichiestaIscrizioneService {
 	 * @return nome
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaNome(String nome) throws RichiestaIscrizioneNonValidaException {
+	public String validaNome(String nome) throws RichiestaIscrizioneNonValidaException {
 		if (nome == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo nome non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("NomeError", "Il campo nome non può essere nullo.");
 
 		if (nome.length() < Studente.MIN_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException("Il campo nome deve contenere almeno 2 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("NomeError", "Il campo nome deve contenere almeno 2 caratteri.");
 
 		if (nome.length() > Studente.MAX_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException("Il campo nome deve contenere al massimo 255 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("NomeError", "Il campo nome deve contenere al massimo 255 caratteri.");
 
 		if (!nome.matches(Studente.NOME_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
-					"Il campo nome deve contenere soltanto caratteri alfabetici o spazi.");
+			throw new RichiestaIscrizioneNonValidaException("NomeError", "Il campo nome deve contenere soltanto caratteri alfabetici o spazi.");
 		return nome;
 	}
 	
@@ -132,19 +110,19 @@ public class RichiestaIscrizioneService {
 	 * @return cognome
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaCognome(String cognome) throws RichiestaIscrizioneNonValidaException {
+	public String validaCognome(String cognome) throws RichiestaIscrizioneNonValidaException {
 		if (cognome == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo cognome non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("CognomeError", "Il campo cognome non può essere nullo.");
 
 		if (cognome.length() < Studente.MIN_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException("Il campo cognome deve contenere almeno 2 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("CognomeError", "Il campo cognome deve contenere almeno 2 caratteri.");
 
 		if (cognome.length() > Studente.MAX_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("CognomeError",
 					"Il campo cognome deve contenere al massimo 255 caratteri.");
 
 		if (!cognome.matches(Studente.COGNOME_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("CognomeError",
 					"Il campo cognome deve contenere soltanto caratteri alfabetici o spazi.");
 		return cognome;
 	}
@@ -155,19 +133,19 @@ public class RichiestaIscrizioneService {
 	 * @return indirizzo
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaIndirizzo(String indirizzo) throws RichiestaIscrizioneNonValidaException {
+	public String validaIndirizzo(String indirizzo) throws RichiestaIscrizioneNonValidaException {
 		if (indirizzo == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo indirizzo non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("IndirizzoError", "Il campo indirizzo non può essere nullo.");
 
 		if (indirizzo.length() < Studente.MIN_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException("Il campo indirizzo deve contenere almeno 2 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("IndirizzoError","Il campo indirizzo deve contenere almeno 2 caratteri.");
 
 		if (indirizzo.length() > Studente.MAX_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("IndirizzoError",
 					"Il campo indirizzo deve contenere al massimo 255 caratteri.");
 
 		if (!indirizzo.matches(Studente.INDIRIZZO_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("IndirizzoError",
 					"Il campo indirizzo deve contenere soltanto caratteri alfanumerici e segni di punteggiatura.");
 		return indirizzo;
 	}
@@ -178,19 +156,19 @@ public class RichiestaIscrizioneService {
 	 * @return telefono
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaTelefono(String telefono) throws RichiestaIscrizioneNonValidaException {
+	public String validaTelefono(String telefono) throws RichiestaIscrizioneNonValidaException {
 		if (telefono == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo telefono non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("TelefonoError", "Il campo telefono non può essere nullo.");
 
 		if (telefono.length() < 10)
-			throw new RichiestaIscrizioneNonValidaException("Il campo telefono deve contenere almeno 10 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("TelefonoError", "Il campo telefono deve contenere almeno 10 caratteri.");
 
 		if (telefono.length() > 11)
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("TelefonoError",
 					"Il campo telefono deve contenere al massimo 11 caratteri.");
 
 		if (!telefono.matches(Studente.TELEFONO_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("TelefonoError",
 					"Il campo telefono deve contenere soltanto caratteri numerici, al più le prime tre cifre possono"
 							+ "essere separate da un trattino.");
 		return telefono;
@@ -198,16 +176,16 @@ public class RichiestaIscrizioneService {
 
 	/**
 	 * Il metodo fornisce i controlli di validazione del parametro data di nascita di un generico studente
-	 * @param data di nascita
+	 * @param dataNascita
 	 * @return data di nascita
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private LocalDate validaDataNascita(LocalDate dataNascita) throws RichiestaIscrizioneNonValidaException {
+	public LocalDate validaDataNascita(LocalDate dataNascita) throws RichiestaIscrizioneNonValidaException {
 		if (dataNascita == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo data di nascita non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("DataNascitaError", "Il campo data di nascita non può essere nullo.");
 
 		if (dataNascita.isBefore(Studente.MIN_DATE) || dataNascita.isAfter(Studente.MAX_DATE))
-			throw new RichiestaIscrizioneNonValidaException("La data di nascita non rientra nel range consento "
+			throw new RichiestaIscrizioneNonValidaException("DataNascitaError", "La data di nascita non rientra nel range consento "
 					+ Studente.MIN_DATE.getDayOfMonth() + "/" + Studente.MIN_DATE.getMonthValue() + "/"
 					+ Studente.MIN_DATE.getYear() + " - " + Studente.MAX_DATE.getDayOfMonth() + "/"
 					+ Studente.MAX_DATE.getMonthValue() + "/" + Studente.MAX_DATE.getYear() + ".");
@@ -221,15 +199,15 @@ public class RichiestaIscrizioneService {
 	 * @return matricola
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaMatricola(String matricola) throws RichiestaIscrizioneNonValidaException {
+	public String validaMatricola(String matricola) throws RichiestaIscrizioneNonValidaException {
 		if (matricola == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo matricola non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("MatricolaError", "Il campo matricola non può essere nullo.");
 
 		if (matricola.length() != Studente.LUNGHEZZA_MATRICOLA)
-			throw new RichiestaIscrizioneNonValidaException("Il campo matricola deve contenere 10 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("MatricolaError", "Il campo matricola deve contenere 10 caratteri.");
 
 		if (!matricola.matches(Studente.MATRICOLA_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("MatricolaError",
 					"Il campo matricola deve contenere solo caratteri numerici.");
 		return matricola;
 	}
@@ -240,13 +218,12 @@ public class RichiestaIscrizioneService {
 	 * @return sesso
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaSesso(String sesso) throws RichiestaIscrizioneNonValidaException {
+	public String validaSesso(String sesso) throws RichiestaIscrizioneNonValidaException {
 		if (sesso == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo sesso non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("SessoError", "Il campo sesso non può essere nullo.");
 
 		if (!sesso.matches(Studente.SESSO_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException(
-					"Il campo sesso deve essere valorizzato con un solo carattere tra M o F.");
+			throw new RichiestaIscrizioneNonValidaException("SessoError", "Il campo sesso deve essere valorizzato con un solo carattere tra M o F.");
 		return sesso;
 	}
 
@@ -256,21 +233,21 @@ public class RichiestaIscrizioneService {
 	 * @return email
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaEmail(String email) throws RichiestaIscrizioneNonValidaException {
+	public String validaEmail(String email) throws RichiestaIscrizioneNonValidaException {
 		if (email == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo e-mail non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("EmailError", "Il campo e-mail non può essere nullo.");
 
 		if (email.length() < Studente.MIN_LUNGHEZZA_CAMPO)
-			throw new RichiestaIscrizioneNonValidaException("Il campo e-mail deve contenere almeno 2 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("EmailError", "Il campo e-mail deve contenere almeno 2 caratteri.");
 
 		if (email.length() > Studente.MAX_LUNGHEZZA_MAIL)
-			throw new RichiestaIscrizioneNonValidaException("Il campo e-mail deve contenere al massimo 256 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("EmailError","Il campo e-mail deve contenere al massimo 256 caratteri.");
 
 		if (!email.matches(Studente.EMAIL_STUDENTE_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException("Il campo e-mail non rispetta il formato stabilito.");
+			throw new RichiestaIscrizioneNonValidaException("EmailError", "Il campo e-mail non rispetta il formato stabilito.");
 
 		if (utenteRepository.existsByEmail(email))
-			throw new RichiestaIscrizioneNonValidaException("l'e-mail inserita è già presente.");
+			throw new RichiestaIscrizioneNonValidaException("EmailError", "l'e-mail inserita è già presente.");
 
 		return email;
 	}
@@ -281,19 +258,19 @@ public class RichiestaIscrizioneService {
 	 * @return password
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaPassword(String password) throws RichiestaIscrizioneNonValidaException {
+	public String validaPassword(String password) throws RichiestaIscrizioneNonValidaException {
 		if (password == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo password non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password non può essere nullo.");
 
 		if (password.length() < Studente.MIN_LUNGHEZZA_PASSWORD)
-			throw new RichiestaIscrizioneNonValidaException("Il campo password deve contenere almeno 8 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno 8 caratteri.");
 
 		if (password.length() > Studente.MAX_LUNGHEZZA_PASSWORD)
-			throw new RichiestaIscrizioneNonValidaException(
+			throw new RichiestaIscrizioneNonValidaException("PasswordError",
 					"Il campo password deve contenere al massimo 24 caratteri.");
 
 		if (!password.matches(Studente.PASSWORD_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException("Il campo password deve contenere almeno"
+			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno"
 					+ "un numero, almeno una lettera e non deve contenere spazi.");
 		return password;
 	}
@@ -305,21 +282,21 @@ public class RichiestaIscrizioneService {
 	 * @return confermaPassword
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaConfermaPassword(String password, String confermaPassword) throws RichiestaIscrizioneNonValidaException {
+	public String validaConfermaPassword(String password, String confermaPassword) throws RichiestaIscrizioneNonValidaException {
 		if (confermaPassword == null)
-			throw new RichiestaIscrizioneNonValidaException("Il campo password non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password non può essere nullo.");
 
 		if (confermaPassword.length() < Studente.MIN_LUNGHEZZA_PASSWORD)
-			throw new RichiestaIscrizioneNonValidaException("Il campo password e il campo conferma password non corrispondono.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password e il campo conferma password non corrispondono.");
 
 		if (confermaPassword.length() > Studente.MAX_LUNGHEZZA_PASSWORD)
-			throw new RichiestaIscrizioneNonValidaException("Il campo password e il campo conferma password non corrispondono.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password e il campo conferma password non corrispondono.");
 
 		if (!confermaPassword.matches(Studente.PASSWORD_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException("Il campo password e il campo conferma password non corrispondono.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password e il campo conferma password non corrispondono.");
 
 		if (!confermaPassword.equals(password))
-			throw new RichiestaIscrizioneNonValidaException("Il campo password e il campo conferma password non corrispondono.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password e il campo conferma password non corrispondono.");
 		return confermaPassword;
 	}
 	
@@ -329,11 +306,11 @@ public class RichiestaIscrizioneService {
 	 * @return condizioni
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
-	private String validaCondizioni(String condizioni) throws RichiestaIscrizioneNonValidaException {
+	public String validaCondizioni(String condizioni) throws RichiestaIscrizioneNonValidaException {
 		if (condizioni == null)
-			throw new RichiestaIscrizioneNonValidaException("È obbligatorio accettare le condizioni sulla privacy.");
+			throw new RichiestaIscrizioneNonValidaException("CondizioniError", "È obbligatorio accettare le condizioni sulla privacy.");
 		
 		return condizioni;
 	}
-
+	
 }

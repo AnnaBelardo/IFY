@@ -23,9 +23,8 @@ public class UtenzaController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String visualizzaHome(Model model) {
-		
+
 		return "homepage";
-	  }
-	
+	}
 	
 }

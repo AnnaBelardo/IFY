@@ -3,7 +3,6 @@ package it.unisa.di.is.gc1.ify.utenza;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import it.unisa.di.is.gc1.ify.Studente.Studente;
 
 
 /**

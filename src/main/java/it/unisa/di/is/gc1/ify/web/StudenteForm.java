@@ -1,7 +1,6 @@
 package it.unisa.di.is.gc1.ify.web;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Oggetto utilizzato per mappare i campi di un form di uno studente. Questo oggetto
@@ -61,10 +60,12 @@ public class StudenteForm {
 	}
 	
 	public LocalDate getDataNascita() {
+		if(this.dataNascita.equals("")) return null;
+		
 		LocalDate tmp = LocalDate.parse(this.dataNascita);
-	
 		return tmp;
 	}
+	
 	
 	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
