@@ -53,7 +53,7 @@ public class RichiestaIscrizioneService {
 	 * @param idRichiesta
 	 * @return Richiesta d'iscrizione richiesta d'iscrizione
 	 */
-	@Transactional(rollbackFor = Exception.class)
+	/*@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione accettaRichiestaIscrizione(Long idRichiesta) {
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
 
@@ -61,7 +61,7 @@ public class RichiestaIscrizioneService {
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
 
 		return richiestaIscrizione;
-	}
+	}*/
 	
 	
 	/**
@@ -71,7 +71,7 @@ public class RichiestaIscrizioneService {
 	 * @param idRichiesta
 	 * @return Richiesta d'iscrizione richiesta d'iscrizione
 	 */
-	@Transactional(rollbackFor = Exception.class)
+	/*@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione rifiutaRichiestaIscrizione(Long idRichiesta) {
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
 
@@ -79,7 +79,7 @@ public class RichiestaIscrizioneService {
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
 
 		return richiestaIscrizione;
-	}
+	}*/
 
 	
 	
@@ -90,6 +90,7 @@ public class RichiestaIscrizioneService {
 	 * @throws RichiestaIscrizioneNonValidaException
 	 */
 	public String validaNome(String nome) throws RichiestaIscrizioneNonValidaException {
+	
 		if (nome == null)
 			throw new RichiestaIscrizioneNonValidaException("NomeError", "Il campo nome non può essere nullo.");
 
@@ -170,7 +171,7 @@ public class RichiestaIscrizioneService {
 		if (!telefono.matches(Studente.TELEFONO_PATTERN))
 			throw new RichiestaIscrizioneNonValidaException("TelefonoError",
 					"Il campo telefono deve contenere soltanto caratteri numerici, al più le prime tre cifre possono"
-							+ "essere separate da un trattino.");
+							+ " essere separate da un trattino.");
 		return telefono;
 	}
 
