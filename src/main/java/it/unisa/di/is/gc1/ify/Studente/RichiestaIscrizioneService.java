@@ -53,25 +53,23 @@ public class RichiestaIscrizioneService {
 	 * @param idRichiesta
 	 * @return Richiesta d'iscrizione richiesta d'iscrizione
 	 */
-	/*@Transactional(rollbackFor = Exception.class)
+	
+	@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione accettaRichiestaIscrizione(Long idRichiesta) {
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
-
+		
 		richiestaIscrizione.setStato(RichiestaIscrizione.ACCETTATA);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
-
 		return richiestaIscrizione;
-	}*/
-	
-	
-	/**
-	 * Il metodo fornisce la funzionalità di rifiuto di una richiesta d'iscrizione
+	}
+		
+	 /** Il metodo fornisce la funzionalità di rifiuto di una richiesta d'iscrizione
 	 * 
 	 * 
 	 * @param idRichiesta
 	 * @return Richiesta d'iscrizione richiesta d'iscrizione
 	 */
-	/*@Transactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione rifiutaRichiestaIscrizione(Long idRichiesta) {
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
 
@@ -79,7 +77,7 @@ public class RichiestaIscrizioneService {
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
 
 		return richiestaIscrizione;
-	}*/
+	}
 
 	
 	
@@ -285,7 +283,7 @@ public class RichiestaIscrizioneService {
 	 */
 	public String validaConfermaPassword(String password, String confermaPassword) throws RichiestaIscrizioneNonValidaException {
 		if (confermaPassword == null)
-			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password non può essere nullo.");
+			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo conferma password non può essere nullo.");
 
 		if (confermaPassword.length() < Studente.MIN_LUNGHEZZA_PASSWORD)
 			throw new RichiestaIscrizioneNonValidaException("ConfermaPasswordError", "Il campo password e il campo conferma password non corrispondono.");
