@@ -9,8 +9,7 @@
 <title>Registrazione studente</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
-<link href="<c:url value="/resources/css/formStylePage.css" />"
-	rel="stylesheet">
+<link href="<c:url value="/resources/css/formStylePage.css" />" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
@@ -18,6 +17,7 @@
 
 <body>
 	<div class="container">
+	
 		<form class="form-horizontal" role="form" name="iscrizioneForm"
 			method="post" action="/richiestaIscrizione"
 			modelAttribute="studenteForm">
@@ -33,20 +33,10 @@
 										value="${studenteForm.nome}">
 								</c:when>
 								<c:otherwise>
-
-									<input type="text" name="nome" id="inputNome"
-										placeholder="Nome" class="form-control">
+									<input type="text" name="nome" id="inputNome" placeholder="Nome" class="form-control is-invalid">
+									<span class = "myError">${NomeError}</span>
 								</c:otherwise>
 							</c:choose>
-
-
-							<c:if test="${NomeError != null}">
-								
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${NomeError}</div>
-								</div>
-							</c:if>
 
 						</div>
 					</div>
@@ -60,17 +50,11 @@
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="cognome" id="inputCognome"
-										placeholder="Cognome" class="form-control">
+										placeholder="Cognome" class="form-control is-invalid">
+										<span class = "myError">${CognomeError}</span>	
 								</c:otherwise>
 							</c:choose>
 
-
-							<c:if test="${CognomeError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${CognomeError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 					<div class="form-group">
@@ -83,17 +67,10 @@
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="indirizzo" id="inputIndirizzo"
-										placeholder="Indirizzo" class="form-control">
+										placeholder="Indirizzo" class="form-control is-invalid">
+									<span class = "myError">${IndirizzoError}</span>
 								</c:otherwise>
 							</c:choose>
-
-
-							<c:if test="${IndirizzoError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${IndirizzoError}</div>
-								</div>
-							</c:if>
 
 						</div>
 					</div>
@@ -109,16 +86,11 @@
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="telefono" id="inputTelefono"
-										placeholder="Telefono" class="form-control">
+										placeholder="Telefono" class="form-control is-invalid">
+									<span class = "myError">${IndirizzoError}</span>
 								</c:otherwise>
 							</c:choose>
 
-							<c:if test="${TelefonoError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${TelefonoError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 					<div class="form-group">
@@ -131,18 +103,11 @@
 										name="dataNascita" value="${studenteForm.dataNascita}">
 								</c:when>
 								<c:otherwise>
-									<input type="date" class="form-control" id="inputData"
+									<input type="date" class="form-control is-invalid" id="inputData"
 										name="dataNascita">
+									<span class = "myError">${DataNascitaError}</span>
 								</c:otherwise>
 							</c:choose>
-
-
-							<c:if test="${DataNascitaError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${DataNascitaError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 
@@ -181,17 +146,15 @@
 												name="sesso" id="femmina" value="F"> F
 											</label>
 										</div>
+										
+										<c:if test="${SessoError != null}">
+											<span class = "myError">${SessoError}</span>
+										</c:if>
 									</div>
 								</c:otherwise>
 							</c:choose>
 
 
-							<c:if test="${SessoError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${SessoError}</div>
-								</div>
-							</c:if>
 
 						</div>
 					</div>
@@ -205,17 +168,10 @@
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="matricola" id="inputMatricola"
-										placeholder="Matricola" class="form-control">
+										placeholder="Matricola" class="form-control is-invalid">
+									<span class = "myError">${MatricolaError}</span>
 								</c:otherwise>
 							</c:choose>
-
-
-							<c:if test="${MatricolaError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${MatricolaError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 
@@ -230,17 +186,10 @@
 								</c:when>
 								<c:otherwise>
 									<input type="email" name="email" id="inputEmail"
-										placeholder="E-mail" class="form-control">
+										placeholder="E-mail" class="form-control is-invalid">
+									<span class = "myError">${EmailError}</span>
 								</c:otherwise>
 							</c:choose>
-
-
-							<c:if test="${EmailError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${EmailError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 					<div class="form-group">
@@ -254,17 +203,11 @@
 								</c:when>
 								<c:otherwise>
 									<input type="password" name="password" id="inputPassword"
-										placeholder="Password" class="form-control"
+										placeholder="Password" class="form-control is-invalid"
 										class="form-control">
+									<span class = "myError">${PasswordError}</span>
 								</c:otherwise>
 							</c:choose>
-
-							<c:if test="${PasswordError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${PasswordError}</div>
-								</div>
-							</c:if>
 
 						</div>
 					</div>
@@ -279,16 +222,11 @@
 								<c:otherwise>
 									<input type="password" name="confermaPsw"
 										id="inputConfermaPassword" placeholder="Conferma Password"
-										class="form-control">
+										class="form-control is-invalid">
+									<span class = "myError">${ConfermaPasswordError}</span>
 								</c:otherwise>
 							</c:choose>
 
-							<c:if test="${ConfermaPasswordError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${ConfermaPasswordError}</div>
-								</div>
-							</c:if>
 						</div>
 					</div>
 					<div class="form-group">
@@ -306,10 +244,7 @@
 							</div>
 
 							<c:if test="${CondizioniError != null}">
-								<br>
-								<div class="alert alert-danger">
-									<div class="container">${CondizioniError}</div>
-								</div>
+								<span class = "myError">${CondizioniError}</span>
 							</c:if>
 						</div>
 					</div>
@@ -319,5 +254,7 @@
 		</form>
 	</div>
 	<!-- ./container -->
+	
+	
 </body>
 </html>
