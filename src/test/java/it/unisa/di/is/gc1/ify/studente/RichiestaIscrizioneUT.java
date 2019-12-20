@@ -26,6 +26,7 @@ import it.unisa.di.is.gc1.ify.web.StudenteController;
 @RunWith(MockitoJUnitRunner.class)
 /**
  * classe di test di unità per la richiesta di iscrizione
+ * 
  * @author Giusy Castaldo, Giacomo Izzo
  *
  */
@@ -43,88 +44,86 @@ public class RichiestaIscrizioneUT {
 	@InjectMocks
 	RichiestaIscrizioneService richiestaIscrizioneService;
 
+	private String nome;
+	private String cognome;
+	private String indirizzo;
+	private String telefono;
+	private LocalDate dataNascita;
+	private String matricola;
+	private String sesso;
+	private String email;
+	private String password;
+	private String confermaPassword;
+	private String condizioni;
 
-	/** 
+	public void validaCampi() throws RichiestaIscrizioneNonValidaException {
+		richiestaIscrizioneService.validaNome(nome);
+		richiestaIscrizioneService.validaCognome(cognome);
+		richiestaIscrizioneService.validaIndirizzo(indirizzo);
+		richiestaIscrizioneService.validaTelefono(telefono);
+		richiestaIscrizioneService.validaDataNascita(dataNascita);
+		richiestaIscrizioneService.validaMatricola(matricola);
+		richiestaIscrizioneService.validaSesso(sesso);
+		richiestaIscrizioneService.validaEmail(email);
+		richiestaIscrizioneService.validaPassword(password);
+		richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
+		richiestaIscrizioneService.validaCondizioni(condizioni);
+	}
+
+	/**
 	 * Verifica che il campo nome non sia null
 	 */
 	@Test
 	public void ValidaNome_Null() {
 
-		String nome =null;
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = null;
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo nome non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
+
 	/**
 	 * verifica la lunghezza minima del campo nome
 	 */
 	@Test
 	public void ValidaNome_Min_Lunghezza() {
 
-		String nome = "";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo nome deve contenere almeno 2 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -136,44 +135,31 @@ public class RichiestaIscrizioneUT {
 	@Test
 	public void ValidaNome_Max_Lunghezza() {
 
-		String nome = "MarioAndreaaaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		nome = "MarioAndreaaaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo nome deve contenere al massimo 255 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -185,38 +171,25 @@ public class RichiestaIscrizioneUT {
 	@Test
 	public void ValdiaNome_Formato() {
 
-		String nome = "Mario97";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		 nome = "Mario97";
+		 cognome = "Rossi";
+		 indirizzo = "Via Roma 4 84080 Salerno SA";
+		 telefono = "333-3544541";
+		 dataNascita = LocalDate.parse("1997-12-24");
+		 matricola = "0512105144";
+		 sesso = "M";
+		 email = "m.rossi@studenti.unisa.it";
+		 password = "Password#1";
+		 confermaPassword = "Password#1";
+		 condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo nome deve contenere soltanto caratteri alfabetici o spazi.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -228,38 +201,25 @@ public class RichiestaIscrizioneUT {
 	@Test
 	public void ValidaCognome_Null() {
 
-		String nome = "Mario";
-		String cognome = null;
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = null;
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -270,39 +230,25 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void ValidaCognome_Min_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "R";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+	
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere almeno 2 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -313,44 +259,30 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaCognome_Max_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+		nome = "Mario";
+		cognome = "Rossiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+		
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere al massimo 255 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -361,38 +293,26 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaCognome_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi97";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		
+		nome = "Mario";
+		cognome = "Rossi97";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+	
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere soltanto caratteri alfabetici o spazi.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -403,82 +323,54 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void ValidaIndirizzo_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = null;
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = null;
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo indirizzo non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
 
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
-	/**verifica lunghezza minima indirizzo
+
+	/**
+	 * verifica lunghezza minima indirizzo
 	 * 
 	 */
 	@Test
 	public void validaIndirizzo_Min_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+		
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo indirizzo deve contenere almeno 2 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -489,41 +381,26 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaIndirizzo_Max_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Romaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Romaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo indirizzo deve contenere al massimo 255 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -534,39 +411,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaIndirizzo_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma#Antonio 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma#Antonio 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo indirizzo deve contenere soltanto caratteri alfanumerici e segni di punteggiatura.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -577,82 +439,52 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaTelefono_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = null;
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = null;
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
+
 	/**
 	 * verifica lunghezza minima telefono
 	 */
 	@Test
 	public void validaTelefono_Min_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-35";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-35";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono deve contenere almeno 10 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -663,39 +495,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaTelefono_Max_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-35444445446469";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-35444445446469";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+	
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono deve contenere al massimo 11 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -706,39 +523,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaTelefono_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3BB4541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3BB4541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+	
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono deve contenere soltanto caratteri numerici, al più le prime tre cifre possono essere separate da un trattino.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -749,61 +551,46 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaDataNascita_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = null;
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = null;
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo data di nascita non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
 	 * verifica correttezza data di nascita
 	 */
 	@Test
 	public void validaDataNascita_SottoRange() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1800-12-01");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1800-12-01");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+		
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "La data di nascita non rientra nel range consento " + Studente.MIN_DATE.getDayOfMonth()
@@ -812,44 +599,29 @@ public class RichiestaIscrizioneUT {
 				+ Studente.MAX_DATE.getYear() + ".";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
+
 	/**
 	 * verifica correttezza data di nascita
 	 */
 	@Test
 	public void validaDataNascita_SopraRange() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.now().minusYears(10L);
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.now().minusYears(10L);
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+		
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "La data di nascita non rientra nel range consento " + Studente.MIN_DATE.getDayOfMonth()
@@ -858,21 +630,7 @@ public class RichiestaIscrizioneUT {
 				+ Studente.MAX_DATE.getYear() + ".";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -883,81 +641,52 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaMatricola_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = null;
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = null;
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo matricola non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
 	 * verifica lunghezza matricola
 	 */
 	@Test
 	public void validaMatricola_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo matricola deve contenere 10 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -968,39 +697,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaMatricola_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "A512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "A512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo matricola deve contenere solo caratteri numerici.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1011,166 +725,108 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaSesso_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = null;
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = null;
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo sesso non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
 	 * verifica carattere sesso
 	 */
 	@Test
 	public void validaSesso_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "A";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "A";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo sesso deve essere valorizzato con un solo carattere tra M o F.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
 
 	/**
-	 *  verifica che il campo email non sia null 
+	 * verifica che il campo email non sia null
 	 */
 	@Test
 	public void validaEmail_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = null;
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = null;
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo e-mail non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
-	 *  verifica lunghezza minima email
+	 * verifica lunghezza minima email
 	 */
 	@Test
 	public void validaEmail_Min_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo e-mail deve contenere almeno 2 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1181,41 +837,26 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaEmail_Max_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
 				+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+		
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo e-mail deve contenere al massimo 256 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1226,39 +867,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaEmail_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.r*ossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.r*ossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo e-mail non rispetta il formato stabilito.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1269,39 +895,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaEmail_Esistenza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "p.bianchi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "p.bianchi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(true);
 
 		final String message = "l'e-mail inserita è già presente.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1312,81 +923,52 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaPassword_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = null;
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = null;
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
 	 * verifica lunghezza minima password
 	 */
 	@Test
 	public void validaPassword_Min_Lughezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Pw#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Pw#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password deve contenere almeno 8 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1397,39 +979,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaPassword_Max_Lughezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "PasswordPasswordPassword#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "PasswordPasswordPassword#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password deve contenere al massimo 24 caratteri.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1440,18 +1007,17 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaPassword_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Pass   word#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Pass   word#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
@@ -1459,21 +1025,7 @@ public class RichiestaIscrizioneUT {
 				+ "un numero, almeno una lettera e non deve contenere spazi.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1484,81 +1036,52 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaConfermaPassword_Null() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = null;
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = null;
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo conferma password non può essere nullo.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	/**
 	 * verifica lunghezza minima conferma password
 	 */
 	@Test
 	public void validaConfermaPassword_Min_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Pw#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Pw#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password e il campo conferma password non corrispondono.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1569,39 +1092,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaConfermaPassword_Max_Lunghezza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "PasswordPasswordPassword#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "PasswordPasswordPassword#1";
+		condizioni = "on";	
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password e il campo conferma password non corrispondono.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1612,39 +1120,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaConfermaPassword_Formato() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Pass  word#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Pass  word#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password e il campo conferma password non corrispondono.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1655,39 +1148,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaConfermaPassword_Corrispondenza() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Passwordd#1";
-		String condizioni = "on";
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Passwordd#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo password e il campo conferma password non corrispondono.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1698,39 +1176,24 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void verificaCondizioni() {
-
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = null;
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = null;
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "È obbligatorio accettare le condizioni sulla privacy.";
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			validaCampi();
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1741,47 +1204,31 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void salvaRichiestaIscrizione() {
-	
-		String nome = "Mario";
-		String cognome = "Rossi";
-		String indirizzo = "Via Roma 4 84080 Salerno SA";
-		String telefono = "333-3544541";
-		LocalDate dataNascita = LocalDate.parse("1997-12-24");
-		String matricola = "0512105144";
-		String sesso = "M";
-		String email = "m.rossi@studenti.unisa.it";
-		String password = "Password#1";
-		String confermaPassword = "Password#1";
-		String condizioni = "on";
-		
-		
-		
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
-		
 
 		try {
-			richiestaIscrizioneService.validaNome(nome);
-			richiestaIscrizioneService.validaCognome(cognome);
-			richiestaIscrizioneService.validaIndirizzo(indirizzo);
-			richiestaIscrizioneService.validaTelefono(telefono);
-			richiestaIscrizioneService.validaDataNascita(dataNascita);
-			richiestaIscrizioneService.validaMatricola(matricola);
-			richiestaIscrizioneService.validaSesso(sesso);
-			richiestaIscrizioneService.validaEmail(email);
-			richiestaIscrizioneService.validaPassword(password);
-			richiestaIscrizioneService.validaConfermaPassword(password, confermaPassword);
-			richiestaIscrizioneService.validaCondizioni(condizioni);
-
+			validaCampi();
 			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
 					password);
-			
-			
+
 			when(richiestaIscrizioneRepository.save(any(RichiestaIscrizione.class))).thenReturn(null);
 			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
-			
-			//verifica che il metodo save del mock venga invocato almeno una volta
-			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class)); 
-			
+
+			// verifica che il metodo save del mock venga invocato almeno una volta
+			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+
 		} catch (RichiestaIscrizioneNonValidaException exception) {
 			exception.printStackTrace();
 
@@ -1793,23 +1240,23 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void accettaRichiestaIscrizione() {
-		RichiestaIscrizione richiestaiscrizione= new RichiestaIscrizione();
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
 		when(richiestaIscrizioneRepository.findById(12L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		richiestaIscrizioneService.accettaRichiestaIscrizione(12L);
-		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class)); 
-}
+		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+	}
 
 	/**
 	 * verifica correttezza metodo rifiutaRichiestaIscrizione
 	 */
 	@Test
 	public void rifiutaRichiestaIscrizione() {
-		RichiestaIscrizione richiestaiscrizione= new RichiestaIscrizione();
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
 		when(richiestaIscrizioneRepository.findById(10L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		richiestaIscrizioneService.rifiutaRichiestaIscrizione(10L);
-		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class)); 
-}
+		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+	}
 
 }
