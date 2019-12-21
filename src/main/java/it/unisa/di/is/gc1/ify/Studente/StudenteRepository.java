@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author Geremia Cavezza
  * 
  *         Classe che definisce le operazioni per la modellazione e l'accesso
- *         alle informazioni persisteti relative ad uno studente
+ *         alle informazioni persistenti relative ad uno studente
  *
  * @see Studente
  */

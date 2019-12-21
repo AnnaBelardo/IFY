@@ -1,6 +1,7 @@
 package it.unisa.di.is.gc1.ify.convenzioni;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.persistence.OneToOne;
  * Classe che modella i singoli dati di una richiesta di convenzionamento
  * @author Carmine Ferrara
  */
+@Entity
 public class RichiestaConvenzionamento {
 	
 	

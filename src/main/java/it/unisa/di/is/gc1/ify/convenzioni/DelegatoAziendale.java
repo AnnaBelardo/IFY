@@ -68,7 +68,7 @@ public class DelegatoAziendale extends Utente {
 	public static final int MIN_LUNGHEZZA_RUOLO = 2;
 
 	/**
-	 * Costante che definisce la minima lunghezza del campo ruolo.
+	 * Costante che definisce la massima lunghezza del campo ruolo.
 	 */
 	public static final int MAX_LUNGHEZZA_RUOLO =255;
 
