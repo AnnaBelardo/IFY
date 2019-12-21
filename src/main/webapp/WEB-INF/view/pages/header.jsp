@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +32,18 @@
 					<li class="nav-item active col-md-12">
 					<figure class="figure">
   					<img src="./resources/images/logos/logo dipartimento.png" height="50" width="50" class="figure-img img-fluid rounded" alt="Un'immagine generica segnaposto con angoli arrotondati in una figura.">
-  					<figcaption class="figure-caption"><button type="button" class="btn btn-warning btn-sm">Login</button></figcaption>
+  					<figcaption class="figure-caption">
+  					<c:choose>
+								<c:when test="${pageContext.request.servletPath == '/WEB-INF/view/pages/homepage.jsp'}">
+									<button type="button" class="btn btn-warning btn-sm">Login</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-warning btn-sm" onclick="window.location.href = 'http://localhost:8080/';">Homepage</button>
+							
+								</c:otherwise>
+							</c:choose>
+  					
+  						</figcaption>
 				</figure>
 				</li>	
 					<!--<li class="nav-item active col-md-6" id="pos">-->

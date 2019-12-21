@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 
 <head>
 <title>Registrazione studente</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
 <link href="<c:url value="/resources/css/formStylePage.css" />" rel="stylesheet">
 <script
@@ -16,11 +16,13 @@
 </head>
 
 <body>
+<%@ include file="header.jsp" %>
 	<div class="container">
 	
 		<form class="form-horizontal" role="form" name="iscrizioneForm"
 			method="post" action="/richiestaIscrizione"
 			modelAttribute="studenteForm">
+			
 			<h3>Richiesta iscrizione studente</h3>
 			<div class="row">
 				<div class="col-6">
@@ -87,7 +89,7 @@
 								<c:otherwise>
 									<input type="text" name="telefono" id="inputTelefono"
 										placeholder="Telefono" class="form-control is-invalid">
-									<span class = "myError">${IndirizzoError}</span>
+									<span class = "myError">${TelefonoError}</span>
 								</c:otherwise>
 							</c:choose>
 
@@ -154,8 +156,6 @@
 								</c:otherwise>
 							</c:choose>
 
-
-
 						</div>
 					</div>
 					<div class="form-group">
@@ -174,7 +174,6 @@
 							</c:choose>
 						</div>
 					</div>
-
 
 					<div class="form-group">
 						<div class="col-sm-11">
@@ -240,21 +239,21 @@
 											href="https://www.garanteprivacy.it/il-testo-del-regolamento">Regolamento
 											privacy</a>
 
-
 							</div>
 
 							<c:if test="${CondizioniError != null}">
 								<span class = "myError">${CondizioniError}</span>
 							</c:if>
 						</div>
+						<button type="submit" id="reg" class="btn btn-primary btn-block">Registrati</button>
 					</div>
 				</div>
-				<button type="submit" id="reg" class="btn btn-primary btn-block">Registrati</button>
+				
 			</div>
 		</form>
 	</div>
 	<!-- ./container -->
 	
-	
+<%@ include file="footer.jsp" %>
 </body>
 </html>

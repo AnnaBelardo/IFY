@@ -27,7 +27,7 @@ public class StudenteController {
   @Autowired
   private StudenteFormValidator studenteFormValidator;
   
-  @RequestMapping(value = "/iscrizioneStudente", method = RequestMethod.POST)
+  @RequestMapping(value = "/richiestaIscrizione", method = RequestMethod.POST)
   public String invioRichiestaIscrizione(@ModelAttribute("studenteForm") StudenteForm studenteForm,
       BindingResult result, RedirectAttributes redirectAttribute, Model model) {
     
