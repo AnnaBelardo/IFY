@@ -14,13 +14,18 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneNonValidaException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 import it.unisa.di.is.gc1.ify.web.StudenteController;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -40,7 +45,13 @@ public class RichiestaIscrizioneUT {
 	StudenteController studenteController;
 	@Mock
 	UtenteRepository utenteRepository;
-
+	@Mock
+	Utente utente;
+	@Mock
+	RichiestaIscrizione richiestaIscrizione;
+	@Mock
+	UtenzaService utenzaService;
+	
 	@InjectMocks
 	RichiestaIscrizioneService richiestaIscrizioneService;
 
@@ -1234,29 +1245,156 @@ public class RichiestaIscrizioneUT {
 
 		}
 	}
-
+	
 	/**
-	 * verifica correttezza metodo accettaRichiestaIscrizione
+	 * verifica metodo accettaRichiestaIscrizione con utente non autorizzato
 	 */
 	@Test
-	public void accettaRichiestaIscrizione() {
-		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
-		when(richiestaIscrizioneRepository.findById(12L)).thenReturn(richiestaiscrizione);
-		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
-		richiestaIscrizioneService.accettaRichiestaIscrizione(12L);
-		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
-	}
-
-	/**
-	 * verifica correttezza metodo rifiutaRichiestaIscrizione
-	 */
-	@Test
-	public void rifiutaRichiestaIscrizione() {
+	public void accettaRichiestaIscrizioneNonAutorizzata() {
 		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
 		when(richiestaIscrizioneRepository.findById(10L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
-		richiestaIscrizioneService.rifiutaRichiestaIscrizione(10L);
-		verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
+		
+		final String message = "Operazione non autorizzata";
+		
+		try {
+			richiestaIscrizioneService.accettaRichiestaIscrizione(10L);
+		} catch (OperazioneNonAutorizzataException exception) {
+			assertEquals(message, exception.getMessage());
+		}
 	}
 
+	/**
+	 * verifica metodo accettaRichiestaIscrizione su richieste con stato non in attesa
+	 */
+	@Test
+	public void accettaRichiestaIscrizioneAutorizzataStatoErrato() {
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
+		richiestaiscrizione.setStato(RichiestaIscrizione.RIFIUTATA);
+		when(richiestaIscrizioneRepository.findById(11L)).thenReturn(richiestaiscrizione);
+		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		
+		final String message = "Impossibile accettare questa richiesta";
+		
+		try {
+			richiestaIscrizioneService.accettaRichiestaIscrizione(11L);
+		} catch (OperazioneNonAutorizzataException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
+	/**
+	 * verifica metodo accettaRichiestaIscrizione successo
+	 */
+	@Test
+	public void accettaRichiestaIscrizioneSuccesso() {
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
+		richiestaiscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
+		when(richiestaIscrizioneRepository.findById(12L)).thenReturn(richiestaiscrizione);
+		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		
+		try {
+			richiestaIscrizioneService.accettaRichiestaIscrizione(12L);
+			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+		} catch (OperazioneNonAutorizzataException exception) {
+			exception.printStackTrace();
+		}
+	}	
+	
+	
+	/**
+	 * verifica metodo rifiutaRichiestaIscrizione con utente non autorizzato
+	 */
+	@Test
+	public void rifiutaRichiestaIscrizioneNonAutorizzata() {
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
+		when(richiestaIscrizioneRepository.findById(13L)).thenReturn(richiestaiscrizione);
+		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
+		
+		final String message = "Operazione non autorizzata";
+		
+		try {
+			richiestaIscrizioneService.rifiutaRichiestaIscrizione(13L);
+		} catch (OperazioneNonAutorizzataException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * verifica metodo rifiutaRichiestaIscrizione con stato diverso da in attesa
+	 */
+	@Test
+	public void rifiutaRichiestaIscrizioneStatoErrato() {
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
+		richiestaiscrizione.setStato(RichiestaIscrizione.ACCETTATA);
+		when(richiestaIscrizioneRepository.findById(14L)).thenReturn(richiestaiscrizione);
+		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		
+		final String message = "Impossibile rifiutare questa richiesta";
+		
+		try {
+			richiestaIscrizioneService.rifiutaRichiestaIscrizione(14L);
+		} catch (OperazioneNonAutorizzataException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * verifica metodo rifiutaRichiestaIscrizione successo
+	 */
+	@Test
+	public void rifiutaRichiestaIscrizioneSuccesso() {
+		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
+		richiestaiscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
+		when(richiestaIscrizioneRepository.findById(15L)).thenReturn(richiestaiscrizione);
+		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		
+		try {
+			richiestaIscrizioneService.rifiutaRichiestaIscrizione(15L);
+			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
+		} catch (OperazioneNonAutorizzataException exception) {
+			exception.printStackTrace();
+		}
+	}
+	
+
+	/**
+	 * verifica metodo visualizzaRichiesteIscrizioneEDettagli con utente non autorizzato
+	 */
+	@Test
+	public void visualizzaRichiesteNonAutorizzato() {
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
+		
+		final String message = "Operazione non autorizzata";
+		
+		try {
+			richiestaIscrizioneService.visualizzaRichiesteIscrizioneEDettagli();
+		} catch (OperazioneNonAutorizzataException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
+
+	/**
+	 * verifica metodo visualizzaRichiesteIscrizioneEDettagli con utente autorizzato
+	 */
+	@Test
+	public void visualizzaRichiesteSuccesso() {
+		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		
+		try {
+			richiestaIscrizioneService.visualizzaRichiesteIscrizioneEDettagli();
+			verify(richiestaIscrizioneRepository, times(1)).findAllByStato(RichiestaIscrizione.IN_ATTESA);
+		} catch (OperazioneNonAutorizzataException exception) {
+			exception.printStackTrace();
+		}
+	}
 }

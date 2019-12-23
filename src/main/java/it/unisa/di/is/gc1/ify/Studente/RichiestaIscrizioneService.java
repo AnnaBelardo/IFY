@@ -1,12 +1,16 @@
 package it.unisa.di.is.gc1.ify.Studente;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 import it.unisa.di.is.gc1.ify.web.StudenteForm;
 
 /**
@@ -25,6 +29,10 @@ public class RichiestaIscrizioneService {
 
 	@Autowired
 	private RichiestaIscrizioneRepository richiestaIscrizioneRepository;
+	
+	@Autowired
+	private UtenzaService utenzaService;
+
 	
 	/**
 	 * Il metodo fornisce la funzionalità di salvataggio di uno studente con la relativa
@@ -51,12 +59,26 @@ public class RichiestaIscrizioneService {
 	 * 
 	 * 
 	 * @param idRichiesta
-	 * @return Richiesta d'iscrizione richiesta d'iscrizione
+	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
+	 *         iscrizione.
 	 */
 	
 	@Transactional(rollbackFor = Exception.class)
-	public RichiestaIscrizione accettaRichiestaIscrizione(Long idRichiesta) {
+	public RichiestaIscrizione accettaRichiestaIscrizione(Long idRichiesta)
+			throws OperazioneNonAutorizzataException {
+		
+		Utente utente = utenzaService.getUtenteAutenticato();
+		
+		//Solo il responsabile ufficio tirocini può accettare una richiesta di iscrizione
+		if(!(utente instanceof ResponsabileUfficioTirocini)) {
+			throw new OperazioneNonAutorizzataException();
+		}
+
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
+	
+		if(!richiestaIscrizione.getStato().equals(RichiestaIscrizione.IN_ATTESA)) {
+			throw new OperazioneNonAutorizzataException("Impossibile accettare questa richiesta");
+		}
 		
 		richiestaIscrizione.setStato(RichiestaIscrizione.ACCETTATA);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
@@ -67,20 +89,55 @@ public class RichiestaIscrizioneService {
 	 * 
 	 * 
 	 * @param idRichiesta
-	 * @return Richiesta d'iscrizione richiesta d'iscrizione
+	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
+	 *         iscrizione.
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public RichiestaIscrizione rifiutaRichiestaIscrizione(Long idRichiesta) {
+	public RichiestaIscrizione rifiutaRichiestaIscrizione(Long idRichiesta)
+			throws OperazioneNonAutorizzataException {
+				
+		Utente utente = utenzaService.getUtenteAutenticato();
+		
+		//Solo il responsabile ufficio tirocini può rifiutare una richiesta di iscrizione
+		if(!(utente instanceof ResponsabileUfficioTirocini)) {
+			throw new OperazioneNonAutorizzataException();
+		}
+		
 		RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneRepository.findById(idRichiesta);
 
+		if(!richiestaIscrizione.getStato().equals(RichiestaIscrizione.IN_ATTESA)) {
+			throw new OperazioneNonAutorizzataException("Impossibile rifiutare questa richiesta");
+		}
+		
 		richiestaIscrizione.setStato(RichiestaIscrizione.RIFIUTATA);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
 
 		return richiestaIscrizione;
 	}
 
-	
-	
+	 /** Il metodo fornisce la funzionalità di visualizzazione delle richieste di iscrizione
+	 * in attesa e relativi dettagli
+	 * 
+	 * @return Lista di {@link RichiestaIscrizione} che rappresenta la lista delle
+	 *         richieste di iscrizione <b>Può essere vuota</b> se nel database non
+	 *         sono presenti richieste di iscrizione in attesa
+	 */	
+	@Transactional(rollbackFor = Exception.class)
+	public List<RichiestaIscrizione> visualizzaRichiesteIscrizioneEDettagli() 
+			throws OperazioneNonAutorizzataException {
+		
+		Utente utente = utenzaService.getUtenteAutenticato();
+		
+		//Solo il responsabile ufficio tirocini puo visualizzare le richieste di iscrizione
+		if(!(utente instanceof ResponsabileUfficioTirocini)) {
+			throw new OperazioneNonAutorizzataException();
+		}
+		
+		List<RichiestaIscrizione> richiestaIscrizione = richiestaIscrizioneRepository.findAllByStato(RichiestaIscrizione.IN_ATTESA);
+
+		return richiestaIscrizione;
+	}
+		
 	/**
 	 * Il metodo fornisce i controlli di validazione del parametro nome di un generico studente
 	 * @param nome

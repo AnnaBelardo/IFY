@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
@@ -77,7 +78,12 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		studente.setPassword("Password#1");
 		
 		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
-		richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(richiestaIscrizione.getId());
+		//aggiungere controllo su utente autenticato
+		try {
+			richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(richiestaIscrizione.getId());
+		} catch (OperazioneNonAutorizzataException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals(RichiestaIscrizione.ACCETTATA, richiestaIscrizione.getStato());
 		
@@ -99,7 +105,12 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		studente.setPassword("Password#1");
 		
 		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
-		richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(richiestaIscrizione.getId());
+		//aggiungere controllo su utente autenticato
+		try {
+			richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(richiestaIscrizione.getId());
+		} catch (OperazioneNonAutorizzataException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals(RichiestaIscrizione.RIFIUTATA, richiestaIscrizione.getStato());
 		
