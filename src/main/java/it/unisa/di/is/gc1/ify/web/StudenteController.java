@@ -31,7 +31,7 @@ public class StudenteController {
   public String invioRichiestaIscrizione(@ModelAttribute("studenteForm") StudenteForm studenteForm,
       BindingResult result, RedirectAttributes redirectAttribute, Model model) {
     
-    studenteFormValidator.validate(studenteForm, result);
+	studenteFormValidator.validate(studenteForm, result);
     if(result.hasErrors()) {
       //se ci sono errori il metodo controller setta tutti i parametri 
       

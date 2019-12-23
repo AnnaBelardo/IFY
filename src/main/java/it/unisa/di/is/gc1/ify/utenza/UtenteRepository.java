@@ -32,6 +32,19 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
 	   */
 	  Utente findByEmailAndPassword(String email, String password);
 	  
+	  
+	  /**
+	   * Permette di ottenere un utente a partire dalla proria mail.
+	   * 
+	   * @param email Stringa che rappresenta l'email dell'utente    
+	   * 
+	   * @return  Oggetto {@link Utente} che rappresenta l'utente. <b>Può 
+	   *          essere null</b> se nel database non è presente un utente con email 
+	   *          come parametro
+	   * 
+	   * @pre email != null
+	   */
+	  Utente findByEmail(String email);
 
 	  /**
 	   * Permette di verificare se un'utente esiste nel database attraverso la propria email.
