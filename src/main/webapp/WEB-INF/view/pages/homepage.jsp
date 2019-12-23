@@ -66,7 +66,7 @@
 		    </div>
 		</header>
 		<!-- Page Content -->
-		<div class="container">
+		<div class="container page-wrap">
 			<h1 class="my-4 testosopracard">Benvenuto sulla piattaforma per la gestione dei tirocini</h1><br>
 			<!-- Marketing Icons Section -->
 			<div class="row">
