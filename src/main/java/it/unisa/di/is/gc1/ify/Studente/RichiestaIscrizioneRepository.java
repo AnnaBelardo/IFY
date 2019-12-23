@@ -60,4 +60,16 @@ public interface RichiestaIscrizioneRepository extends JpaRepository<RichiestaIs
 	 */
 	RichiestaIscrizione findById(Long id);
 
+	/**
+	 * Permette di ottenere la richiesta di iscrizione di uno studente.
+	 * 
+	 * @param email String che rappresenta la stringa dello studente per cui si cerca la
+	 *           richiesta
+	 * 
+	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
+	 *         iscrizione.
+	 * 
+	 * @pre email != null
+	 */
+	RichiestaIscrizione findByStudenteEmail(String email);
 }

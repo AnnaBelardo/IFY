@@ -14,7 +14,7 @@ import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 
 /**
- * 
+ * Controller per la gestione delle richieste di iscrizione
  * @author Giusy Castaldo Alessia Natale
  *
  */
@@ -27,6 +27,14 @@ public class StudenteController {
   @Autowired
   private StudenteFormValidator studenteFormValidator;
   
+  /**
+   * Metodo per inviare una richiesta di iscrizione
+   * @param studenteForm
+   * @param result
+   * @param redirectAttribute
+   * @param model
+   * @return String stringa che rapprestenta la pagina da visualizzare
+   */
   @RequestMapping(value = "/richiestaIscrizione", method = RequestMethod.POST)
   public String invioRichiestaIscrizione(@ModelAttribute("studenteForm") StudenteForm studenteForm,
       BindingResult result, RedirectAttributes redirectAttribute, Model model) {

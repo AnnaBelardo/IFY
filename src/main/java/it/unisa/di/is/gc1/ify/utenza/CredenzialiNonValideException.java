@@ -3,6 +3,7 @@ package it.unisa.di.is.gc1.ify.utenza;
 /**
  * Eccezione lanciata quando il login fallisce poiché le credenziali inserite non sono presenti nel 
  * sistema.
+ * @author Giacomo Izzo, Alessia Natale
  */
 public class CredenzialiNonValideException extends Exception {
 

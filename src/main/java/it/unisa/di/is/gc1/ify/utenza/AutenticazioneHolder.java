@@ -2,8 +2,10 @@ package it.unisa.di.is.gc1.ify.utenza;
 
 /**
  * Classe utilizzata per tenere traccia dell'utente autenticato all'interno del sistema. In pratica,
- * tramite questa classe è possibile specificare l'username dell'utente autenticato in maniera da
+ * tramite questa classe è possibile specificare l'email dell'utente autenticato in maniera da
  * renderlo visibile a livello di thread.
+ * 
+ * @author Giacomo Izzo, Alessia Natale
  */
 public class AutenticazioneHolder {
   
@@ -13,7 +15,7 @@ public class AutenticazioneHolder {
    * Permette di aggiungere la mail dell'utente autenticato in sessione al fine di renderlo
    * visibile a tutti i livelli.
    * 
-   * @param email Stringa che rappresenta l'username dell'utente autenticato nel sistema
+   * @param email Stringa che rappresenta l'email dell'utente autenticato nel sistema
    */
   static void setUtente(String email) {
     if (email != null) {
@@ -24,9 +26,9 @@ public class AutenticazioneHolder {
   }
   
   /**
-   * Permette di ottenere l'username dell'utente autenticato nel sistema.
+   * Permette di ottenere l'email dell'utente autenticato nel sistema.
    * 
-   * @return La stringa che rappresenta l'username dell'utente autenticato nel sistema,
+   * @return La stringa che rappresenta l'email dell'utente autenticato nel sistema,
    *         <b>null</b> se non vi è alcun utente in sessione
    */
   static String getUtente() {

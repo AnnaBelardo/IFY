@@ -21,7 +21,7 @@
 				<c:choose>
 					<c:when
 						test="${pageContext.request.servletPath == '/WEB-INF/view/pages/homepage.jsp'}">
-						<a class="option">Login</a>
+						<a href="/loginPage" class="option">Login</a>
 					</c:when>
 					<c:otherwise>
 						<a class="option" href='/'>Homepage</a>

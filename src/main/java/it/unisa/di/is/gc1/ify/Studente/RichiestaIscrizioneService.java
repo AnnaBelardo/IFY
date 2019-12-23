@@ -11,7 +11,6 @@ import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTir
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
-import it.unisa.di.is.gc1.ify.web.StudenteForm;
 
 /**
  * La classe fornisce i metodi per la logica di business delle richieste d'iscrizione
@@ -123,7 +122,7 @@ public class RichiestaIscrizioneService {
 	 *         sono presenti richieste di iscrizione in attesa
 	 */	
 	@Transactional(rollbackFor = Exception.class)
-	public List<RichiestaIscrizione> visualizzaRichiesteIscrizioneEDettagli() 
+	public List<RichiestaIscrizione> visualizzaRichiesteIscrizioneDettagli() 
 			throws OperazioneNonAutorizzataException {
 		
 		Utente utente = utenzaService.getUtenteAutenticato();
@@ -136,6 +135,15 @@ public class RichiestaIscrizioneService {
 		List<RichiestaIscrizione> richiestaIscrizione = richiestaIscrizioneRepository.findAllByStato(RichiestaIscrizione.IN_ATTESA);
 
 		return richiestaIscrizione;
+	}
+	
+	/** Il metodo ritorna lo stato della richiesta d'iscrizione
+	 * @param email
+	 * @return String stringa che rappresenta lo stato della richiesta d'iscrizione
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public String getStatoRichiestaByEmail(String email) {
+		return richiestaIscrizioneRepository.findByStudenteEmail(email).getStato();
 	}
 		
 	/**

@@ -1376,7 +1376,7 @@ public class RichiestaIscrizioneUT {
 		final String message = "Operazione non autorizzata";
 		
 		try {
-			richiestaIscrizioneService.visualizzaRichiesteIscrizioneEDettagli();
+			richiestaIscrizioneService.visualizzaRichiesteIscrizioneDettagli();
 		} catch (OperazioneNonAutorizzataException exception) {
 			assertEquals(message, exception.getMessage());
 		}
@@ -1391,7 +1391,7 @@ public class RichiestaIscrizioneUT {
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
 		
 		try {
-			richiestaIscrizioneService.visualizzaRichiesteIscrizioneEDettagli();
+			richiestaIscrizioneService.visualizzaRichiesteIscrizioneDettagli();
 			verify(richiestaIscrizioneRepository, times(1)).findAllByStato(RichiestaIscrizione.IN_ATTESA);
 		} catch (OperazioneNonAutorizzataException exception) {
 			exception.printStackTrace();

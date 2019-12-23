@@ -46,12 +46,12 @@
 						<div style="margin: 0 auto;" class="col-sm-11">
 							<c:choose>
 								<c:when test="${PasswordError == null}">
-									<input type="text" name="password" id="inputPassword"
+									<input type="password" name="password" id="inputPassword"
 										placeholder="Password" class="form-control"
 										value="${utenteForm.password}">
 								</c:when>
 								<c:otherwise>
-									<input type="text" name="password" id="inputPassword"
+									<input type="password" name="password" id="inputPassword"
 										placeholder="Password" class="form-control is-invalid">
 										<span class = "myError">${PasswordError}</span>	
 								</c:otherwise>

@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 
 /**
  * Classe che definisce la configurazione della webapp in termini di Bean disponibili a livello di
@@ -57,6 +59,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     registry
         .addResourceHandler("/resources/**")
         .addResourceLocations("/resources/"); 
+  }
+  
+  /**
+   * Interceptor che si occupa di trasferire le informazioni relative all'utente autenticato dalla
+   * sessio del server ai livelli inferiori tramite l'utilizzo di {@link UtenzaService} e
+   * {@link AutenticazioneHolder}.
+   * 
+   * @return Un oggetto interceptor
+   */
+  @Bean
+  public AutenticazioneInterceptor autenticazioneInterceptor() {
+    return new AutenticazioneInterceptor();
+  }
+  
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(autenticazioneInterceptor());
   }
   
   

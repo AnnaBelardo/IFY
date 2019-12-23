@@ -1,8 +1,9 @@
 package it.unisa.di.is.gc1.ify.utenza;
 
 /**
- * Eccezione lanciata quando il controllo sulla mail di un utente fallisce perché questo non
+ * Eccezione lanciata quando il controllo sull'email di un utente fallisce perché questo non
  * rispetta il pattern oppure è nullo.
+ * @author Giacomo Izzo, Alessia Natale
  */
 public class MailNonValidaException extends Exception {
 
