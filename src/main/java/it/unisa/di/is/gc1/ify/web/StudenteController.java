@@ -1,5 +1,7 @@
 package it.unisa.di.is.gc1.ify.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,11 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 
@@ -71,6 +76,65 @@ public class StudenteController {
     }
     
     return "redirect:/";
+  }
+  
+  /**
+   * Metodo per visualizzare la lista delle richieste di iscrizione in attesa
+   * @param model
+   * @return String stringa che rapprestenta la pagina da visualizzare
+   */
+  @RequestMapping(value = "/visualizzaRichiesteIscrizione", method = RequestMethod.POST)
+  public String visualizzaRichiesteIscrizione(Model model) {
+
+	  try {
+		  List<RichiestaIscrizione> richiesteIscrizione = richiestaIscrizioneService.visualizzaRichiesteIscrizioneDettagli();
+		  model.addAttribute("richiesteIscrizione", richiesteIscrizione);
+	  }catch(OperazioneNonAutorizzataException e) {
+		  System.out.println(e.getMessage());
+		  return "redirect:/";
+	  }
+	   
+    return "redirect:/listaRichiesteIscrizione";
+  }
+  
+  /**
+   * Metodo per accettare una richiesta di iscrizione in attesa
+   * @param model
+   * @param id
+   * @return String stringa che rapprestenta la pagina da visualizzare
+   */
+  @RequestMapping(value = "/accettaRichiestaIscrizione", method = RequestMethod.POST)
+  public String accettaRichiestaIscrizione(@RequestParam("idRichiesta") long id, Model model) {
+
+	  try {
+		  RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(id);
+		  model.addAttribute("richiestaAccettata", richiestaIscrizione);
+	  }catch(OperazioneNonAutorizzataException e) {
+		  System.out.println(e.getMessage());
+		  return "redirect:/";
+	  }
+	   
+	  return "redirect:/visualizzaRichiesteIscrizione";
+  }
+  
+  /**
+   * Metodo per rifiutare una richiesta di iscrizione in attesa
+   * @param model
+   * @param id
+   * @return String stringa che rapprestenta la pagina da visualizzare
+   */
+  @RequestMapping(value = "/rifiutaRichiestaIscrizione", method = RequestMethod.POST)
+  public String rifiutaRichiestaIscrizione(@RequestParam("idRichiesta") long id, Model model) {
+
+	  try {
+		  RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(id);
+		  model.addAttribute("richiestaRifiutata", richiestaIscrizione);
+	  }catch(OperazioneNonAutorizzataException e) {
+		  System.out.println(e.getMessage());
+		  return "redirect:/";
+	  }
+	   
+	  return "redirect:/visualizzaRichiesteIscrizione";
   }
   
   
