@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="./resources/images/logos/logo pre login.png" type="image/x-icon"/>
 <meta charset="UTF-8">
 <title>Header</title>
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
@@ -13,26 +14,26 @@
 <body>
 
 	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-
-		<img src="./resources/images/logos/logo pre login.png" height="80"
-			width="90"> <a class="navbar-brand col-sm-3 col-md-2 mr-0"
-			href="/">Internship for you</a>
-		
-				<c:choose>
-					<c:when
-						test="${pageContext.request.servletPath == '/WEB-INF/view/pages/homepage.jsp'}">
-						<a href="/loginPage" class="option">Login</a>
-					</c:when>
-					<c:otherwise>
-						<a class="option" href='/'>Homepage</a>
-					</c:otherwise>
-				</c:choose>
+		<div>
+			<a style="margin-left: 5px;" href="/">
+				<img src="./resources/images/logos/logo pre login.png" style="width:50px;">
+			</a>
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0 ify-title" href="/">Internship for you</a>
+		</div>
+		<div style="margin-right: 5px; display: flex; flex-direction: row; align-items: center;">
+			<c:choose>
+				<c:when test="${pageContext.request.servletPath == '/WEB-INF/view/pages/homepage.jsp'}">
+					<a href="/loginPage" type="submit" class="login-btn btn btn-primary btn-block">Login</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/" type="submit" class="login-btn btn btn-primary btn-block">Home</a>
+				</c:otherwise>
+			</c:choose>
 			
-		<figure class="figure">
-			<img src="./resources/images/logos/logo dipartimento.png" height="50"
-				width="50" class="figure-img img-fluid rounded logo"
-				alt="Un'immagine generica segnaposto con angoli arrotondati in una figura.">
-		</figure>
+			<figure class="figure">
+				<img src="./resources/images/logos/logo dipartimento.png" height="50" width="50" class="figure-img img-fluid rounded logo" alt="Un'immagine generica segnaposto con angoli arrotondati in una figura.">
+			</figure>
+		</div>
 	</nav>
 
 	<!-- Bootstrap core JavaScript -->

@@ -1,3 +1,26 @@
+.ify-title:hover{
+	color: #fff !important;
+}
+
+.ify-title{
+	text-align: center;
+}
+
+.login-btn {
+	background-color: #ff9438;
+	border: 2px solid #212529;
+	color: #212529!important;
+	width: 120px;
+	margin: 15px;
+}
+
+.login-btn:hover {
+	background-color: #ff9438!important;
+	border-color: #fff!important;
+	color: #fff!important;
+	box-shadow: 0 0 3px #fff, insert 0 0 4px 1px #fff;
+}
+
 .bg-dark
 {
 	background-color: #ff9438!important;

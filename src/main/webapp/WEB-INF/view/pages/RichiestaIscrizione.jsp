@@ -17,7 +17,7 @@
 
 <body>
 <%@ include file="header.jsp" %>
-	<div class="container">
+	<div style="margin-top: 50px; margin-bottom: 30px;" class="container">
 	
 		<form class="form-horizontal" role="form" name="iscrizioneForm"
 			method="post" action="/richiestaIscrizione"
