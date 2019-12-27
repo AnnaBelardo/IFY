@@ -1,3 +1,13 @@
+.btn.btn-primary{
+	background: #ff9438;
+	border: 2px solid black;
+}
+
+.btn.btn-primary:hover{
+	background: #ff9438!important;
+	border: 2px solid #fff!important;
+}
+
 .ify-title:hover{
 	color: #fff !important;
 }
