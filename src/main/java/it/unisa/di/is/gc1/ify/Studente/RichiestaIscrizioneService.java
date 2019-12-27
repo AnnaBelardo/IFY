@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.utenza.MailSingletonSender;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
@@ -31,6 +32,9 @@ public class RichiestaIscrizioneService {
 	
 	@Autowired
 	private UtenzaService utenzaService;
+	
+	@Autowired
+	private MailSingletonSender mailSingletonSender;
 
 	
 	/**
@@ -81,6 +85,9 @@ public class RichiestaIscrizioneService {
 		
 		richiestaIscrizione.setStato(RichiestaIscrizione.ACCETTATA);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
+		
+		mailSingletonSender.sendEmail(richiestaIscrizione, richiestaIscrizione.getStudente().getEmail());
+		
 		return richiestaIscrizione;
 	}
 		
@@ -110,6 +117,10 @@ public class RichiestaIscrizioneService {
 		
 		richiestaIscrizione.setStato(RichiestaIscrizione.RIFIUTATA);
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
+		
+		mailSingletonSender.sendEmail(richiestaIscrizione, richiestaIscrizione.getStudente().getEmail());
+		
+		richiestaIscrizioneRepository.delete(richiestaIscrizione);
 
 		return richiestaIscrizione;
 	}
