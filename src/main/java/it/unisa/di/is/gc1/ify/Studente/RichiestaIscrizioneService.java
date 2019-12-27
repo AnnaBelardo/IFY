@@ -88,6 +88,7 @@ public class RichiestaIscrizioneService {
 		
 		mailSingletonSender.sendEmail(richiestaIscrizione, richiestaIscrizione.getStudente().getEmail());
 		
+		
 		return richiestaIscrizione;
 	}
 		

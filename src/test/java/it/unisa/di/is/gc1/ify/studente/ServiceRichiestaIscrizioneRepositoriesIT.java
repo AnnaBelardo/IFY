@@ -18,6 +18,9 @@ import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 /**
  * Classe di test d'integrazione RichiestaIscrizioneRepository - (StudenteRepository - Richiesta iscrizione repository 
@@ -31,14 +34,27 @@ import it.unisa.di.is.gc1.ify.Studente.Studente;
 @Rollback
 public class ServiceRichiestaIscrizioneRepositoriesIT {
 	
-	
 	@Autowired
 	private RichiestaIscrizioneService richiestaIscrizioneService;
 	
+	@Autowired
+	private UtenteRepository utenteRepository;
 	
+	@Autowired
+	private UtenzaService utenzaService;
 	
 	private Studente studente;
 	private RichiestaIscrizione richiestaIscrizione;
+	private ResponsabileUfficioTirocini responsabile;
+	
+	/**
+	 * Testa il corretto funzionamento del metodo di salvataggio di una richiesta di iscrizione.
+	 * 
+	 * @test {@link RichiestaIscrizioneService#salvaRichiestaIscrizione(Studente)}
+	 * 
+	 * @result Il test è superato se la richesta di iscrizione viene correttamente
+	 * salvata nel database
+	 */
 	
 	@Test
 	public void salvaRichiestaIscrizione() {
@@ -57,10 +73,18 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		
 		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
 		
-		
 		assertNotNull(richiestaIscrizione);
 		
 	}
+	
+	/**
+	 * Testa il corretto funzionamento del metodo di accettazione di una richiesta di iscrizione.
+	 * 
+	 * @test {@link RichiestaIscrizioneService#accettaRichiestaIscrizione(Long)}
+	 * 
+	 * @result Il test è superato se la richesta di iscrizione viene correttamente
+	 * accettata ed aggiornata nel database
+	 */
 	
 	@Test
 	public void accettaRichiestaIscrizione() {
@@ -77,8 +101,22 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		studente.setSesso("M");
 		studente.setPassword("Password#1");
 		
+		
+		responsabile = new ResponsabileUfficioTirocini();
+		
+		responsabile.setNome("Paolo");
+		responsabile.setCognome("Neri");
+		responsabile.setIndirizzo("Via Roma 29 80197 Salerno SA");
+		responsabile.setSesso("M");
+		responsabile.setEmail("p.neri87@gmail.com");
+		responsabile.setRuolo("Responsabile");
+		responsabile.setPassword("Password#5");
+		
+		utenteRepository.save(responsabile);
+		
 		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
-		//aggiungere controllo su utente autenticato
+		utenzaService.setUtenteAutenticato(responsabile.getEmail());
+
 		try {
 			richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(richiestaIscrizione.getId());
 		} catch (OperazioneNonAutorizzataException e) {
@@ -88,6 +126,15 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		assertEquals(RichiestaIscrizione.ACCETTATA, richiestaIscrizione.getStato());
 		
 	}
+
+	/**
+	 * Testa il corretto funzionamento del metodo di rifiuto di una richiesta di iscrizione.
+	 * 
+	 * @test {@link RichiestaIscrizioneService#rifiutaRichiestaIscrizione(Long))}
+	 * 
+	 * @result Il test è superato se la richesta di iscrizione viene correttamente
+	 * rifiutata ed aggiornata nel database
+	 */
 	
 	@Test
 	public void rifiutaRichiestaIscrizione() {
@@ -104,8 +151,22 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		studente.setSesso("M");
 		studente.setPassword("Password#1");
 		
+		
+		responsabile = new ResponsabileUfficioTirocini();
+		
+		responsabile.setNome("Paolo");
+		responsabile.setCognome("Neri");
+		responsabile.setIndirizzo("Via Roma 29 80197 Salerno SA");
+		responsabile.setSesso("M");
+		responsabile.setEmail("p.neri87@gmail.com");
+		responsabile.setRuolo("Responsabile");
+		responsabile.setPassword("Password#5");
+		
+		utenteRepository.save(responsabile);
+		
 		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
-		//aggiungere controllo su utente autenticato
+		utenzaService.setUtenteAutenticato(responsabile.getEmail());
+
 		try {
 			richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(richiestaIscrizione.getId());
 		} catch (OperazioneNonAutorizzataException e) {
@@ -113,6 +174,5 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		}
 		
 		assertEquals(RichiestaIscrizione.RIFIUTATA, richiestaIscrizione.getStato());
-		
 	}
 }

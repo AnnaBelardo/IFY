@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,6 +24,7 @@ import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.utenza.MailSingletonSender;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
@@ -51,6 +53,12 @@ public class RichiestaIscrizioneUT {
 	RichiestaIscrizione richiestaIscrizione;
 	@Mock
 	UtenzaService utenzaService;
+	@Mock
+	MailSingletonSender mailSender;
+	@Mock 
+	Studente studenteMock;
+	@Mock
+	RichiestaIscrizione richiestaMock;
 	
 	@InjectMocks
 	RichiestaIscrizioneService richiestaIscrizioneService;
@@ -182,17 +190,17 @@ public class RichiestaIscrizioneUT {
 	@Test
 	public void ValdiaNome_Formato() {
 
-		 nome = "Mario97";
-		 cognome = "Rossi";
-		 indirizzo = "Via Roma 4 84080 Salerno SA";
-		 telefono = "333-3544541";
-		 dataNascita = LocalDate.parse("1997-12-24");
-		 matricola = "0512105144";
-		 sesso = "M";
-		 email = "m.rossi@studenti.unisa.it";
-		 password = "Password#1";
-		 confermaPassword = "Password#1";
-		 condizioni = "on";
+		nome = "Mario97";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
@@ -252,7 +260,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-	
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere almeno 2 caratteri.";
@@ -286,7 +294,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-		
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere al massimo 255 caratteri.";
@@ -304,7 +312,7 @@ public class RichiestaIscrizioneUT {
 	 */
 	@Test
 	public void validaCognome_Formato() {
-		
+
 		nome = "Mario";
 		cognome = "Rossi97";
 		indirizzo = "Via Roma 4 84080 Salerno SA";
@@ -316,7 +324,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-	
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo cognome deve contenere soltanto caratteri alfabetici o spazi.";
@@ -375,7 +383,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-		
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo indirizzo deve contenere almeno 2 caratteri.";
@@ -517,7 +525,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-	
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono deve contenere al massimo 11 caratteri.";
@@ -545,7 +553,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-	
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo telefono deve contenere soltanto caratteri numerici, al più le prime tre cifre possono essere separate da un trattino.";
@@ -601,7 +609,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-		
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "La data di nascita non rientra nel range consento " + Studente.MIN_DATE.getDayOfMonth()
@@ -632,7 +640,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-		
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "La data di nascita non rientra nel range consento " + Studente.MIN_DATE.getDayOfMonth()
@@ -861,7 +869,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-		
+
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		final String message = "Il campo e-mail deve contenere al massimo 256 caratteri.";
@@ -1113,7 +1121,7 @@ public class RichiestaIscrizioneUT {
 		email = "m.rossi@studenti.unisa.it";
 		password = "Password#1";
 		confermaPassword = "PasswordPasswordPassword#1";
-		condizioni = "on";	
+		condizioni = "on";
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
@@ -1245,7 +1253,7 @@ public class RichiestaIscrizioneUT {
 
 		}
 	}
-	
+
 	/**
 	 * verifica metodo accettaRichiestaIscrizione con utente non autorizzato
 	 */
@@ -1255,9 +1263,9 @@ public class RichiestaIscrizioneUT {
 		when(richiestaIscrizioneRepository.findById(10L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
-		
+
 		final String message = "Operazione non autorizzata";
-		
+
 		try {
 			richiestaIscrizioneService.accettaRichiestaIscrizione(10L);
 		} catch (OperazioneNonAutorizzataException exception) {
@@ -1266,7 +1274,8 @@ public class RichiestaIscrizioneUT {
 	}
 
 	/**
-	 * verifica metodo accettaRichiestaIscrizione su richieste con stato non in attesa
+	 * verifica metodo accettaRichiestaIscrizione su richieste con stato non in
+	 * attesa
 	 */
 	@Test
 	public void accettaRichiestaIscrizioneAutorizzataStatoErrato() {
@@ -1275,36 +1284,40 @@ public class RichiestaIscrizioneUT {
 		when(richiestaIscrizioneRepository.findById(11L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
-		
+
 		final String message = "Impossibile accettare questa richiesta";
-		
+
 		try {
 			richiestaIscrizioneService.accettaRichiestaIscrizione(11L);
 		} catch (OperazioneNonAutorizzataException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
+
 	/**
 	 * verifica metodo accettaRichiestaIscrizione successo
 	 */
 	@Test
 	public void accettaRichiestaIscrizioneSuccesso() {
-		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
-		richiestaiscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
-		when(richiestaIscrizioneRepository.findById(12L)).thenReturn(richiestaiscrizione);
-		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+	
+		when(richiestaIscrizioneRepository.findById(any(Long.class))).thenReturn(richiestaMock);
+		when(richiestaIscrizioneRepository.save(richiestaMock)).thenReturn(richiestaMock);
+		when(richiestaMock.getStato()).thenReturn(RichiestaIscrizione.IN_ATTESA);
+
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+				
+		when(richiestaMock.getStudente()).thenReturn(studenteMock);
+		when(studenteMock.getEmail()).thenReturn("m.rossi@studenti.unisa.it");
 		
+			
 		try {
 			richiestaIscrizioneService.accettaRichiestaIscrizione(12L);
 			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
 		} catch (OperazioneNonAutorizzataException exception) {
 			exception.printStackTrace();
 		}
-	}	
-	
-	
+	}
+
 	/**
 	 * verifica metodo rifiutaRichiestaIscrizione con utente non autorizzato
 	 */
@@ -1314,17 +1327,16 @@ public class RichiestaIscrizioneUT {
 		when(richiestaIscrizioneRepository.findById(13L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
-		
+
 		final String message = "Operazione non autorizzata";
-		
+
 		try {
 			richiestaIscrizioneService.rifiutaRichiestaIscrizione(13L);
 		} catch (OperazioneNonAutorizzataException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
-	
+
 	/**
 	 * verifica metodo rifiutaRichiestaIscrizione con stato diverso da in attesa
 	 */
@@ -1335,28 +1347,31 @@ public class RichiestaIscrizioneUT {
 		when(richiestaIscrizioneRepository.findById(14L)).thenReturn(richiestaiscrizione);
 		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
-		
+
 		final String message = "Impossibile rifiutare questa richiesta";
-		
+
 		try {
 			richiestaIscrizioneService.rifiutaRichiestaIscrizione(14L);
 		} catch (OperazioneNonAutorizzataException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
+
 	
 	
 	/**
 	 * verifica metodo rifiutaRichiestaIscrizione successo
 	 */
 	@Test
-	public void rifiutaRichiestaIscrizioneSuccesso() {
-		RichiestaIscrizione richiestaiscrizione = new RichiestaIscrizione();
-		richiestaiscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
-		when(richiestaIscrizioneRepository.findById(15L)).thenReturn(richiestaiscrizione);
-		when(richiestaIscrizioneRepository.save(richiestaiscrizione)).thenReturn(richiestaiscrizione);
+	public void rifiutaRichiestaIscrizioneSuccesso() {		
+		when(richiestaIscrizioneRepository.findById(15L)).thenReturn(richiestaMock);
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
+		when(richiestaMock.getStato()).thenReturn(RichiestaIscrizione.IN_ATTESA);
+		when(richiestaIscrizioneRepository.save(richiestaMock)).thenReturn(richiestaMock);
 		
+		when(richiestaMock.getStudente()).thenReturn(studenteMock);
+		when(studenteMock.getEmail()).thenReturn("m.rossi@studenti.unisa.it");
+				
 		try {
 			richiestaIscrizioneService.rifiutaRichiestaIscrizione(15L);
 			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));
@@ -1364,24 +1379,23 @@ public class RichiestaIscrizioneUT {
 			exception.printStackTrace();
 		}
 	}
-	
 
 	/**
-	 * verifica metodo visualizzaRichiesteIscrizioneEDettagli con utente non autorizzato
+	 * verifica metodo visualizzaRichiesteIscrizioneEDettagli con utente non
+	 * autorizzato
 	 */
 	@Test
 	public void visualizzaRichiesteNonAutorizzato() {
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new Studente());
-		
+
 		final String message = "Operazione non autorizzata";
-		
+
 		try {
 			richiestaIscrizioneService.visualizzaRichiesteIscrizioneDettagli();
 		} catch (OperazioneNonAutorizzataException exception) {
 			assertEquals(message, exception.getMessage());
 		}
 	}
-	
 
 	/**
 	 * verifica metodo visualizzaRichiesteIscrizioneEDettagli con utente autorizzato
@@ -1389,7 +1403,7 @@ public class RichiestaIscrizioneUT {
 	@Test
 	public void visualizzaRichiesteSuccesso() {
 		when(utenzaService.getUtenteAutenticato()).thenReturn(new ResponsabileUfficioTirocini());
-		
+
 		try {
 			richiestaIscrizioneService.visualizzaRichiesteIscrizioneDettagli();
 			verify(richiestaIscrizioneRepository, times(1)).findAllByStato(RichiestaIscrizione.IN_ATTESA);

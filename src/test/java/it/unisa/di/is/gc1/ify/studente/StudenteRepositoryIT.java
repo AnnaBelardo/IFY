@@ -31,6 +31,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * Test di integrazione fra la classe StudenteRepository e il Database. 
+ * Metodologia: bottom-up.
+ * @author Giacomo Izzo
+ *
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
