@@ -76,5 +76,10 @@
 	</div>
 	<!-- ./container -->
 	<%@ include file="footer.jsp" %>
+	
+	
+	<c:if test="${message != null}">
+		<%@ include file="modalNotifica.jsp"%>
+	</c:if>
 </body>
 </html>

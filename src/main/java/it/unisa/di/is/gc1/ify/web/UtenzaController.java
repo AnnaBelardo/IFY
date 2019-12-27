@@ -1,7 +1,7 @@
 package it.unisa.di.is.gc1.ify.web;
 
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +21,9 @@ import it.unisa.di.is.gc1.ify.utenza.CredenzialiNonValideException;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
-
 /**
  * Controller per la gestione dell'utenza
+ * 
  * @author Carmine Ferrara, Giacomo Izzo, Alessia Natale
  */
 @Controller
@@ -31,13 +31,13 @@ public class UtenzaController {
 
 	@Autowired
 	private UtenzaService utenzaService;
-	
+
 	@Autowired
 	private LoginFormValidator loginFormValidator;
-	
+
 	@Autowired
 	private RichiestaIscrizioneService richiestaIscrizioneService;
-	
+
 	/**
 	 * Metodo per effettuare il login
 	 * @param request
@@ -70,9 +70,15 @@ public class UtenzaController {
 			return "redirect:/loginPage";
 		}
 		
-		if(utente instanceof Studente && (richiestaIscrizioneService.getStatoRichiestaByEmail(utente.getEmail()).equals(RichiestaIscrizione.ACCETTATA))) {
-			request.getSession().setAttribute("email", utente.getEmail());
-			return "studenteDashboard";
+		if(utente instanceof Studente) {
+			if(richiestaIscrizioneService.getStatoRichiestaByEmail(utente.getEmail()).equals(RichiestaIscrizione.ACCETTATA)) {
+				request.getSession().setAttribute("email", utente.getEmail());
+				return "studenteDashboard";
+			}
+			else {
+				redirectAttribute.addFlashAttribute("message","Le sue credenziali sono ancora in attesa di valutazione");
+				return "redirect:/loginPage";
+			}
 		}
 		//aggiungere controllo stato richiesta convenzionamento
 		else if(utente instanceof DelegatoAziendale) {
@@ -88,9 +94,10 @@ public class UtenzaController {
 		}
 		
 	}
-	
+
 	/**
 	 * Metodo per effettuare il logout
+	 * 
 	 * @param request
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
@@ -98,36 +105,36 @@ public class UtenzaController {
 	public String logout(HttpServletRequest request) {
 		utenzaService.logout();
 		request.getSession().removeAttribute("email");
+		request.getSession().invalidate();
 		return "/homepage";
 	}
-       
-	
+
 	/**
 	 * Metodo per la visualizzazione dell'homepage o della dashboard
+	 * 
 	 * @param model
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String visualizzaHome(Model model) {
+	public String visualizzaHome(HttpSession session, Model model) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
-		if(utente != null) {
-			if(utente instanceof Studente) {
+		if(session.getAttribute("email") != null && utente != null) {
+			if (utente instanceof Studente) {
 				return "studenteDashboard";
-			}
-			else if(utente instanceof DelegatoAziendale) {
+			} else if (utente instanceof DelegatoAziendale) {
 				return "delegatoDashboard";
-			}
-			else {
+			} else {
 				return "responsabileDashboard";
 			}
 		}
-		
+
 		return "homepage";
 	}
-	
+
 	/**
 	 * Metodo per la visualizzazione della pagina di login
+	 * 
 	 * @param model
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
@@ -136,5 +143,5 @@ public class UtenzaController {
 
 		return "login";
 	}
-	
+
 }

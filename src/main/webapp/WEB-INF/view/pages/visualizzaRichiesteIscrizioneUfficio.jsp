@@ -43,7 +43,7 @@
 
 						<ul class="list-unstyled components mb-5">
 
-							<li><a href="#">Dashboard Ufficio</a></li>
+							<li><a href="/responsabileDashboard">Dashboard Ufficio</a></li>
 							<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Richieste</a>
@@ -62,7 +62,7 @@
 								</ul></li>
 
 							<li><a href="#">Tirocini in corso</a></li>
-							<li><a href="#">Logout</a></li>
+							<li><a href="/logout">Logout</a></li>
 
 						</ul>
 					</div>
@@ -107,7 +107,7 @@
 												<dd>${current.studente.dataNascita}</dd>
 												<br>
 												<dt>Sesso Studente:</dt>
-												0
+
 												<dd>${current.studente.sesso}</dd>
 												<br>
 
@@ -156,74 +156,67 @@
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
-</body>
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Info</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">${message}</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger modalbutton-annulla"
-					data-dismiss="modal">Annulla</button>
-				<button type="button" class="btn btn-success modalbutton-conferma"
-					data-dismiss="modal">Conferma</button>
-			</div>
-		</div>
-	</div>
-</div>
 
-<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
-<script src="webjars/4.4.1/js/bootstrap.min.js"></script>
-<script src="./resources/js/bootstrap-table.min.js"></script>
-<script src="./resources/js/sidebar.js"></script>
-
-<script>
-	// Load detail view
-	$('#parentTable').on('expand-row.bs.table',
-			function(e, index, row, $detail) {
-
-				// Get subtable from first cell
-				var $rowDetails = $(row[0]);
-
-				// Give new id to avoid conflict with first cell    
-				var id = $rowDetails.attr("id");
-				$rowDetails.attr("id", id + "-Show");
-
-				// Write rowDetail to detail
-				$detail.html($rowDetails);
-
-				return;
-
-			})
-
-	/*filtraggio campi*/
-	$(document).ready(
-			function() {
-				$("#filter").on(
-						"keyup",
-						function() {
-							var value = $(this).val().toLowerCase();
-							$("#parentTable tbody tr").filter(
-									function() {
-										$(this).toggle(
-												$(this).text().toLowerCase()
-														.indexOf(value) > -1)
-									});
-						});
-			});
-
-	//show modal
-</script>
-	<c:if test = "${message != null}">
-		<script>
-			$(document).ready(function(){ $(".modal").modal('show'); });
-		</script>
+	<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="./resources/js/bootstrap-table.min.js"></script>
+	<script src="./resources/js/sidebar.js"></script>
+	<c:if test="${message != null}">
+		<%@ include file="modalNotifica.jsp"%>
 	</c:if>
+
+	<script>
+		// Load detail view
+		$('#parentTable').on('expand-row.bs.table',
+				function(e, index, row, $detail) {
+
+					// Get subtable from first cell
+					var $rowDetails = $(row[0]);
+
+					// Give new id to avoid conflict with first cell    
+					var id = $rowDetails.attr("id");
+					$rowDetails.attr("id", id + "-Show");
+
+					// Write rowDetail to detail
+					$detail.html($rowDetails);
+
+					return;
+
+				})
+
+		/*filtraggio campi*/
+		$(document)
+				.ready(
+						function() {
+							$("#filter")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#parentTable tbody tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+
+		//show modal
+	</script>
+</body>
+
+
+
+
+
+
 </html>
 

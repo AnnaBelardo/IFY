@@ -127,10 +127,11 @@ public class StudenteController {
 			model.addAttribute("richiestaAccettata", richiestaIscrizione);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
+			
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + "accettata con successo");
+		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + " accettata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 
@@ -149,13 +150,20 @@ public class StudenteController {
 			model.addAttribute("richiestaRifiutata", richiestaIscrizione);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
+			
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + "rifiutatata con successo");
+		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + " rifiutatata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
+	
+	@RequestMapping(value = "/responsabileDashboard", method = RequestMethod.GET)
+	public String dashboardResoinsabile(Model model) {
 
+		return "responsabileDashboard";
+	}
+	
 	@RequestMapping(value = "/iscrizioneStudente", method = RequestMethod.GET)
 	public String iscrizioneStudente(Model model) {
 
