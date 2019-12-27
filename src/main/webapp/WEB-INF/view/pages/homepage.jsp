@@ -72,12 +72,12 @@
 			<div class="row">
 				<div class="col-lg-4 mb-4">
 			      	<div class="card h-100">
-			        	<h4 class="card-header">Visualizza le aziende convenzionate</h4>
+			        	<h4 class="card-header">Aziende convenzionate</h4>
 			          	<div class="card-body">
 							<img src="./resources/images/card/handshake.png"  class="img-thumbnail">
-			            	<!--<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>-->
+							<p class="card-text">Visiona le aziende convenzionate con noi</p>
 			          	</div>
-			          	<div class="card-footer">
+			          	<div class="card-footer bottone-card-centro">
 			            	<a href="#" class="btn btn-primary bottonecard">Visualizza</a>
 			          	</div>
 			        </div>
@@ -90,7 +90,7 @@
 								<img src="./resources/images/card/studente.png" class="img-thumbnail">
 			            		<p class="card-text">Cosa aspetti a registrarti?</p>
 			          		</div>
-			          		<div class="card-footer">
+			          		<div class="card-footer bottone-card-centro">
 			            		<a href="./iscrizioneStudente" class="btn btn-primary bottonecard">Iscriviti ora</a>
 			          		</div>
 			        </div>
@@ -102,7 +102,7 @@
 							<img src="./resources/images/card/azienda.png" class="img-thumbnail">
 			            	<p class="card-text">Convenzionati in pochi passi</p>
 			          	</div>
-			          	<div class="card-footer">
+			          	<div class="card-footer bottone-card-centro">
 			            	<a href="#" class="btn btn-primary bottonecard">Convenzionati ora</a>
 			          	</div>
 			        </div>

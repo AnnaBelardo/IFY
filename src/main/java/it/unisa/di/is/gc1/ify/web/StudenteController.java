@@ -133,8 +133,8 @@ public class StudenteController {
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
-				" " + richiestaIscrizione.getStudente().getCognome() + " accettata con successo");
+		redirectAttribute.addFlashAttribute("message", "La richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
+				" " + richiestaIscrizione.getStudente().getCognome() + " è stata accettata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 
@@ -158,8 +158,8 @@ public class StudenteController {
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
-				" " + richiestaIscrizione.getStudente().getCognome() + " rifiutatata con successo");
+		redirectAttribute.addFlashAttribute("message", "La richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
+				" " + richiestaIscrizione.getStudente().getCognome() + " è stata rifiutata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 	

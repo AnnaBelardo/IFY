@@ -54,8 +54,6 @@
 							</li>
 							
 							<li><a href="#">Tirocini accettati</a></li>
-							<li><a href="/logout">Logout</a></li>
-
 						</ul>
 					</div>
 				</nav>
@@ -73,7 +71,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Progetti Formativi</h5>
       									<p class="card-text">In questa sezione puoi vedere i progetti formativi</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione" href="#">Progetti Formativi</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Progetti Formativi</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -81,7 +79,7 @@
     								<div class="card-body">
 	      								<h5 class="card-title">Domande di tirocinio</h5>
 	      								<p class="card-text">In questa sezione puoi vedere le tue domande di tirocinio</p>
-	      								<a type="button" class="btn btn-primary login-btn btn-dimensione" href="#">Domande Tirocinio</a>
+	      								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Domande Tirocinio</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -89,7 +87,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Tirocini in corso</h5>
      	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione" href="#">Tirocini in corso</a>
+     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Tirocini in corso</a>
     								</div>
   							</div>
 						</div>						
@@ -102,6 +100,6 @@
 		<%@ include file="footer.jsp"%>
 </body>
 <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
-<script src="webjars/4.4.1/js/bootstrap.min.js"></script>
+<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="./resources/js/sidebar.js"></script>
 </html>

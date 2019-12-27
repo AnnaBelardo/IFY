@@ -62,7 +62,6 @@
 								</ul></li>
 
 							<li><a href="#">Tirocini in corso</a></li>
-							<li><a href="/logout">Logout</a></li>
 
 						</ul>
 					</div>

@@ -118,45 +118,45 @@
 
 					<div class="form-group">
 						<label class="control-label col-sm-3">Sesso</label>
-						<div class="col-sm-11">
+						
 
 							<c:choose>
 								<c:when
 									test="${SessoError == null && studenteForm.sesso == 'F'}">
-									<div class="row">
-										<div class="col-sm-4">
-											<label class="radio-inline"> <input type="radio"
+									
+										
+											<label class="radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="maschio" value="M"> M
 											</label>
-										</div>
-										<div class="col-sm-4">
-											<label class="radio-inline"> <input type="radio"
+										
+										
+											<label class="radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="femmina" value="F" checked> F
 											</label>
-										</div>
-									</div>
+										
+									
 								</c:when>
 								<c:otherwise>
-									<div class="row">
-										<div class="col-sm-4">
-											<label class="radio-inline"> <input type="radio"
+									
+										
+											<label class="radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="maschio" value="M" checked> M
 											</label>
-										</div>
-										<div class="col-sm-4">
-											<label class="radio-inline"> <input type="radio"
+										
+										
+											<label class="radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="femmina" value="F"> F
 											</label>
-										</div>
+										
 										
 										<c:if test="${SessoError != null}">
 											<span class = "myError">${SessoError}</span>
 										</c:if>
-									</div>
+									
 								</c:otherwise>
 							</c:choose>
 
-						</div>
+						
 					</div>
 					<div class="form-group">
 						<div class="col-sm-11">

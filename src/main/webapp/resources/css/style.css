@@ -1,6 +1,5 @@
 .btn.btn-primary{
 	background: #ff9438;
-	border: 2px solid black;
 }
 
 .btn.btn-primary:hover{
@@ -18,7 +17,7 @@
 
 .login-btn {
 	background-color: #ff9438;
-	border: 2px solid #212529;
+	border: 2px solid #212529 !important;
 	color: #212529!important;
 	width: 120px;
 	margin: 15px;
@@ -146,7 +145,7 @@ figure {
 
 .bottonecard {
   background-color: #ff9438;
-  border: 2px solid #ff9438;
+  border: 2px solid #ff9438 !important;
   color: #fff;
   width: 156px;
   margin: 15px;
@@ -193,4 +192,8 @@ figure {
 		bottom: 0;
 		width: 100%
 	}
+}
+
+.bottone-card-centro {
+	text-align: center !important; 
 }

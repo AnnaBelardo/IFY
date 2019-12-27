@@ -45,8 +45,6 @@
 							<li><a href="#">Aziende Convenzionate</a></li>
 							<li><a href="#">Tirocini in Corso</a></li>
 							<li><a href="#">Domande di Tirocinio</a></li>
-							<li><a href="/logout">Logout</a></li>
-
 						</ul>
 					</div>
 				</nav>
@@ -64,7 +62,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Aziende Convenzionate</h5>
       									<p class="card-text">In questa sezione puoi vedere le aziende convenzionate</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente" href="#">Aziende Convenzionate</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente bottonecard" href="#">Aziende Convenzionate</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -72,7 +70,7 @@
     								<div class="card-body">
 	      								<h5 class="card-title">Domande di tirocinio</h5>
 	      								<p class="card-text">In questa sezione puoi vedere le tue domande di tirocinio</p>
-    									<a type="button" class="btn btn-primary login-btn btn-dimensione" href="#">Domande Tirocinio</a>
+    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Domande Tirocinio</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -80,7 +78,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Tirocini in corso</h5>
      	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-    									<a type="button" class="btn btn-primary login-btn btn-dimensione" href="#">Tirocini in corso</a>
+    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Tirocini in corso</a>
     								</div>
   							</div>
 						</div>						
@@ -94,7 +92,7 @@
 </body>
 
 <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
-<script src="webjars/4.4.1/js/bootstrap.min.js"></script>
+<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="./resources/js/bootstrap-table.min.js"></script>
 <script src="./resources/js/sidebar.js"></script>
 
