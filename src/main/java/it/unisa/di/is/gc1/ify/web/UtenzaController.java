@@ -17,7 +17,7 @@ import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
-import it.unisa.di.is.gc1.ify.utenza.CredenzialiNonValideException;
+import it.unisa.di.is.gc1.ify.utenza.PasswordNonValidaException;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
@@ -58,14 +58,15 @@ public class UtenzaController {
 		if(result.hasErrors()) {
 		      //se ci sono errori il metodo controller setta tutti i parametri 
 			
-		      redirectAttribute.addFlashAttribute("erroreMail", result.getGlobalError().getDefaultMessage());
+		      redirectAttribute.addFlashAttribute("EmailError", result.getGlobalError().getDefaultMessage());
 		      return "redirect:/loginPage";
 		}
 		
 		try {
 		utente = utenzaService.login(loginForm.getEmail(), loginForm.getPassword());
-		} catch(CredenzialiNonValideException e) {
-			redirectAttribute.addFlashAttribute("erroreCredenziali", e.getMessage());
+		} catch(PasswordNonValidaException e) {
+			redirectAttribute.addFlashAttribute("EmailPrecedente", loginForm.getEmail());
+			redirectAttribute.addFlashAttribute("PasswordError", e.getMessage());
 			model.addAttribute("utente", utente);
 			return "redirect:/loginPage";
 		}

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import it.unisa.di.is.gc1.ify.utenza.MailEsistenteException;
+import it.unisa.di.is.gc1.ify.utenza.MailNonEsistenteException;
 import it.unisa.di.is.gc1.ify.utenza.MailNonValidaException;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
@@ -45,9 +45,9 @@ public class LoginFormValidator implements Validator {
 		try {
 			utenzaService.validaMail(loginForm.getEmail());
 		} catch(MailNonValidaException e1) {
-			errors.reject(e1.getMessage());
-		} catch(MailEsistenteException e2) {
-			errors.reject(e2.getMessage());
+			errors.reject("errore", e1.getMessage());
+		} catch(MailNonEsistenteException e2) {
+			errors.reject("errore", e2.getMessage());
 		}
 	}
 	

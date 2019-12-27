@@ -83,6 +83,7 @@ public class StudenteController {
 			return "redirect:/";
 		}
 
+		redirectAttribute.addFlashAttribute("successoIscrizione", "La sua richiesta d'iscrizione ha avuto successo.");
 		return "redirect:/";
 	}
 
@@ -122,8 +123,9 @@ public class StudenteController {
 	@RequestMapping(value = "/accettaRichiestaIscrizione", method = RequestMethod.POST)
 	public String accettaRichiestaIscrizione(@RequestParam("idRichiesta") long id, Model model, RedirectAttributes redirectAttribute) {
 
+		RichiestaIscrizione richiestaIscrizione;
 		try {
-			RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(id);
+			richiestaIscrizione = richiestaIscrizioneService.accettaRichiestaIscrizione(id);
 			model.addAttribute("richiestaAccettata", richiestaIscrizione);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
@@ -131,7 +133,8 @@ public class StudenteController {
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + " accettata con successo");
+		redirectAttribute.addFlashAttribute("message", "Richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
+				" " + richiestaIscrizione.getStudente().getCognome() + " accettata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 
@@ -145,8 +148,9 @@ public class StudenteController {
 	@RequestMapping(value = "/rifiutaRichiestaIscrizione", method = RequestMethod.POST)
 	public String rifiutaRichiestaIscrizione(@RequestParam("idRichiesta") long id, Model model, RedirectAttributes redirectAttribute) {
 
+		RichiestaIscrizione richiestaIscrizione;
 		try {
-			RichiestaIscrizione richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(id);
+			richiestaIscrizione = richiestaIscrizioneService.rifiutaRichiestaIscrizione(id);
 			model.addAttribute("richiestaRifiutata", richiestaIscrizione);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
@@ -154,7 +158,8 @@ public class StudenteController {
 			return "redirect:/";
 		}
 		
-		redirectAttribute.addFlashAttribute("message", "Richiesta " + id + " rifiutatata con successo");
+		redirectAttribute.addFlashAttribute("message", "Richiesta dello studente " + richiestaIscrizione.getStudente().getNome() + 
+				" " + richiestaIscrizione.getStudente().getCognome() + " rifiutatata con successo");
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 	

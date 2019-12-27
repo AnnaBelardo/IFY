@@ -1,21 +1,21 @@
 package it.unisa.di.is.gc1.ify.utenza;
 
 /**
- * Eccezione lanciata quando il controllo sull'email di un utente fallisce perché questo è già
- * presente nel sistema.
+ * Eccezione lanciata quando il login fallisce poiché le credenziali inserite non sono presenti nel 
+ * sistema.
  * @author Giacomo Izzo, Alessia Natale
  */
-public class MailEsistenteException extends Exception {
+public class PasswordNonValidaException extends Exception {
 
-  private static final long serialVersionUID = 6746818670147635153L;
+  private static final long serialVersionUID = -3212124280736230614L;
   
   /** Stringa che definisce il messaggio di default utilizzato nell'eccezione. */
-  private static final String messaggioDefault = "Email già presente";
+  private static final String messaggioDefault = "Password non valida";
   
   /**
    * Costruisce un'eccezione che ha come messaggio {@link #messaggioDefault}.
    */
-  public MailEsistenteException() {
+  public PasswordNonValidaException() {
     super(messaggioDefault);
   }
   
@@ -24,7 +24,7 @@ public class MailEsistenteException extends Exception {
    * 
    * @param messaggio Stringa che rappresenta il messaggio da mostrare
    */
-  public MailEsistenteException(String messaggio) {
+  public PasswordNonValidaException(String messaggio) {
     super(messaggio);
   }
   

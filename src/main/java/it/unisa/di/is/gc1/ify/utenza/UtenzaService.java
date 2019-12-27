@@ -32,17 +32,17 @@ public class UtenzaService {
 	   * @throws MailNonValidaException se l'email non è specificata oppure se non rispetta il
 	   *         formato {@link Utente#EMAIL_PATTERN}
 	   * 
-	   * @throws MailEsistenteException se l'email specificata è già presente nel sistema
+	   * @throws MailNonEsistenteException se l'email specificata non è presente nel sistema
 	   */
 	  public String validaMail(String email)
-	         throws MailNonValidaException, MailEsistenteException {
+	         throws MailNonValidaException, MailNonEsistenteException {
 	    if (email == null) {
 	      throw new MailNonValidaException();
 	    } else {
 	      if (!email.matches(Utente.EMAIL_PATTERN)) {
 	        throw new MailNonValidaException();
 	      } else if (!utenteRepository.existsByEmail(email)) {
-	        throw new MailEsistenteException();
+	        throw new MailNonEsistenteException();
 	      } else {
 	        return email;
 	      }
@@ -100,11 +100,11 @@ public class UtenzaService {
 	   * 
 	   * @param password Stringa che rappresenta la password dell'utente
 	   * 
-	   * @throws CredenzialiNonValideException se la coppia (email, password) non è presente nel
+	   * @throws PasswordNonValidaException se la coppia (email, password) non è presente nel
 	   *         sistema
 	   */
 	  public Utente login(String email, String password)
-	         throws CredenzialiNonValideException {		  
+	         throws PasswordNonValidaException {		  
 	    Utente utente;
 	    
 	    // Controlla se le credenziali corrispondono a quelle di uno studente e, nel caso, controlla
@@ -115,7 +115,7 @@ public class UtenzaService {
 	      return utente;
 	    }
 	    
-	    throw new CredenzialiNonValideException();
+	    throw new PasswordNonValidaException();
 	  }
 	  
 	  /**

@@ -55,7 +55,7 @@ public class UtenzaServiceRepositoriesIT {
 
 		try {
 			utenzaService.validaMail(null);
-		} catch (MailNonValidaException | MailEsistenteException e) {
+		} catch (MailNonValidaException | MailNonEsistenteException e) {
 			assertEquals(message, e.getMessage());
 		}
 	}
@@ -76,7 +76,7 @@ public class UtenzaServiceRepositoriesIT {
 
 		try {
 			utenzaService.validaMail("mr@gmail");
-		} catch (MailNonValidaException | MailEsistenteException e) {
+		} catch (MailNonValidaException | MailNonEsistenteException e) {
 			assertEquals(message, e.getMessage());
 		}
 	}
@@ -93,7 +93,7 @@ public class UtenzaServiceRepositoriesIT {
 	@Test
 	public void validaMail_Exists() {
 		
-		final String message = "Email già presente";
+		final String message = "Email non presente nel sistema";
 		
 		studente = new Studente();
 		
@@ -109,7 +109,7 @@ public class UtenzaServiceRepositoriesIT {
 		
 		try {
 			utenzaService.validaMail(studente.getEmail());
-		} catch (MailNonValidaException | MailEsistenteException e) {
+		} catch (MailNonValidaException | MailNonEsistenteException e) {
 			assertEquals(message, e.getMessage());
 		}
 	}
@@ -143,7 +143,7 @@ public class UtenzaServiceRepositoriesIT {
 		String email=null;
 		try {
 			email = utenzaService.validaMail(utente.getEmail());
-		} catch (MailNonValidaException | MailEsistenteException e) {
+		} catch (MailNonValidaException | MailNonEsistenteException e) {
 			e.printStackTrace();
 		}
 		assertEquals(email, studente.getEmail());
@@ -327,11 +327,11 @@ public class UtenzaServiceRepositoriesIT {
 		
 		utenteRepository.delete(studente);
 
-		final String message = "Credenziali non valide";	
+		final String message = "Password non valida";	
 		
 		try {
 			utenzaService.login(studente.getEmail(), studente.getPassword());
-		} catch (CredenzialiNonValideException e) {
+		} catch (PasswordNonValidaException e) {
 			assertEquals(message, e.getMessage());
 		}
 		
@@ -364,7 +364,7 @@ public class UtenzaServiceRepositoriesIT {
 		
 		try {
 			utente = utenzaService.login(studente.getEmail(), studente.getPassword());
-		} catch (CredenzialiNonValideException e) {
+		} catch (PasswordNonValidaException e) {
 			e.printStackTrace();
 		}
 		assertThat(studente, is(equalTo(utente)));

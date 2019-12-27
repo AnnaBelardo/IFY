@@ -30,16 +30,21 @@
 						<div style="margin: 0 auto;" class="col-sm-11">
 							<c:choose>
 								<c:when test="${EmailError == null}">
-									<input type="text" name="email" id="inputEmail"
-										placeholder="Email" class="form-control"
-										value="${utenteForm.username}">
+									<c:choose>
+										<c:when test="${EmailPrecedente == null}">
+											<input type="text" name="email" id="inputEmail" placeholder="Email" class="form-control">
+										</c:when>
+										<c:otherwise>
+											<input type="text" name="email" id="inputEmail" value = "${EmailPrecedente}" class="form-control">
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="email" id="inputEmail" placeholder="Email" class="form-control is-invalid">
 									<span class = "myError">${EmailError}</span>
 								</c:otherwise>
 							</c:choose>
-
+							
 						</div>
 					</div>
 					<div class="form-group">
@@ -47,8 +52,7 @@
 							<c:choose>
 								<c:when test="${PasswordError == null}">
 									<input type="password" name="password" id="inputPassword"
-										placeholder="Password" class="form-control"
-										value="${utenteForm.password}">
+										placeholder="Password" class="form-control">
 								</c:when>
 								<c:otherwise>
 									<input type="password" name="password" id="inputPassword"

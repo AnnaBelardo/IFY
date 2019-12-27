@@ -15,6 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
+import it.unisa.di.is.gc1.ify.Studente.Studente;
 
 /**
  * Test di unità per la classe MailSingletonSender ; tipologia di test: whitebox
@@ -32,6 +33,8 @@ public class MailSingletonSenderUT {
 	@Captor ArgumentCaptor<String> captor;
 	
 	@Mock private RichiestaIscrizione richiesta;
+	
+	@Mock private Studente studente;
 
 	/**
 	 * Testa il caso in cui l'oggetto passato al metodo sendEmal non sia un 
@@ -66,6 +69,9 @@ public class MailSingletonSenderUT {
 		String destinatario = "m.rossi@studenti.unisa.it"; 
 		
 		when(richiesta.getStato()).thenReturn(RichiestaIscrizione.ACCETTATA);
+		when(richiesta.getStudente()).thenReturn(studente);
+		when(studente.getNome()).thenReturn("Mario");
+		when(studente.getCognome()).thenReturn("Rossi");
 		
 		mailSender.sendEmail(richiesta, destinatario);
 		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
@@ -87,6 +93,9 @@ public class MailSingletonSenderUT {
 		String destinatario = "m.rossi@studenti.unisa.it"; 
 		
 		when(richiesta.getStato()).thenReturn(RichiestaIscrizione.RIFIUTATA);
+		when(richiesta.getStudente()).thenReturn(studente);
+		when(studente.getNome()).thenReturn("Mario");
+		when(studente.getCognome()).thenReturn("Rossi");
 		
 		mailSender.sendEmail(richiesta, destinatario);
 		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));

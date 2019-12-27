@@ -52,11 +52,14 @@ public class MailSingletonSender  {
 		if(obj instanceof RichiestaIscrizione) {
 			RichiestaIscrizione richiestaIscrizione = (RichiestaIscrizione) obj;
 			String stato = richiestaIscrizione.getStato();
+			String nome = richiestaIscrizione.getStudente().getNome();
+			String cognome = richiestaIscrizione.getStudente().getCognome();
 			if(stato == RichiestaIscrizione.ACCETTATA)
-				return "La sua richiesta di iscrizione alla piattaforma IFY è stata "+ stato;
+				return "Gentile " + nome + "" + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
+				stato + ". Cordiali saluti, l'Ufficio Tirocini.";
 			else if(stato == RichiestaIscrizione.RIFIUTATA)
-				return "La sua richiesta di iscrizione alla piattaforma IFY è stata "+ stato
-						+ ". La invitiamo a riprovare.";
+				return "Gentile " + nome + "" + cognome + "la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
+				stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini";
 		}
 		return "";
 	}

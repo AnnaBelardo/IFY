@@ -1,21 +1,21 @@
 package it.unisa.di.is.gc1.ify.utenza;
 
 /**
- * Eccezione lanciata quando il login fallisce poiché le credenziali inserite non sono presenti nel 
- * sistema.
+ * Eccezione lanciata quando il controllo sull'email di un utente fallisce perché questo è già
+ * presente nel sistema.
  * @author Giacomo Izzo, Alessia Natale
  */
-public class CredenzialiNonValideException extends Exception {
+public class MailNonEsistenteException extends Exception {
 
-  private static final long serialVersionUID = -3212124280736230614L;
+  private static final long serialVersionUID = 6746818670147635153L;
   
   /** Stringa che definisce il messaggio di default utilizzato nell'eccezione. */
-  private static final String messaggioDefault = "Credenziali non valide";
+  private static final String messaggioDefault = "Email non presente nel sistema";
   
   /**
    * Costruisce un'eccezione che ha come messaggio {@link #messaggioDefault}.
    */
-  public CredenzialiNonValideException() {
+  public MailNonEsistenteException() {
     super(messaggioDefault);
   }
   
@@ -24,7 +24,7 @@ public class CredenzialiNonValideException extends Exception {
    * 
    * @param messaggio Stringa che rappresenta il messaggio da mostrare
    */
-  public CredenzialiNonValideException(String messaggio) {
+  public MailNonEsistenteException(String messaggio) {
     super(messaggio);
   }
   
