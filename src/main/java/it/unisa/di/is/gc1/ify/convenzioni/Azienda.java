@@ -1,12 +1,17 @@
 package it.unisa.di.is.gc1.ify.convenzioni;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 
 
 /**
@@ -76,11 +81,14 @@ public class Azienda {
 	
 	@Id
 	@Column(unique=true)
-	protected String pIva;
-	protected String ragioneSociale;
-	protected String sede;
-	protected String settore;
-	protected String descrizione;
+	private String pIva;
+	private String ragioneSociale;
+	private String sede;
+	private String settore;
+	private String descrizione;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "azienda")
+	private List<ProgettoFormativo> progettiFormativi;
 	
 	/** Espressione regolare che definisce il formato del campo partita iva. */
 	public static final String PIVA_PATTERN = "^[0-9]{11}$";
