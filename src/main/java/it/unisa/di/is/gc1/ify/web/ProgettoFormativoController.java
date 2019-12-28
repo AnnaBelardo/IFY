@@ -1,10 +1,14 @@
 package it.unisa.di.is.gc1.ify.web;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
+import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoService;
@@ -34,6 +39,138 @@ public class ProgettoFormativoController {
 	
 	@Autowired
 	ProgettoFormativoService progettoFormativoService;
+	
+	@Autowired
+	InserimentoProgettoFormativoFormValidator inserimentoProgettoFormativoFormValidator;
+	
+	@Autowired
+	ModificaProgettoFormativoFormValidator modificaProgettoFormativoFormValidator;
+	
+	/**
+	 * Metodo per l'inserimento di un progetto formativo
+	 * 
+	 * @param inserimentoProgettoFormativoForm
+	 * @param result
+	 * @param redirectAttribute
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
+	@RequestMapping(value = "/inserimentoProgettoFormativo", method = RequestMethod.POST)
+	public String inserimentoProgettoFormativo(@ModelAttribute("InserimentoProgettoFormativoForm") InserimentoProgettoFormativoForm inserimentoProgettoFormativoForm,
+			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
+
+		inserimentoProgettoFormativoFormValidator.validate(inserimentoProgettoFormativoForm, result);
+		if (result.hasErrors()) {
+			// se ci sono errori il metodo controller setta tutti i parametri
+
+			redirectAttribute.addFlashAttribute("inserimentoProgettoFormativoForm", inserimentoProgettoFormativoForm);
+
+			for (ObjectError x : result.getGlobalErrors()) {
+				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
+				System.out.println(x.getCode());
+			}
+
+			return "redirect:/inserimentoProgettoFormativo";
+		}
+		Utente utente = utenzaService.getUtenteAutenticato();
+		DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
+		
+		ProgettoFormativo progettoFormativo = new ProgettoFormativo();
+		progettoFormativo.setNome(inserimentoProgettoFormativoForm.getNome());
+		progettoFormativo.setDescrizione(inserimentoProgettoFormativoForm.getDescrizione());
+		progettoFormativo.setAmbito(inserimentoProgettoFormativoForm.getAmbito());
+		progettoFormativo.setAttivita(inserimentoProgettoFormativoForm.getAttivita());
+		progettoFormativo.setConoscenze(inserimentoProgettoFormativoForm.getConoscenze());
+		progettoFormativo.setMax_partecipanti(Integer.parseInt(inserimentoProgettoFormativoForm.getMaxPartecipanti()));
+		progettoFormativo.setData_compilazione(LocalDate.now());
+		progettoFormativo.setStato(ProgettoFormativo.ATTIVO);
+		progettoFormativo.setAzienda(delegatoAziendale.getAzienda());
+
+		try {
+			progettoFormativoService.salvaProgettoFormativo(progettoFormativo);
+		} catch (Exception e) {
+			return "redirect:/";
+		}
+
+		redirectAttribute.addFlashAttribute("successoInserimento", "Il progetto formativo è stato inserito con successo.");
+		return "redirect:/";
+	}
+	
+	/**
+	 * Metodo per la modifica di un progetto formativo attivo
+	 * 
+	 * @param modificaProgettoFormativoForm
+	 * @param result
+	 * @param redirectAttribute
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
+	@RequestMapping(value = "/modificaProgettoFormativoAttivo", method = RequestMethod.POST)
+	public String modificaProgettoFormativoAttivo(@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
+			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
+
+		modificaProgettoFormativoFormValidator.validate(modificaProgettoFormativoForm, result);
+		if (result.hasErrors()) {
+			// se ci sono errori il metodo controller setta tutti i parametri
+
+			redirectAttribute.addFlashAttribute("modificaProgettoFormativoForm", modificaProgettoFormativoForm);
+
+			for (ObjectError x : result.getGlobalErrors()) {
+				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
+				System.out.println(x.getCode());
+			}
+
+			return "redirect:/visualizzaProgettiFormativiAttivi";
+		}
+
+		try {
+			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
+					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
+		} catch (Exception e) {
+			return "redirect:/visualizzaProgettiFormativiAttivi";
+		}
+
+		redirectAttribute.addFlashAttribute("successoModificaAttivo", "Il progetto formativo è stato correttamente modificato.");
+		return "redirect:/visualizzaProgettiFormativiAttivi";
+	}
+	
+	/**
+	 * Metodo per la modifica di un progetto formativo archiviato
+	 * 
+	 * @param modificaProgettoFormativoForm
+	 * @param result
+	 * @param redirectAttribute
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
+	@RequestMapping(value = "/modificaProgettoFormativoArchiviato", method = RequestMethod.POST)
+	public String modificaProgettoFormativoArchiviato(@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
+			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
+
+		modificaProgettoFormativoFormValidator.validate(modificaProgettoFormativoForm, result);
+		if (result.hasErrors()) {
+			// se ci sono errori il metodo controller setta tutti i parametri
+
+			redirectAttribute.addFlashAttribute("modificaProgettoFormativoForm", modificaProgettoFormativoForm);
+
+			for (ObjectError x : result.getGlobalErrors()) {
+				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
+				System.out.println(x.getCode());
+			}
+
+			return "redirect:/visualizzaProgettiFormativiArchiviati";
+		}
+
+		try {
+			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
+					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
+		} catch (Exception e) {
+			return "redirect:/visualizzaProgettiFormativiArchiviati";
+		}
+
+		redirectAttribute.addFlashAttribute("successoModificaArchiviato", "Il progetto formativo è stato correttamente modificato.");
+		return "redirect:/visualizzaProgettiFormativiArchiviati";
+	}
 	
 	/**
 	 * Metodo per inserire un nuovo progetto formativo
@@ -153,5 +290,7 @@ public class ProgettoFormativoController {
 		} else
 			return "/";
 	}
+	
+	
 	
 }

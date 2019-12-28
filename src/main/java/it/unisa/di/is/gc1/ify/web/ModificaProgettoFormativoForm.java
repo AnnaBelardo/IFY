@@ -15,8 +15,9 @@ public class ModificaProgettoFormativoForm {
 	}
 	
 	
-	public ModificaProgettoFormativoForm(String descrizione, String conoscenze, String maxPartecipanti) {
+	public ModificaProgettoFormativoForm(Long id, String descrizione, String conoscenze, String maxPartecipanti) {
 		super();
+		this.setId(id);
 		this.descrizione = descrizione;
 		this.conoscenze = conoscenze;
 		this.maxPartecipanti = maxPartecipanti;
@@ -55,7 +56,17 @@ public class ModificaProgettoFormativoForm {
 	}
 
 
+	public Long getId() {
+		return id;
+	}
 
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	private Long id;
 	private String descrizione;
 	private String conoscenze;
 	private String maxPartecipanti;
