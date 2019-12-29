@@ -38,7 +38,7 @@ public interface RichiestaConvenzionamentoRepository extends JpaRepository<Richi
 	 *         convenzionamento.
 	 * 
 	 */
-	public RichiestaIscrizione findByAziendaPIva(String pIVA);
+	public RichiestaConvenzionamento findByAziendaPIva(String pIVA);
 	
 	/**
 	 * Permette di ottenere la richiesta di convenzionamento con un determinato id.
@@ -50,5 +50,18 @@ public interface RichiestaConvenzionamentoRepository extends JpaRepository<Richi
 	 * 
 	 * @pre id > 0
 	 */
-	public RichiestaIscrizione findById(Long id);
+	public RichiestaConvenzionamento findById(Long id);
+	
+	/**
+	 * Permette di ottenere la richiesta di convenzionamento di un delegato aziendale.
+	 * 
+	 * @param email String che rappresenta la stringa del delegato aziendale per cui si cerca la
+	 *           richiesta
+	 * 
+	 * @return Oggetto {@link RichiestaConvenzionamento} che rappresenta la richiesta di
+	 *         convenzionamento.
+	 * 
+	 * @pre email != null
+	 */
+	RichiestaConvenzionamento findByDelegatoAziendaleEmail(String email);
 }

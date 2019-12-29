@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -59,7 +60,20 @@ public class MailSingletonSender  {
 				stato + ". Cordiali saluti, l'Ufficio Tirocini.";
 			else if(stato == RichiestaIscrizione.RIFIUTATA)
 				return "Gentile " + nome + "" + cognome + "la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
-				stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini";
+				stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini.";
+		}
+		else if(obj instanceof RichiestaConvenzionamento) {
+			RichiestaConvenzionamento richiestaConvenzionamento = (RichiestaConvenzionamento) obj;
+			String stato = richiestaConvenzionamento.getStato();
+			String nome = richiestaConvenzionamento.getDelegatoAziendale().getNome();
+			String cognome = richiestaConvenzionamento.getDelegatoAziendale().getCognome();
+			String nomeAzienda = richiestaConvenzionamento.getAzienda().getRagioneSociale();
+			if(stato == RichiestaConvenzionamento.ACCETTATA)
+				return "Gentile " + nome + "" + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
+						" è stata " + stato + ". Cordiali saluti, l'Ufficio Tirocini.";
+			else if(stato == RichiestaConvenzionamento.RIFIUTATA)
+				return "Gentile " + nome + "" + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
+						" è stata " + stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini.";
 		}
 		return "";
 	}

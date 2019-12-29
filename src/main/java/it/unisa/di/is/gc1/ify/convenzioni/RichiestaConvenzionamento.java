@@ -24,15 +24,14 @@ public class RichiestaConvenzionamento {
 	
 	/**costruttore con parametri utile per i casi di test
 	 * 
-	 * @param id
 	 * @param stato
 	 * @param azienda
 	 */
-	public RichiestaConvenzionamento(long id, String stato, Azienda azienda) {
+	public RichiestaConvenzionamento(String stato, Azienda azienda, DelegatoAziendale delegatoAziendale) {
 		super();
-		this.id = id;
 		this.stato = stato;
 		this.azienda = azienda;
+		this.delegatoAziendale = delegatoAziendale;
 	}
 	
 	
@@ -59,6 +58,14 @@ public class RichiestaConvenzionamento {
 	public void setAzienda(Azienda azienda) {
 		this.azienda = azienda;
 	}
+	
+	public DelegatoAziendale getDelegatoAziendale() {
+		return delegatoAziendale;
+	}
+
+	public void setDelegatoAziendale(DelegatoAziendale delegatoAziendale) {
+		this.delegatoAziendale = delegatoAziendale;
+	}
 
 
 	@Id 
@@ -67,6 +74,8 @@ public class RichiestaConvenzionamento {
 	private String stato;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Azienda azienda;
+	@OneToOne(cascade = CascadeType.ALL)
+	private DelegatoAziendale delegatoAziendale;
 	
 	/**
 	 * Costante che rappresenta lo stato "in attesa" di una richiesta di convenzionamento.

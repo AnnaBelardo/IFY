@@ -121,7 +121,7 @@ public abstract class Utente {
 	                                           + "|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 	  
 	  /** Espressione regolare che definisce il formato del campo indirizzo. */
-	  public static final String INDIRIZZO_PATTERN = "^[a-z A-Z 0-9 àéèìòù ',.-]{10,255}$";
+	  public static final String INDIRIZZO_PATTERN = "^[a-z A-Z 0-9 àéèìòù ',.-]{2,255}$";
 	  
 	  /** Espressione regolare che definisce il formato del campo password. */
 	  public static final String PASSWORD_PATTERN = "^(?=([^\\s])*[0-9])(?=([^\\s])*[a-zA-Z])([^\\s]){8,24}$";
