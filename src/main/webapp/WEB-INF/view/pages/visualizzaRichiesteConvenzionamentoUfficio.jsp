@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Gestioni richieste d'iscrizioni in attesa</title>
+<title>Gestione richieste di convenzionamento in attesa</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -72,7 +72,7 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header">Richieste d'iscrizione in attesa</span>
+							<span class="my-4 header">Richieste di convenzionamento in attesa</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Richieste...">
@@ -84,43 +84,49 @@
 									<th class="detail"></th>
 									<th class="detail"></th>
 									<th class="detail" data-sortable="true">ID Richiesta</th>
-									<th data-sortable="true">Nome</th>
-									<th data-sortable="true">Cognome</th>
-									<th data-sortable="true">Matricola</th>
+									<th data-sortable="true">Azienda</th>
 
 								</tr>
 
 							</thead>
 							<tbody>
 
-								<c:forEach items="${richiesteIscrizione}" var="current"
+								<c:forEach items="${richiesteConvenzionamento}" var="current"
 									varStatus="loop">
 									<tr>
 										<td>
 											<dl>
-												<dt>Indirizzo Studente:</dt>
-												<dd>${current.studente.indirizzo}</dd>
+												<dt>Ragione sociale:</dt>
+												<dd>${current.azienda.ragioneSociale}</dd>
+												<br>
+												
+												<dt>Email:</dt>
+												<dd>${current.delegatoAziendale.email}</dd>
 												<br>
 
-												<dt>Data Nascita Studente:</dt>
-												<dd>${current.studente.dataNascita}</dd>
+												<dt>Sede:</dt>
+												<dd>${current.azienda.sede}</dd>
 												<br>
-												<dt>Sesso Studente:</dt>
+												
+												<dt>Indirizzo:</dt>
+												<dd>${current.delegatoAziendale.indirizzo}</dd>
+												<br>
+												
+												<dt>Settore:</dt>
+												<dd>${current.azienda.settore}</dd>
+												<br>
 
-												<dd>${current.studente.sesso}</dd>
+												<dt>Descrizione:</dt>
+												<dd>${current.azienda.descrizione}</dd>
 												<br>
-
-												<dt>Email Studente</dt>
-												<dd>${current.studente.email}</dd>
-												<br>
-												<dt>Telefono Studente</dt>
-												<dd>${current.studente.telefono}</dd>
+												<dt>Partita IVA:</dt>
+												<dd>${current.azienda.pIva}</dd>
 
 											</dl>
 										</td>
 										<td class="valuta">
 											<form name="accettaForm" method="POST"
-												action="/accettaRichiestaIscrizione">
+												action="/accettaRichiestaConvenzionamento">
 												<input type="hidden" name="idRichiesta"
 													value="${current.id}">
 												<button class="btn btn-success">
@@ -129,7 +135,7 @@
 											</form>
 										<td class="valuta">
 											<form name="submitForm" method="POST"
-												action="/rifiutaRichiestaIscrizione">
+												action="/rifiutaRichiestaConvenzionamento">
 												<input type="hidden" name="idRichiesta"
 													value="${current.id}">
 												<button class="btn btn-danger">
@@ -138,9 +144,7 @@
 											</form>
 										</td>
 										<td>Richiesta ${current.id}</td>
-										<td>${current.studente.nome}</td>
-										<td>${current.studente.cognome}</td>
-										<td>${current.studente.matricola}</td>
+										<td>${current.azienda.ragioneSociale}</td>
 
 									</tr>
 

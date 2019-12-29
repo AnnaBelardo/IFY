@@ -48,7 +48,7 @@
 								class="dropdown-toggle">Richieste</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-									<li><a href="#">Richieste di convenzionamento</a></li>
+									<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>
 
 								</ul>
 							</li>
