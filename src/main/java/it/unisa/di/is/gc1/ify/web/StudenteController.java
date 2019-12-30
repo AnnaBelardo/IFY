@@ -118,6 +118,7 @@ public class StudenteController {
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/accettaRichiestaIscrizione", method = RequestMethod.POST)
@@ -143,6 +144,7 @@ public class StudenteController {
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/rifiutaRichiestaIscrizione", method = RequestMethod.POST)

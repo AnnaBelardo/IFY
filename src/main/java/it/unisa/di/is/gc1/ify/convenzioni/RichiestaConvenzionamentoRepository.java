@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 
 
 public interface RichiestaConvenzionamentoRepository extends JpaRepository<RichiestaConvenzionamento, Long> {

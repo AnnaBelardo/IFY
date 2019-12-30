@@ -1,6 +1,7 @@
 package it.unisa.di.is.gc1.ify.convenzioni;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +152,24 @@ public class RichiestaConvenzionamentoService {
 			List<RichiestaConvenzionamento> richiestaConvenzionamento = richiestaConvenzionamentoRepository.findAllByStato(RichiestaConvenzionamento.IN_ATTESA);
 
 			return richiestaConvenzionamento;
+		}
+		
+		/**
+		 * Il metodo fornisce la funzionalità di visualizzazione delle aziende convenzionate
+		 * 
+		 * @return Lista di {@link Azienda} che rappresenta la lista delle
+		 *         aziende <b>Può essere vuota</b> se nel database non
+		 *         sono presenti aziende
+		 */
+		@Transactional(rollbackFor = Exception.class)
+		public List<Azienda> visualizzaAziendeConvenzionate() {
+			
+			List<RichiestaConvenzionamento> richiestaConvenzionamento = richiestaConvenzionamentoRepository.findAllByStato(RichiestaConvenzionamento.ACCETTATA);
+			List<Azienda> aziendeConvenzionate = new ArrayList<Azienda>();
+			for(RichiestaConvenzionamento x : richiestaConvenzionamento) {
+				aziendeConvenzionate.add(x.getAzienda());
+			}
+			return aziendeConvenzionate;
 		}
 		
 		
