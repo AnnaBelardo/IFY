@@ -158,6 +158,11 @@ public class ProgettoFormativoService {
 		return progettiFormativi;
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
+	public ProgettoFormativo cercaProgettoPerId(Long id) {
+		return progettoFormativoRepository.findById(id);
+	}
+	
 	/**
 	 * Il metodo fornisce la funzionalità di modifica di un progetto formativo
 	 * 
@@ -315,14 +320,13 @@ public class ProgettoFormativoService {
 	 * @throws ProgettoFormativoNonValidoException
 	 */
 	public String validaMaxPartecipanti(String maxPartecipanti) throws ProgettoFormativoNonValidoException {
-	
-		if (maxPartecipanti == null)
+		if (maxPartecipanti == null || maxPartecipanti.equals(""))
 			throw new ProgettoFormativoNonValidoException("MaxPartecipantiError", "Il campo Max partecipanti non può essere nullo.");
 
 		if (Integer.parseInt(maxPartecipanti) < ProgettoFormativo.MIN_VAL_MAX_PARTECIPANTI)
 			throw new ProgettoFormativoNonValidoException("MaxPartecipantiError", "Il campo Max partecipanti deve contenere almeno 1 numero");
 
-		if (Integer.parseInt(maxPartecipanti) < ProgettoFormativo.MAX_VAL_MAX_PARTECIPANTI)
+		if (Integer.parseInt(maxPartecipanti) > ProgettoFormativo.MAX_VAL_MAX_PARTECIPANTI)
 			throw new ProgettoFormativoNonValidoException("MaxPartecipantiError", "Il campo Max Partecipanti deve contenere massimo 3 numeri");
 
 		if (!maxPartecipanti.matches(ProgettoFormativo.MAX_PARTECIPANTI_PATTERN))

@@ -193,3 +193,23 @@ th, .valuta{
 .custom-drop-menu-testo {
 	text-align: center !important;
 }
+
+.testo-tabella-progetti {
+	font-size: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.stato-tabella-progetti-attivi {
+	font-size: 30px;
+	text-align: center;	
+	vertical-align: middle;
+	color: #0f5;
+}
+
+.stato-tabella-progetti-archiviati {
+	font-size: 30px;
+	text-align: center;	
+	vertical-align: middle;
+	color: #ff0000b8;
+}

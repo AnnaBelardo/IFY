@@ -49,8 +49,8 @@
 .btn-warning {
 	outline: none!important;
 	outline-color: #7a7067!important;
-    color: #7a7067;
-    background-color: #fff;
+    color: #fff;
+    background-color: orange;
     border-color: #fff;
     font-weight: bold;
 	border: 1.7px solid;

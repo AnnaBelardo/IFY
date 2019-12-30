@@ -113,25 +113,25 @@ public class ProgettoFormativoController {
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-			redirectAttribute.addFlashAttribute("modificaProgettoFormativoForm", modificaProgettoFormativoForm);
+			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
 				System.out.println(x.getCode());
 			}
 
-			return "redirect:/visualizzaProgettiFormativiAttivi";
+			return "redirect:/progettiFormativiAttivi";
 		}
 
 		try {
 			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
 					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
 		} catch (Exception e) {
-			return "redirect:/visualizzaProgettiFormativiAttivi";
+			return "redirect:/progettiFormativiAttivi";
 		}
 
 		redirectAttribute.addFlashAttribute("successoModificaAttivo", "Il progetto formativo è stato correttamente modificato.");
-		return "redirect:/visualizzaProgettiFormativiAttivi";
+		return "redirect:/progettiFormativiAttivi";
 	}
 	
 	/**
@@ -146,30 +146,31 @@ public class ProgettoFormativoController {
 	@RequestMapping(value = "/modificaProgettoFormativoArchiviato", method = RequestMethod.POST)
 	public String modificaProgettoFormativoArchiviato(@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
 			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
-
+		System.out.println(modificaProgettoFormativoForm.getMaxPartecipanti());
 		modificaProgettoFormativoFormValidator.validate(modificaProgettoFormativoForm, result);
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-			redirectAttribute.addFlashAttribute("modificaProgettoFormativoForm", modificaProgettoFormativoForm);
+		
+			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
 				System.out.println(x.getCode());
 			}
 
-			return "redirect:/visualizzaProgettiFormativiArchiviati";
+			return "redirect:/progettiFormativiArchiviati";
 		}
 
 		try {
 			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
 					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
 		} catch (Exception e) {
-			return "redirect:/visualizzaProgettiFormativiArchiviati";
+			return "redirect:/progettiFormativiArchiviati";
 		}
-
-		redirectAttribute.addFlashAttribute("successoModificaArchiviato", "Il progetto formativo è stato correttamente modificato.");
-		return "redirect:/visualizzaProgettiFormativiArchiviati";
+		
+		redirectAttribute.addFlashAttribute("message", "Il progetto formativo è stato correttamente modificato.");
+		return "redirect:/progettiFormativiArchiviati";
 	}
 	
 	/**
@@ -201,17 +202,17 @@ public class ProgettoFormativoController {
 
 		ProgettoFormativo progettoFormativo;
 		try {
-			progettoFormativo = progettoFormativoService.riattivazioneProgettoFormativo(id);
+			progettoFormativo = progettoFormativoService.archiviaProgettoFormativo(id);
 			model.addAttribute("progettoFormativoArchiviato", progettoFormativo);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
 			
-			return "redirect:/";
+			return "redirect:/progettiFormativiAttivi";
 		}
 		
 		redirectAttribute.addFlashAttribute("message", "Il progetto formativo " + progettoFormativo.getNome() + 
 				" è stato archiviato con successo");
-		return "redirect:/visualizzaProgettiFormativiAttivi";
+		return "redirect:/progettiFormativiAttivi";
 	}
 	
 	/**
@@ -231,12 +232,12 @@ public class ProgettoFormativoController {
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
 			
-			return "redirect:/";
+			return "redirect:/progettiFormativiArchiviati";
 		}
 		
 		redirectAttribute.addFlashAttribute("message", "Il progetto formativo " + progettoFormativo.getNome() + 
 				" è stato riattivato con successo");
-		return "redirect:/visualizzaProgettiFormativiArchiviati";
+		return "redirect:/progettiFormativiArchiviati";
 	}
 	
 	/**
@@ -292,5 +293,55 @@ public class ProgettoFormativoController {
 	}
 	
 	
+	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoAttivo", method = RequestMethod.POST)
+	public String visualizzaDettagliProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+		Utente utente = utenzaService.getUtenteAutenticato();
+
+		if (utente instanceof DelegatoAziendale) {
+
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+			return "redirect:/progettiFormativiAttivi";
+		} else
+			return "/";
+	}
 	
+	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoArchiviato", method = RequestMethod.POST)
+	public String visualizzaDettagliProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+		Utente utente = utenzaService.getUtenteAutenticato();
+
+		if (utente instanceof DelegatoAziendale) {
+
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+			return "redirect:/progettiFormativiArchiviati";
+		} else
+			return "/";
+	}
+	
+	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoArchiviato", method = RequestMethod.POST)
+	public String visualizzaFormModificaProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+		Utente utente = utenzaService.getUtenteAutenticato();
+
+		if (utente instanceof DelegatoAziendale) {
+
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativo);
+			return "redirect:/progettiFormativiArchiviati";
+		} else
+			return "/";
+	}
+	
+	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoAttivo", method = RequestMethod.POST)
+	public String visualizzaFormModificaProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+		Utente utente = utenzaService.getUtenteAutenticato();
+
+		if (utente instanceof DelegatoAziendale) {
+
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativo);
+			return "redirect:/progettiFormativiAttivi";
+		} else
+			return "/";
+	}
 }

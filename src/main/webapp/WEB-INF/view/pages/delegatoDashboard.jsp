@@ -33,13 +33,13 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="#">Nuovo progetto formativo</a></li>
+							<li><a href="/nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
 							<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="#">Progetti Formativi</a></li>
-									<li><a href="#">Progetti Formativi Archiviati</a></li>
+									<li><a href="progettiFormativiAttivi">Progetti Formativi</a></li>
+									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 
 								</ul>
 							</li>
@@ -71,7 +71,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Progetti Formativi</h5>
       									<p class="card-text">In questa sezione puoi vedere i progetti formativi</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Progetti Formativi</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="progettiFormativiAttivi">Progetti Formativi</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">

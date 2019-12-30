@@ -43,7 +43,7 @@
 
 						<ul class="list-unstyled components mb-5">
 
-							<li><a href="/responsabileDashboard">Dashboard Ufficio</a></li>
+							<li><a href="/">Dashboard Ufficio</a></li>
 							<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Richieste</a>
