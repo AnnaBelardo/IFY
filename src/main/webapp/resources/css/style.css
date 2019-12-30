@@ -1,10 +1,19 @@
+td{
+	text-align: center;
+}
+
+.detail-view td{
+	padding: 0px !important;
+}
+
 .btn.btn-primary{
 	background: #ff9438;
 }
 
-.btn.btn-primary:hover{
+.btn.btn-primary:hover, .btn.btn-primary:focus{
 	background: #ff9438!important;
 	border: 2px solid #fff!important;
+	color: #fff !important;
 }
 
 .ify-title:hover{

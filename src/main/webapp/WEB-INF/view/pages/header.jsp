@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="./resources/images/logos/logo pre login.png" type="image/x-icon"/>
 <meta charset="UTF-8">
 <title>Header</title>
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">

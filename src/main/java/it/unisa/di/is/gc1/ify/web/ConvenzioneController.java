@@ -135,6 +135,18 @@ public class ConvenzioneController {
 		return "visualizzaAziendeConvenzionate";
 	}
 	
+	@RequestMapping(value = "/dettagliAzienda", method = RequestMethod.POST)
+	public String dettagliAziendaConvenzionata(@RequestParam String pIva, RedirectAttributes redirectAttribute) {
+	
+		Azienda azienda = richiestaConvenzionamentoService.getAziendaFromPIva(pIva);
+		DelegatoAziendale delegatoAziendale = richiestaConvenzionamentoService.getDelegatoFromAziendaPIva(pIva);
+		
+		redirectAttribute.addFlashAttribute("AziendaPerDettagli", azienda);
+		redirectAttribute.addFlashAttribute("DelegatoPerDettagli", delegatoAziendale);
+
+		return "redirect:/visualizzaAziendeConvenzionate";
+	}
+	
 	/**
 	 * Metodo per accettare una richiesta di convenzionamento in attesa
 	 * 

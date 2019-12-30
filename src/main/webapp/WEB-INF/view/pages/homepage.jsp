@@ -78,7 +78,7 @@
 							<p class="card-text">Visiona le aziende convenzionate con noi</p>
 			          	</div>
 			          	<div class="card-footer bottone-card-centro">
-			            	<a href="#" class="btn btn-primary bottonecard">Visualizza</a>
+			            	<a href="/visualizzaAziendeConvenzionate" class="btn btn-primary bottonecard">Visualizza</a>
 			          	</div>
 			        </div>
 			    </div>

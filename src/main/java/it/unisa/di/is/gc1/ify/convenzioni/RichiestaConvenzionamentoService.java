@@ -492,5 +492,13 @@ public class RichiestaConvenzionamentoService {
 			
 			return condizioniAzienda;
 		}
+		
+		public Azienda getAziendaFromPIva(String pIva) {
+			return aziendaRepository.findByPIva(pIva);
+		}
+		
+		public DelegatoAziendale getDelegatoFromAziendaPIva(String pIva) {
+			return delegatoAziendaleRepository.findByAziendaPIva(pIva);
+		}
 
 }
