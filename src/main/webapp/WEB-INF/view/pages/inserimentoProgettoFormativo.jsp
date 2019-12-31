@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -42,8 +43,8 @@
 						
 						
 						<ul class="list-unstyled components mb-5">
-							<li><a href = "#">Dashboard Delegato</a></li>
-							<li><a href="#">Nuovo progetto formativo</a></li>
+							<li><a href = "/">Dashboard Delegato</a></li>
+							<li><a href="/nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
 							<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
@@ -72,12 +73,13 @@
 
 				<!-- Page Content  -->
 				<div id="content" class="p-4 p-md-5 pt-5">
-					<div class="container">
-						<form class="form-horizontal" role="form" name="iscrizioneForm" method="post" action="inserisciProgetto" modelAttribute="nuovoProgettoForm">
-			
+					<div style="margin-top: 35px; class="container">
+						<form class="form-horizontal" role="form" name="iscrizioneForm" method="post" action="/inserimentoProgettoFormativo" modelAttribute="InserimentoProgettoFormativoForm">
+			            <div style="margin-top: 15px;">
 						<h3>Nuovo Progetto Formativo</h3>
-						<div style="justify-content:center;" class="row">
-							<div class="col-11">
+						</div>
+						<div style="justify-content:center;"  class="row" >
+							<div style="margin-top: 15px;" class="col-11">
 									<div class="form-group">
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
@@ -97,11 +99,11 @@
 									<div class="form-group">
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
-												<c:when test="${DescrizoneError == null}">
-													<textarea class="form-control" rows="5" id="descrizione" placeholder="descrizione" name = "descrizione" class="form-control">${nuovoProgettoForm.descrizione}</textarea>
+												<c:when test="${DescrizioneError == null}">
+													<textarea rows="5" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control">${nuovoProgettoForm.descrizione}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea class="form-control" rows="5" id="descrizione" placeholder="descrizione" name = "descrizione" class="form-control is-invalid"></textarea>
+													<textarea rows="5" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control is-invalid"></textarea>
 													<span class = "myError">${DescrizioneError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -129,10 +131,10 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${AttivitaError == null}">
-													<textarea class="form-control" rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control">${nuovoProgettoForm.attivita}</textarea>
+													<textarea rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control">${nuovoProgettoForm.attivita}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea class="form-control" rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control is-invalid"></textarea>
+													<textarea rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control is-invalid"></textarea>
 													<span class = "myError">${AttivitaError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -144,10 +146,10 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${ConoscenzeError == null}">
-													<textarea class="form-control" rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.attivita}</textarea>
+													<textarea rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.attivita}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea class="form-control" rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control is-invalid"></textarea>
+													<textarea rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control is-invalid"></textarea>
 													<span class = "myError">${ConoscenzeError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -159,17 +161,17 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${MaxPartecipantiError == null}">
-													<input type="number" name="maxPartecipanti" id="inputPartecipanti" placeholder="Numero di partecipanti" class="form-control" value="${nuovoProgettoForm.maxPartecipanti}">
+													<input min="1" max="999" type="number" name="maxPartecipanti" id="inputPartecipanti" placeholder="Numero di partecipanti" class="form-control" value="${nuovoProgettoForm.maxPartecipanti}">
 												</c:when>
 												<c:otherwise>
-													<input type="number" name="maxPartecipanti" id="inputPartecipanti" placeholder="Numero di partecipanti" class="form-control is-invalid">
+													<input min="1" max="999" type="number" name="maxPartecipanti" id="inputPartecipanti" placeholder="Numero di partecipanti" class="form-control is-invalid">
 													<span class = "myError">${MaxPartecipantiError}</span>
 												</c:otherwise>
 											</c:choose>
 				
 										</div>
 									</div>
-									<button type="submit" id="reg" class="btn btn-primary btn-block" style="margin: 0px 0px 15px 15px">Inserisci</button>
+									<button type="submit" id="reg" class="btn btn-primary btn-block" style="margin: 25px 0 15px 15px">Inserisci</button>
 								</div>
 							</div>
 						</form>

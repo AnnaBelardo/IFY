@@ -161,11 +161,11 @@ public class ProgettoFormativo {
 	public static final String ARCHIVIATO = "archiviato";
 	
 	/** Espressione regolare che definisce il formato del campo nome del progetto formativo. */
-	public static final String NOME_PATTERN = "^[A-Z a-z 0-9 àèéìòù ’:-.]{2,255}$";
+	public static final String NOME_PATTERN = "^[A-Z a-z 0-9 àèéìòù ‘,-:]{2,255}$";
 	  
 	
 	/** Espressione regolare che definisce il formato del campo ambito del progetto formativo. */
-	public static final String AMBITO_PATTERN = "^[A-Z a-z 0-9 àèéìòù ‘,-:.]{2,255}$";
+	public static final String AMBITO_PATTERN = "^[A-Z a-z 0-9 àèéìòù ‘,-:]{2,255}$";
 	
 	
 	/** Espressione regolare che definisce il formato del campo max_partecipanti del progetto formativo. */

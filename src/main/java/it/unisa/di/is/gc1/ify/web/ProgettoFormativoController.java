@@ -63,14 +63,14 @@ public class ProgettoFormativoController {
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-			redirectAttribute.addFlashAttribute("inserimentoProgettoFormativoForm", inserimentoProgettoFormativoForm);
+			redirectAttribute.addFlashAttribute("nuovoProgettoForm", inserimentoProgettoFormativoForm);
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
 				System.out.println(x.getCode());
 			}
 
-			return "redirect:/inserimentoProgettoFormativo";
+			return "redirect:/nuovoProgettoFormativo";
 		}
 		Utente utente = utenzaService.getUtenteAutenticato();
 		DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
