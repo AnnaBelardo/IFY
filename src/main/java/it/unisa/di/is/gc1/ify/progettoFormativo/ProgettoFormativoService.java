@@ -7,11 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneNonValidaException;
-import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
-import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
@@ -153,6 +149,17 @@ public class ProgettoFormativoService {
 	public List<ProgettoFormativo> visualizzaProgettiFormativiArchiviatiByAzienda(String pIva) 
 			throws OperazioneNonAutorizzataException {
 		
+		Utente utente = utenzaService.getUtenteAutenticato();
+		
+		//Solo il delegato aziendale può visualizzare un progetto formativo archiviato
+		if(!(utente instanceof DelegatoAziendale)) {
+			throw new OperazioneNonAutorizzataException();
+		}
+		DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
+		//Un progetto formativo di un'azienda può essere visualizzato solo dal delegato aziendale dell'azienda stessa
+		if(!(delegatoAziendale.getAzienda().getpIva().equals(pIva))) {
+			throw new OperazioneNonAutorizzataException();
+		}
 		List<ProgettoFormativo> progettiFormativi = progettoFormativoRepository.findAllByAziendaPIvaAndStato(pIva, ProgettoFormativo.ARCHIVIATO);
 
 		return progettiFormativi;

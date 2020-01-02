@@ -292,7 +292,13 @@ public class ProgettoFormativoController {
 			return "/";
 	}
 	
-	
+	/**
+	 * Metodo per visualizzare i dettagli dei progetti formativi attivi
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoAttivo", method = RequestMethod.POST)
 	public String visualizzaDettagliProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
@@ -306,6 +312,13 @@ public class ProgettoFormativoController {
 			return "/";
 	}
 	
+	/**
+	 * Metodo per visualizzare i dettagli dei progetti formativi archiviati
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoArchiviato", method = RequestMethod.POST)
 	public String visualizzaDettagliProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
@@ -319,6 +332,13 @@ public class ProgettoFormativoController {
 			return "/";
 	}
 	
+	/**
+	 * Metodo per visualizzare i progetti formativi archiviati
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoArchiviato", method = RequestMethod.POST)
 	public String visualizzaFormModificaProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
@@ -332,6 +352,13 @@ public class ProgettoFormativoController {
 			return "/";
 	}
 	
+	/**
+	 * Metodo per visualizzare i progetti formativi attivi
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoAttivo", method = RequestMethod.POST)
 	public String visualizzaFormModificaProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
