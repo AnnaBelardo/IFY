@@ -76,9 +76,11 @@ public class StudenteController {
 		studente.setMatricola(studenteForm.getMatricola());
 		studente.setEmail(studenteForm.getEmail());
 		studente.setPassword(studenteForm.getPassword());
-
+		RichiestaIscrizione richiestaIscrizione=new RichiestaIscrizione();
+		richiestaIscrizione.setStudente(studente);
+		richiestaIscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
 		try {
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 		} catch (Exception e) {
 			return "redirect:/";
 		}
@@ -118,6 +120,7 @@ public class StudenteController {
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/accettaRichiestaIscrizione", method = RequestMethod.POST)
@@ -143,6 +146,7 @@ public class StudenteController {
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/rifiutaRichiestaIscrizione", method = RequestMethod.POST)

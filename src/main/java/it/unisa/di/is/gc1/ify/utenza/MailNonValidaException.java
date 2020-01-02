@@ -19,13 +19,5 @@ public class MailNonValidaException extends Exception {
     super(messaggioDefault);
   }
   
-  /**
-   * Costruisce un'eccezione che ha come messaggio la stringa specificata come parametro.
-   * 
-   * @param messaggio Stringa che rappresenta il messaggio da mostrare
-   */
-  public MailNonValidaException(String messaggio) {
-    super(messaggio);
-  }
-  
+ 
 }

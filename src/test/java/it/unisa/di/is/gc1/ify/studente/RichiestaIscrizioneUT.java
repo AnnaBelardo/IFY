@@ -1234,7 +1234,7 @@ public class RichiestaIscrizioneUT {
 		password = "Password#1";
 		confermaPassword = "Password#1";
 		condizioni = "on";
-
+		RichiestaIscrizione richiestaIscrizione=new RichiestaIscrizione();
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
 		try {
@@ -1243,7 +1243,7 @@ public class RichiestaIscrizioneUT {
 					password);
 
 			when(richiestaIscrizioneRepository.save(any(RichiestaIscrizione.class))).thenReturn(null);
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 
 			// verifica che il metodo save del mock venga invocato almeno una volta
 			verify(richiestaIscrizioneRepository, times(1)).save(any(RichiestaIscrizione.class));

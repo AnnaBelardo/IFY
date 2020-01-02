@@ -47,10 +47,8 @@ public class RichiestaIscrizioneService {
 	 * @post richiestaIscrizione != null
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public RichiestaIscrizione salvaRichiestaIscrizione(Studente studente) {
-		RichiestaIscrizione richiestaIscrizione = new RichiestaIscrizione(RichiestaIscrizione.IN_ATTESA, studente);
-	
-		studente = studenteRepository.save(studente);
+	public RichiestaIscrizione salvaRichiestaIscrizione(RichiestaIscrizione richiestaIscrizione) {
+		studenteRepository.save(richiestaIscrizione.getStudente());
 		richiestaIscrizione = richiestaIscrizioneRepository.save(richiestaIscrizione);
 
 		return richiestaIscrizione;

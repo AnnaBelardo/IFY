@@ -42,7 +42,7 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="#">Aziende Convenzionate</a></li>
+							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
 							<li><a href="#">Tirocini in Corso</a></li>
 							<li><a href="#">Domande di Tirocinio</a></li>
 						</ul>
@@ -62,7 +62,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Aziende Convenzionate</h5>
       									<p class="card-text">In questa sezione puoi vedere le aziende convenzionate</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente bottonecard" href="#">Aziende Convenzionate</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente bottonecard" href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">

@@ -50,7 +50,7 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 	/**
 	 * Testa il corretto funzionamento del metodo di salvataggio di una richiesta di iscrizione.
 	 * 
-	 * @test {@link RichiestaIscrizioneService#salvaRichiestaIscrizione(Studente)}
+	 * @test {@link RichiestaIscrizioneService#salvaRichiestaIscrizione(RichiestaIscrizione)}
 	 * 
 	 * @result Il test è superato se la richesta di iscrizione viene correttamente
 	 * salvata nel database
@@ -71,7 +71,9 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		studente.setSesso("M");
 		studente.setPassword("Password#1");
 		
-		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+		richiestaIscrizione=new RichiestaIscrizione();
+		richiestaIscrizione.setStudente(studente);
+		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 		
 		assertNotNull(richiestaIscrizione);
 		
@@ -113,8 +115,10 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		responsabile.setPassword("Password#5");
 		
 		utenteRepository.save(responsabile);
-		
-		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+		richiestaIscrizione=new RichiestaIscrizione();
+		richiestaIscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
+		richiestaIscrizione.setStudente(studente);
+		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 		utenzaService.setUtenteAutenticato(responsabile.getEmail());
 
 		try {
@@ -163,8 +167,10 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 		responsabile.setPassword("Password#5");
 		
 		utenteRepository.save(responsabile);
-		
-		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+		richiestaIscrizione=new RichiestaIscrizione();
+		richiestaIscrizione.setStudente(studente);
+		richiestaIscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
+		richiestaIscrizione = richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 		utenzaService.setUtenteAutenticato(responsabile.getEmail());
 
 		try {

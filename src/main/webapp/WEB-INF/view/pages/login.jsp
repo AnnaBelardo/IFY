@@ -15,19 +15,19 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body background= "../../../resources/images/login.png">
 <%@ include file="header.jsp" %>
-	<div style="margin-top:100px;" class="container">
+	<div style="margin-top:100px; margin-bottom: 100px;" class="container">
 	
 		<form class="form-horizontal" role="form" name="loginForm"
 			method="post" action="/login"
 			modelAttribute="utenteForm">
 			
 			<h3>Login</h3>
-			<div style="justify-content:center;" class="row">
-				<div class="col-6">
+			<div class="login-div row">
+				<div class="col-6 login-inputs">
 					<div class="form-group">
-						<div style="margin: 0 auto;" class="col-sm-11">
+						<div class="col-sm-11 div-login">
 							<c:choose>
 								<c:when test="${EmailError == null}">
 									<c:choose>
@@ -48,7 +48,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div style="margin: 0 auto;" class="col-sm-11">
+						<div class="col-sm-11 div-login">
 							<c:choose>
 								<c:when test="${PasswordError == null}">
 									<input type="password" name="password" id="inputPassword"
