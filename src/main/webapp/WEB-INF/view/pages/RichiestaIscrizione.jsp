@@ -15,7 +15,7 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body background= "../../../resources/images/iscrizioneStudente.png">
 <%@ include file="header.jsp" %>
 	<div style="margin-top: 50px; margin-bottom: 30px;" class="container">
 	
@@ -245,8 +245,9 @@
 								<span class = "myError">${CondizioniError}</span>
 							</c:if>
 						</div>
-						<button type="submit" id="reg" class="btn btn-primary btn-block">Registrati</button>
 					</div>
+					<button type="submit" id="reg" class="btn btn-primary btn-block">Registrati</button>
+					
 				</div>
 				
 			</div>

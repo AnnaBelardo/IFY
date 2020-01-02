@@ -15,7 +15,7 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body background= "../../../resources/images/login.png">
 <%@ include file="header.jsp" %>
 	<div style="margin-top:100px; margin-bottom: 100px;" class="container">
 	
