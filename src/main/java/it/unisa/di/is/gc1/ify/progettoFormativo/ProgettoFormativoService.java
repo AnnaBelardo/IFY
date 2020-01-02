@@ -217,10 +217,10 @@ public class ProgettoFormativoService {
 			throw new ProgettoFormativoNonValidoException("NomeError", "Il campo nome deve contenere almeno 2 caratteri");
 
 		if (nome.length() > ProgettoFormativo.MAX_LUNGHEZZA_CAMPO)
-			throw new ProgettoFormativoNonValidoException("NomeError", "Il campo Nome deve contenere massimo 255 caratteri");
+			throw new ProgettoFormativoNonValidoException("NomeError", "Il campo nome deve contenere massimo 255 caratteri");
 
 		if (!nome.matches(ProgettoFormativo.NOME_PATTERN))
-			throw new ProgettoFormativoNonValidoException("NomeError", "Il campo Nome deve contenere soltanto caratteri alfanumerici e di punteggiatura");
+			throw new ProgettoFormativoNonValidoException("NomeError", "Il campo nome deve contenere soltanto caratteri alfanumerici e di punteggiatura");
 		return nome;
 	}
 	
