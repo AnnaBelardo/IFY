@@ -76,9 +76,11 @@ public class StudenteController {
 		studente.setMatricola(studenteForm.getMatricola());
 		studente.setEmail(studenteForm.getEmail());
 		studente.setPassword(studenteForm.getPassword());
-
+		RichiestaIscrizione richiestaIscrizione=new RichiestaIscrizione();
+		richiestaIscrizione.setStudente(studente);
+		richiestaIscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
 		try {
-			richiestaIscrizioneService.salvaRichiestaIscrizione(studente);
+			richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);
 		} catch (Exception e) {
 			return "redirect:/";
 		}
