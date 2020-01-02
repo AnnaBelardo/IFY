@@ -172,7 +172,6 @@ public class RichiestaConvenzionamentoService {
 			return aziendeConvenzionate;
 		}
 		
-		
 		/** 
 		 * Il metodo ritorna lo stato della richiesta di convenzionamento
 		 * 

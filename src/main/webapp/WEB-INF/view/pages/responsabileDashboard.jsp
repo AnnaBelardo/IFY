@@ -78,7 +78,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Richieste di iscrizione</h5>
       									<p class="card-text">In questa sezione puoi vedere i le richieste di iscrizione alla piattaforma</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="#">Richieste di iscrizione</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">

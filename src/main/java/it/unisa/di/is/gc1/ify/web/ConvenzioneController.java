@@ -135,6 +135,15 @@ public class ConvenzioneController {
 		return "visualizzaAziendeConvenzionate";
 	}
 	
+	@RequestMapping(value = "/visualizzaAziendeConvenzionateStudente", method = RequestMethod.GET)
+	public String visualizzaAziendeConvenzionateStudente(Model model) {
+	
+		List<Azienda> aziendeConvenzionate = richiestaConvenzionamentoService.visualizzaAziendeConvenzionate();
+		model.addAttribute("aziendeConvenzionate", aziendeConvenzionate);
+
+		return "visualizzaAziendeConvenzionateStudente";
+	}
+	
 	@RequestMapping(value = "/dettagliAzienda", method = RequestMethod.POST)
 	public String dettagliAziendaConvenzionata(@RequestParam String pIva, RedirectAttributes redirectAttribute) {
 	
@@ -145,6 +154,18 @@ public class ConvenzioneController {
 		redirectAttribute.addFlashAttribute("DelegatoPerDettagli", delegatoAziendale);
 
 		return "redirect:/visualizzaAziendeConvenzionate";
+	}
+	
+	@RequestMapping(value = "/dettagliAziendaStudente", method = RequestMethod.POST)
+	public String dettagliAziendaConvenzionataStudente(@RequestParam String pIva, RedirectAttributes redirectAttribute) {
+	
+		Azienda azienda = richiestaConvenzionamentoService.getAziendaFromPIva(pIva);
+		DelegatoAziendale delegatoAziendale = richiestaConvenzionamentoService.getDelegatoFromAziendaPIva(pIva);
+		
+		redirectAttribute.addFlashAttribute("AziendaPerDettagli", azienda);
+		redirectAttribute.addFlashAttribute("DelegatoPerDettagli", delegatoAziendale);
+
+		return "redirect:/visualizzaAziendeConvenzionateStudente";
 	}
 	
 	/**

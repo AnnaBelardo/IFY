@@ -31,7 +31,25 @@
 		<%@ include file="header.jsp"%>
 		<div class="row">
 			<div class="wrapper d-flex align-items-stretch">
-				
+				<nav id="sidebar">
+					<div class="custom-menu">
+						<button type="button" id="sidebarCollapse" class="btn btn-primary">
+							<i class="fa fa-bars"></i> <span class="sr-only">Toggle
+								Menu</span>
+						</button>
+					</div>
+					<div class="p-4 pt-5">
+						<!--  <h1><a href="index.html" class="logo">IFY</a></h1>-->
+						
+						
+						<ul class="list-unstyled components mb-5">
+						
+							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
+							<li><a href="#">Tirocini in Corso</a></li>
+							<li><a href="#">Domande di Tirocinio</a></li>
+						</ul>
+					</div>
+				</nav>
 
 				<!-- Page Content  -->
 				<div id="content" class="p-4 p-md-5 pt-5">
@@ -66,8 +84,9 @@
 														<th data-sortable="true">Progetto</th>
 														<th data-sortable="true">Attivazione</th>
 														<th data-sortable="true">Ambito</th>
-														<th data-sortable="true">Numero Tirocinanti</th>
+														<th data-sortable="true">Numero tirocinanti</th>
 														<th data-sortable="true">Dettagli progetto</th>
+														<th data-sortable="true">Invio domanda</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -79,6 +98,9 @@
 													<td>
 														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
 													</td>
+													<td>
+														<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
+													</td>
 												</tr>
 												<tr>
 													<td>Progetto 1</td>
@@ -88,6 +110,9 @@
 													<td>
 														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
 													</td>
+													<td>
+														<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
+													</td>
 												</tr>
 												</tbody>
 											</table>
@@ -96,7 +121,7 @@
 										<td>${current.sede}</td>
 										<td>${current.settore}</td>
 										<td>
-											<form method="post" action="/dettagliAzienda">
+											<form method="post" action="/dettagliAziendaStudente">
 												<input type="hidden" name="pIva" value="${current.pIva}">
 												<input type="submit" class="btn btn-primary dettagli-btn" value="Dettagli">
 											</form>

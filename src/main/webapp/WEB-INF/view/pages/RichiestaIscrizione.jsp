@@ -125,12 +125,12 @@
 									test="${SessoError == null && studenteForm.sesso == 'F'}">
 									
 										
-											<label class="radio-inline col-sm-2"> <input type="radio"
+											<label class="sesso radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="maschio" value="M"> M
 											</label>
 										
 										
-											<label class="radio-inline col-sm-2"> <input type="radio"
+											<label class="sesso radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="femmina" value="F" checked> F
 											</label>
 										
@@ -139,12 +139,12 @@
 								<c:otherwise>
 									
 										
-											<label class="radio-inline col-sm-2"> <input type="radio"
+											<label class="sesso radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="maschio" value="M" checked> M
 											</label>
 										
 										
-											<label class="radio-inline col-sm-2"> <input type="radio"
+											<label class="sesso radio-inline col-sm-2"> <input type="radio"
 												name="sesso" id="femmina" value="F"> F
 											</label>
 										

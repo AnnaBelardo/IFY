@@ -1,3 +1,25 @@
+.sesso{
+	padding: 0 !important;
+}
+
+@media only screen and (max-width: 600px){
+	.div-login{
+		padding: 0 !important;
+	}
+
+	.login-inputs{
+		padding: 0 !important;
+	}
+}
+
+.div-login{
+		margin: 0 auto;
+}
+
+.login-div{
+	justify-content: center;
+}
+
 body {
     background: url("/resources/images/iscrizioneStudente.png") fixed;
     background-size: cover;
