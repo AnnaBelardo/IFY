@@ -123,7 +123,7 @@ public class ConvenzioneFormValidator implements Validator {
 		
 		// Validazione del campo piva
 		try {
-			richiestaConvenzionamentoService.validaPiva(convenzioneForm.getPIva());
+			richiestaConvenzionamentoService.validaPiva(convenzioneForm.getpIva());
 		} catch (RichiestaConvenzionamentoNonValidaException e) {
 			errors.reject(e.getTarget(), e.getMessage());
 		}

@@ -101,10 +101,10 @@ public class ConvenzioneForm {
 	public void setSede(String sede) {
 		this.sede = sede;
 	}
-	public String getPIva() {
+	public String getpIva() {
 		return pIva;
 	}
-	public void setPiva(String pIva) {
+	public void setpIva(String pIva) {
 		this.pIva = pIva;
 	}
 	public String getSettore() {

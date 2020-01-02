@@ -103,7 +103,7 @@
 			            	<p class="card-text">Convenzionati in pochi passi</p>
 			          	</div>
 			          	<div class="card-footer bottone-card-centro">
-			            	<a href="#" class="btn btn-primary bottonecard">Convenzionati ora</a>
+			            	<a href="./iscrizioneAzienda" class="btn btn-primary bottonecard">Convenzionati ora</a>
 			          	</div>
 			        </div>
 			      </div>

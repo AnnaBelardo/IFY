@@ -56,10 +56,10 @@ public class MailSingletonSender  {
 			String nome = richiestaIscrizione.getStudente().getNome();
 			String cognome = richiestaIscrizione.getStudente().getCognome();
 			if(stato == RichiestaIscrizione.ACCETTATA)
-				return "Gentile " + nome + "" + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
 				stato + ". Cordiali saluti, l'Ufficio Tirocini.";
 			else if(stato == RichiestaIscrizione.RIFIUTATA)
-				return "Gentile " + nome + "" + cognome + "la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
 				stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini.";
 		}
 		else if(obj instanceof RichiestaConvenzionamento) {
@@ -69,10 +69,10 @@ public class MailSingletonSender  {
 			String cognome = richiestaConvenzionamento.getDelegatoAziendale().getCognome();
 			String nomeAzienda = richiestaConvenzionamento.getAzienda().getRagioneSociale();
 			if(stato == RichiestaConvenzionamento.ACCETTATA)
-				return "Gentile " + nome + "" + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
+				return "Gentile " + nome + " " + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
 						" è stata " + stato + ". Cordiali saluti, l'Ufficio Tirocini.";
 			else if(stato == RichiestaConvenzionamento.RIFIUTATA)
-				return "Gentile " + nome + "" + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
+				return "Gentile " + nome + " " + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
 						" è stata " + stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini.";
 		}
 		return "";

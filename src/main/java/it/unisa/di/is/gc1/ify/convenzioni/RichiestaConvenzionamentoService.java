@@ -45,21 +45,17 @@ public class RichiestaConvenzionamentoService {
 	/**
 	 * Il metodo fornisce la funzionalità di salvataggio di un delegato aziendale e di
 	 * un'azienda con la relativa richiesta di convenzionamento posta in stato di attesa
-	 * @param azienda, delegatoAziendale
+	 * @param richiestaConvenzionamento
 	 * 
 	 * @return RichiestaConvenzionamento richiestaConvenzionamento
-	 * @pre azienda != null
-	 * @pre delegatoAziendale != null
 	 * @post richiestaConvenzionamento != null
 	 */
 	
 	@Transactional(rollbackFor = Exception.class)
-	public RichiestaConvenzionamento salvaRichiestaConvenzionamento(Azienda azienda, DelegatoAziendale delegatoAziendale) {
-		RichiestaConvenzionamento richiestaConvenzionamento = new RichiestaConvenzionamento(RichiestaConvenzionamento.IN_ATTESA, azienda, delegatoAziendale);
+	public RichiestaConvenzionamento salvaRichiestaConvenzionamento(RichiestaConvenzionamento richiestaConvenzionamento) {
 		
-		azienda = aziendaRepository.save(azienda);
-		delegatoAziendale = delegatoAziendaleRepository.save(delegatoAziendale);
-		richiestaConvenzionamento = richiestaConvenzionamentoRepository.save(richiestaConvenzionamento);
+		delegatoAziendaleRepository.save(richiestaConvenzionamento.getDelegatoAziendale());
+		richiestaConvenzionamentoRepository.save(richiestaConvenzionamento);
 		
 		return richiestaConvenzionamento;
 	}
@@ -172,6 +168,7 @@ public class RichiestaConvenzionamentoService {
 			return aziendeConvenzionate;
 		}
 		
+		
 		/** 
 		 * Il metodo ritorna lo stato della richiesta di convenzionamento
 		 * 
@@ -217,13 +214,13 @@ public class RichiestaConvenzionamentoService {
 				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo cognome non può essere nullo.");
 
 			if (cognome.length() < DelegatoAziendale.MIN_LUNGHEZZA_CAMPO)
-				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo nome deve contenere almeno 2 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo cognome deve contenere almeno 2 caratteri.");
 
 			if (cognome.length() > DelegatoAziendale.MAX_LUNGHEZZA_CAMPO)
-				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo nome deve contenere al massimo 255 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo cognome deve contenere al massimo 255 caratteri.");
 
 			if (!cognome.matches(DelegatoAziendale.COGNOME_PATTERN))
-				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo nome deve contenere soltanto caratteri alfabetici.");
+				throw new RichiestaConvenzionamentoNonValidaException("CognomeError", "Il campo cognome deve contenere soltanto caratteri alfabetici.");
 			return cognome;
 		}
 		
@@ -370,16 +367,16 @@ public class RichiestaConvenzionamentoService {
 		public String validaRagioneSociale(String ragioneSociale) throws RichiestaConvenzionamentoNonValidaException {
 					
 			if (ragioneSociale == null)
-				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo Ragione Sociale non può essere nullo.");
+				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo ragione sociale non può essere nullo.");
 
 			if (ragioneSociale.length() < Azienda.MIN_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo Ragione Sociale deve contenere almeno 5 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo ragione sociale deve contenere almeno 5 caratteri.");
 
 			if (ragioneSociale.length() > Azienda.MAX_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo Ragione Sociale deve contenere al massimo 255 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo ragione sociale deve contenere al massimo 255 caratteri.");
 
 			if (!ragioneSociale.matches(Azienda.RAGIONE_SOCIALE_PATTERN))
-				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo Ragione Sociale deve contenere soltanto caratteri alafanumerici e di punteggiatura.");
+				throw new RichiestaConvenzionamentoNonValidaException("RagioneSocialeError", "Il campo ragione sociale deve contenere soltanto caratteri alafanumerici e di punteggiatura.");
 			return ragioneSociale;
 		}
 		
@@ -392,16 +389,16 @@ public class RichiestaConvenzionamentoService {
 		public String validaSede(String sede) throws RichiestaConvenzionamentoNonValidaException {
 					
 			if (sede == null)
-				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo Sede non può essere nullo.");
+				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo sede non può essere nullo.");
 
 			if (sede.length() < Azienda.MIN_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo Sede deve contenere almeno 5 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo sede deve contenere almeno 5 caratteri.");
 
 			if (sede.length() > Azienda.MAX_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo Sede deve contenere al massimo 255 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo sede deve contenere al massimo 255 caratteri.");
 
 			if (!sede.matches(Azienda.SEDE_PATTERN))
-				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo Sede deve contenere soltanto caratteri alfanumerici e di punteggiatura");
+				throw new RichiestaConvenzionamentoNonValidaException("SedeError", "Il campo sede deve contenere soltanto caratteri alfanumerici e di punteggiatura");
 			return sede;
 		}
 		
@@ -414,7 +411,7 @@ public class RichiestaConvenzionamentoService {
 		public String validaPiva(String piva) throws RichiestaConvenzionamentoNonValidaException {
 					
 			if (piva == null)
-				throw new RichiestaConvenzionamentoNonValidaException("PartitaIvaError", "Il campo partita IVA nome non può essere nullo.");
+				throw new RichiestaConvenzionamentoNonValidaException("PartitaIvaError", "Il campo partita IVA non può essere nullo.");
 
 			if (piva.length() != Azienda.LUNGHEZZA_PARTITA_IVA)
 				throw new RichiestaConvenzionamentoNonValidaException("PartitaIvaError", "Il campo partita IVA deve contenere 11 caratteri");
@@ -433,16 +430,16 @@ public class RichiestaConvenzionamentoService {
 		public String validaSettore(String settore) throws RichiestaConvenzionamentoNonValidaException {
 					
 			if (settore == null)
-				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo Settore non può essere nullo.");
+				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo settore non può essere nullo.");
 
 			if (settore.length() < Azienda.MIN_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo Settore deve contenere almeno 2 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo settore deve contenere almeno 2 caratteri.");
 
 			if (settore.length() > Azienda.MAX_LUNGHEZZA_SEDE_SETTORE_RAGIONE_SOCIALE)
-				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo Settore deve contenere al massimo 255 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo settore deve contenere al massimo 255 caratteri.");
 
 			if (!settore.matches(Azienda.SETTORE_PATTERN))
-				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo Settore deve contenere soltanto caratteri alfanumerici");
+				throw new RichiestaConvenzionamentoNonValidaException("SettoreError", "Il campo settore deve contenere soltanto caratteri alfanumerici");
 			return settore;
 		}
 		
@@ -455,13 +452,13 @@ public class RichiestaConvenzionamentoService {
 		public String validaDescrizione(String descrizione) throws RichiestaConvenzionamentoNonValidaException {
 					
 			if (descrizione == null)
-				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo Descrizione nome non può essere nullo.");
+				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo descrizione non può essere nullo.");
 
 			if (descrizione.length() < Azienda.MIN_LUNGHEZZA_DESCRIZIONE)
-				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo Descrizione contenere almeno 2 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo descrizione deve contenere almeno 2 caratteri.");
 
 			if (descrizione.length() > Azienda.MAX_LUNGHEZZA_DESCRIZIONE)
-				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo Descrizione deve contenere al massimo 800 caratteri.");
+				throw new RichiestaConvenzionamentoNonValidaException("DescrizioneError", "Il campo descrizione deve contenere al massimo 800 caratteri.");
 			
 			return descrizione;
 		}

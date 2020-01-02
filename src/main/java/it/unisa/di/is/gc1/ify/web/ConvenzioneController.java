@@ -58,11 +58,10 @@ public class ConvenzioneController {
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-			redirectAttribute.addFlashAttribute("ConvenzioneForm", convenzioneForm);
+			redirectAttribute.addFlashAttribute("convenzioneForm", convenzioneForm);
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
-				System.out.println(x.getCode());
 			}
 
 			return "redirect:/iscrizioneAzienda";
@@ -71,7 +70,7 @@ public class ConvenzioneController {
 		Azienda azienda = new Azienda();
 		azienda.setRagioneSociale(convenzioneForm.getRagioneSociale());
 		azienda.setSede(convenzioneForm.getSede());
-		azienda.setpIva(convenzioneForm.getPIva());
+		azienda.setpIva(convenzioneForm.getpIva());
 		azienda.setSettore(convenzioneForm.getSettore());
 		azienda.setDescrizione(convenzioneForm.getDescrizione());
 		
@@ -85,8 +84,10 @@ public class ConvenzioneController {
 		delegatoAziendale.setPassword(convenzioneForm.getPassword());
 		delegatoAziendale.setAzienda(azienda);
 		
+		RichiestaConvenzionamento richiestaConvenzionamento = new RichiestaConvenzionamento(RichiestaConvenzionamento.IN_ATTESA, azienda, delegatoAziendale);
+		
 		try {
-			richiestaConvenzionamentoService.salvaRichiestaConvenzionamento(azienda, delegatoAziendale);
+			richiestaConvenzionamentoService.salvaRichiestaConvenzionamento(richiestaConvenzionamento);
 		} catch (Exception e) {
 			return "redirect:/";
 		}
@@ -135,6 +136,12 @@ public class ConvenzioneController {
 		return "visualizzaAziendeConvenzionate";
 	}
 	
+	/**
+	 * Metodo per visualizzare la lista delle aziende convenzionate da parte dello studente
+	 * 
+	 * @param model
+	 * @return String stringa che rapprestenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/visualizzaAziendeConvenzionateStudente", method = RequestMethod.GET)
 	public String visualizzaAziendeConvenzionateStudente(Model model) {
 	
@@ -144,6 +151,13 @@ public class ConvenzioneController {
 		return "visualizzaAziendeConvenzionateStudente";
 	}
 	
+	/**
+	 * Metodo per visualizzare i dettagli delle aziende convenzionate con i relativi dettagli del delgato aziendale
+	 * 
+	 * @param pIva
+	 * @param redirectAttribute
+	 * @return String stringa che rapprestenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/dettagliAzienda", method = RequestMethod.POST)
 	public String dettagliAziendaConvenzionata(@RequestParam String pIva, RedirectAttributes redirectAttribute) {
 	
@@ -156,6 +170,14 @@ public class ConvenzioneController {
 		return "redirect:/visualizzaAziendeConvenzionate";
 	}
 	
+	/**
+	 * Metodo per visualizzare i dettagli delle aziende convenzionate con i relativi dettagli del delgato aziendale
+	 * da parte dello studente
+	 * 
+	 * @param pIva
+	 * @param redirectAttribute
+	 * @return String stringa che rapprestenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/dettagliAziendaStudente", method = RequestMethod.POST)
 	public String dettagliAziendaConvenzionataStudente(@RequestParam String pIva, RedirectAttributes redirectAttribute) {
 	
@@ -184,8 +206,6 @@ public class ConvenzioneController {
 			richiestaConvenzionamento = richiestaConvenzionamentoService.accettaRichiestaConvenzionamento(id);
 			model.addAttribute("richiestaConvenzionamentoAccettata", richiestaConvenzionamento);
 		} catch (OperazioneNonAutorizzataException e) {
-			System.out.println(e.getMessage());
-			
 			return "redirect:/";
 		}
 		
@@ -210,8 +230,6 @@ public class ConvenzioneController {
 			richiestaConvenzionamento = richiestaConvenzionamentoService.rifiutaRichiestaConvenzionamento(id);
 			model.addAttribute("richiestaConvenzionamentoRifiutata", richiestaConvenzionamento);
 		} catch (OperazioneNonAutorizzataException e) {
-			System.out.println(e.getMessage());
-			
 			return "redirect:/";
 		}
 		
