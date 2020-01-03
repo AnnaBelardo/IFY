@@ -26,6 +26,9 @@
 </head>
 
 <body>
+	<!--  
+	<button onclick="include()">Include</button>  <div id="container" style="border: 1px solid red;"></div>
+	-->
 	<div class="container-fluid">
 
 		<%@ include file="header.jsp"%>
@@ -49,8 +52,8 @@
 									<th class="detail" data-sortable="true">Azienda</th>
 									<th class="detail" data-sortable="true">Sede</th>
 									<th class="detail" data-sortable="true">Settore</th>
-									<th data-sortable="true">Dettagli Azienda</th>
-									<th data-sortable="true">Progetti Formativi Azienda</th>
+									<th>Dettagli Azienda</th>
+									<th>Progetti Formativi Azienda</th>
 								</tr>
 
 							</thead>
@@ -71,24 +74,27 @@
 													</tr>
 												</thead>
 												<tbody>
-												<tr>
-													<td>Progetto 1</td>
-													<td>10/01/2020</td>
-													<td>Informatica</td>
-													<td>4</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
-													</td>
-												</tr>
-												<tr>
-													<td>Progetto 1</td>
-													<td>10/01/2020</td>
-													<td>Informatica</td>
-													<td>4</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
-													</td>
-												</tr>
+													<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
+														<c:if test="${progetto.stato.equals('attivo')}">
+															<tr>
+																<td>${progetto.nome}</td>
+																<td>${progetto.data_compilazione}</td>
+																<td>${progetto.ambito}</td>
+																<td>${progetto.max_partecipanti}</td>
+																<td>
+																	<!--  
+																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
+																	-->
+																	<form name="dettagliForm" method="POST" action="/visualizzaDettagliProgettoFormativoUtente">
+																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
+																			<button class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
+  																				Dettagli
+																			</button>
+																	</form>
+																</td>
+															</tr>
+														</c:if>
+													</c:forEach>
 												</tbody>
 											</table>
 										</td>
@@ -123,11 +129,14 @@
 	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
-	
+	<!-- <script src="./resources/js/ajax.js"></script> -->
 	<c:if test="${AziendaPerDettagli != null}">
 		<%@ include file="modalDettagliAzienda.jsp" %>
 	</c:if>
-
+	<c:if test="${progettoPerDettagli!=null}">
+		<%@ include file="modalDettagliProgetto.jsp"%>
+	</c:if>
+	
 	<script>
 		// Load detail view
 		$('#parentTable').on('expand-row.bs.table',
@@ -171,11 +180,4 @@
 		//show modal
 	</script>
 </body>
-
-
-
-
-
-
 </html>
-

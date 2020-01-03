@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
+import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
 import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoService;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
@@ -118,7 +120,7 @@ public class ConvenzioneController {
 
 			return "visualizzaRichiesteConvenzionamentoUfficio";
 		} else
-			return "/";
+			return "redirect:/";
 	}
 	
 	/**
@@ -132,7 +134,6 @@ public class ConvenzioneController {
 	
 		List<Azienda> aziendeConvenzionate = richiestaConvenzionamentoService.visualizzaAziendeConvenzionate();
 		model.addAttribute("aziendeConvenzionate", aziendeConvenzionate);
-
 		return "visualizzaAziendeConvenzionate";
 	}
 	
@@ -145,10 +146,16 @@ public class ConvenzioneController {
 	@RequestMapping(value = "/visualizzaAziendeConvenzionateStudente", method = RequestMethod.GET)
 	public String visualizzaAziendeConvenzionateStudente(Model model) {
 	
-		List<Azienda> aziendeConvenzionate = richiestaConvenzionamentoService.visualizzaAziendeConvenzionate();
-		model.addAttribute("aziendeConvenzionate", aziendeConvenzionate);
+		Utente utente=utenzaService.getUtenteAutenticato();
+		if(utente instanceof Studente) {
+			List<Azienda> aziendeConvenzionate = richiestaConvenzionamentoService.visualizzaAziendeConvenzionate();
+			model.addAttribute("aziendeConvenzionate", aziendeConvenzionate);
+			return "visualizzaAziendeConvenzionateStudente";
+		} else {
+			return "redirect:/";
+		}
 
-		return "visualizzaAziendeConvenzionateStudente";
+		
 	}
 	
 	/**

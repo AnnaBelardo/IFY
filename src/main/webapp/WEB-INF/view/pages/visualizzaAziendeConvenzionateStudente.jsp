@@ -90,30 +90,30 @@
 													</tr>
 												</thead>
 												<tbody>
-												<tr>
-													<td>Progetto 1</td>
-													<td>10/01/2020</td>
-													<td>Informatica</td>
-													<td>4</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
-													</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
-													</td>
-												</tr>
-												<tr>
-													<td>Progetto 1</td>
-													<td>10/01/2020</td>
-													<td>Informatica</td>
-													<td>4</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
-													</td>
-													<td>
-														<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
-													</td>
-												</tr>
+												<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
+														<c:if test="${progetto.stato.equals('attivo')}">
+															<tr>
+																<td>${progetto.nome}</td>
+																<td>${progetto.data_compilazione}</td>
+																<td>${progetto.ambito}</td>
+																<td>${progetto.max_partecipanti}</td>
+																<td>
+																	<!--  
+																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
+																	-->
+																	<form name="dettagliForm" method="POST" action="/visualizzaDettagliProgettoFormativoStudente">
+																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
+																			<button class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
+  																				Dettagli
+																			</button>
+																	</form>
+																</td>
+																<td>
+																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
+																</td>
+															</tr>
+														</c:if>
+													</c:forEach>
 												</tbody>
 											</table>
 										</td>
@@ -152,7 +152,9 @@
 	<c:if test="${AziendaPerDettagli != null}">
 		<%@ include file="modalDettagliAzienda.jsp" %>
 	</c:if>
-
+	<c:if test="${progettoPerDettagli!=null}">
+		<%@ include file="modalDettagliProgetto.jsp"%>
+	</c:if>
 	<script>
 		// Load detail view
 		$('#parentTable').on('expand-row.bs.table',

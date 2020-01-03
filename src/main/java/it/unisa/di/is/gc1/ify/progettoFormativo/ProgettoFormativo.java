@@ -131,6 +131,14 @@ public class ProgettoFormativo {
 		this.azienda = azienda;
 	}
 
+	@Override
+	public String toString() {
+		return "ProgettoFormativo [id=" + id + ", nome=" + nome + ", descrizione=" + descrizione + ", ambito=" + ambito
+				+ ", attivita=" + attivita + ", conoscenze=" + conoscenze + ", max_partecipanti=" + max_partecipanti
+				+ ", data_compilazione=" + data_compilazione + ", stato=" + stato + ", azienda=" + azienda + "]";
+	}
+
+
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)

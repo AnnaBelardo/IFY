@@ -78,6 +78,15 @@ public class Azienda {
 		this.descrizione = descrizione;
 	}
 
+	public List<ProgettoFormativo> getProgettiFormativi() {
+		return progettiFormativi;
+	}
+
+	public void setProgettiFormativi(List<ProgettoFormativo> progettiFormativi) {
+		this.progettiFormativi = progettiFormativi;
+	}
+
+
 
 	@Id
 	@Column(unique=true)

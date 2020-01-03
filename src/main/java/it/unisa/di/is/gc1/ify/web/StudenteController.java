@@ -112,7 +112,7 @@ public class StudenteController {
 
 			return "visualizzaRichiesteIscrizioneUfficio";
 		} else
-			return "/";
+			return "redirect:/";
 	}
 
 	/**

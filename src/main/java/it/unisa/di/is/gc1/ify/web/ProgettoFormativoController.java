@@ -187,7 +187,7 @@ public class ProgettoFormativoController {
 
 			return "inserimentoProgettoFormativo";
 		} else
-			return "/";
+			return "redirect:/";
 	}
 	
 	/**
@@ -263,7 +263,7 @@ public class ProgettoFormativoController {
 
 			return "visualizzaProgettiFormativiAttivi";
 		} else
-			return "/";
+			return "redirect:/";
 	}
 	
 	/**
@@ -289,7 +289,7 @@ public class ProgettoFormativoController {
 
 			return "visualizzaProgettiFormativiArchiviati";
 		} else
-			return "/";
+			return "redirect:/";
 	}
 	
 	/**
@@ -370,5 +370,42 @@ public class ProgettoFormativoController {
 			return "redirect:/progettiFormativiAttivi";
 		} else
 			return "/";
+	}
+	
+	/**
+	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista generale
+	 * delle aziende convenzionate 
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
+	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoUtente", method = RequestMethod.POST)
+	public String visualizzaDettagliProgettoFormativoUtente(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+			return "redirect:/visualizzaAziendeConvenzionate";	
+	}
+	
+	/**
+	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista della 
+	 * dashboard dello studente
+	 * 
+	 * @param redirectAttribute
+	 * @param id
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
+	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoStudente", method = RequestMethod.POST)
+	public String visualizzaDettagliProgettoFormativoStudente(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+			
+			Utente utente=utenzaService.getUtenteAutenticato();
+			if(utente instanceof Studente) {
+				ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+				redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+				return "redirect:/visualizzaAziendeConvenzionateStudente";	
+			} else {
+				return "redirect:/";
+			}
 	}
 }

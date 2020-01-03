@@ -16,6 +16,8 @@ import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoService;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.PasswordNonValidaException;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
@@ -37,6 +39,9 @@ public class UtenzaController {
 
 	@Autowired
 	private RichiestaIscrizioneService richiestaIscrizioneService;
+	
+	@Autowired
+	private RichiestaConvenzionamentoService richiestaConvenzionamentoService;
 
 	/**
 	 * Metodo per effettuare il login
@@ -81,10 +86,15 @@ public class UtenzaController {
 				return "redirect:/loginPage";
 			}
 		}
-		//aggiungere controllo stato richiesta convenzionamento
 		else if(utente instanceof DelegatoAziendale) {
-			request.getSession().setAttribute("email", utente.getEmail());
-			return "delegatoDashboard";
+			if(richiestaConvenzionamentoService.getStatoRichiestaByEmail(utente.getEmail()).equals(RichiestaConvenzionamento.ACCETTATA)) {
+				request.getSession().setAttribute("email", utente.getEmail());
+				return "delegatoDashboard";
+			} 
+			else {
+				redirectAttribute.addFlashAttribute("message","Le sue credenziali sono ancora in attesa di valutazione");
+				return "redirect:/loginPage";
+			}
 		}
 		else if(utente instanceof ResponsabileUfficioTirocini){
 			request.getSession().setAttribute("email", utente.getEmail());

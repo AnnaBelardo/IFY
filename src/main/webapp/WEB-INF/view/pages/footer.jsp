@@ -1,4 +1,4 @@
-<footer style="background-color: #666666 !important; padding:10px !important;" class="py-5 bg-dark">
+<footer style="background-color: #666666 !important; padding:10px !important; bottom: 0px; position: absolute; width: 100%;" class="py-5 bg-dark">
 				<!--  
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active col-md-12"><a>Contatti</a></li>
