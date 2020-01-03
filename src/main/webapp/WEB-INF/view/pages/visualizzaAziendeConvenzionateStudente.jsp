@@ -45,7 +45,7 @@
 						<ul class="list-unstyled components mb-5">
 						
 							<li><a href="/">Dashboard</a></li>
-							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
+							<li><a href="/visualizzaAziendeConvenzionateStudente" class="active">Aziende Convenzionate</a></li>
 							<li><a href="#">Tirocini in Corso</a></li>
 							<li><a href="#">Domande di Tirocinio</a></li>
 						</ul>
@@ -65,11 +65,11 @@
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
-									<th class="detail" data-sortable="true">Azienda</th>
-									<th class="detail" data-sortable="true">Sede</th>
-									<th class="detail" data-sortable="true">Settore</th>
-									<th data-sortable="true">Dettagli Azienda</th>
-									<th data-sortable="true">Progetti Formativi Azienda</th>
+									<th class="detail titolo" data-sortable="true">Azienda</th>
+									<th class="detail titolo" data-sortable="true">Sede</th>
+									<th class="detail titolo" data-sortable="true">Settore</th>
+									<th class="titolo">Dettagli Azienda</th>
+									<th class="titolo">Progetti Formativi Azienda</th>
 								</tr>
 
 							</thead>
@@ -79,19 +79,19 @@
 									varStatus="loop">
 									<tr>
 										<td>
-											<table class="table-warning">
+											<table>
 												<thead>
-													<tr class="bg-warning">
+													<tr class="bg-dark" style="color: #fff;">
 														<th data-sortable="true">Progetto</th>
 														<th data-sortable="true">Attivazione</th>
 														<th data-sortable="true">Ambito</th>
-														<th data-sortable="true">Numero tirocinanti</th>
+														<th data-sortable="true">Numero Tirocinanti</th>
 														<th data-sortable="true">Dettagli progetto</th>
 														<th data-sortable="true">Invio domanda</th>
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
+													<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
 														<c:if test="${progetto.stato.equals('attivo')}">
 															<tr>
 																<td>${progetto.nome}</td>
@@ -118,16 +118,16 @@
 												</tbody>
 											</table>
 										</td>
-										<td>${current.ragioneSociale}</td>
-										<td>${current.sede}</td>
-										<td>${current.settore}</td>
-										<td>
+										<td class="testo-tabella">${current.ragioneSociale}</td>
+										<td class="testo-tabella">${current.sede}</td>
+										<td class="testo-tabella">${current.settore}</td>
+										<td class="testo-tabella">
 											<form method="post" action="/dettagliAziendaStudente">
 												<input type="hidden" name="pIva" value="${current.pIva}">
-												<input type="submit" class="btn btn-primary dettagli-btn" value="Dettagli">
+												<input type="submit" class="btn reg" value="Dettagli">
 											</form>
 										</td>
-										<td><a class="detail-icon btn btn-success prog-form-btn">Progetti Formativi</a></td>
+										<td class="testo-tabella"><a class="detail-icon btn reg" style="width: 160px;">Progetti Formativi</a></td>
 											
 										</td>
 
@@ -137,6 +137,7 @@
 
 							</tbody>
 						</table>
+						
 					</div>
 				</div>
 

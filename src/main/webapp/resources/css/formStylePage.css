@@ -53,6 +53,10 @@ body {
 	margin-top: 13px;
 }
 
+textarea.form-control {
+    height: auto !important;
+}
+
 h5 {
 	padding-left: 15px;
 }

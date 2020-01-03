@@ -43,16 +43,16 @@
 
 						<ul class="list-unstyled components mb-5">
 
-							<li><a href="/responsabileDashboard">Dashboard Ufficio</a></li>
-							<li class="active"><a href="#homeSubmenuRichieste"
+							<li><a href="/responsabileDashboard">Dashboard</a></li>
+							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle">Richieste</a>
+								class="dropdown-toggle active">Richieste</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-									<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>
+									<li><a href="/visualizzaRichiesteConvenzionamento" class="active">Richieste di convenzionamento</a></li>
 
 								</ul></li>
-							<li class="active"><a href="#homeSubmenuDomande"
+							<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
@@ -83,8 +83,8 @@
 									<th class="d-none">Hidden nested details table</th>
 									<th class="detail"></th>
 									<th class="detail"></th>
-									<th class="detail" data-sortable="true">ID Richiesta</th>
-									<th data-sortable="true">Azienda</th>
+									<th class="detail titolo" data-sortable="true">ID Richiesta</th>
+									<th data-sortable="true" class="titolo">Azienda</th>
 
 								</tr>
 

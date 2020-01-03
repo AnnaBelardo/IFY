@@ -12,12 +12,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">${message}</div>
-			<div class="modal-footer">
+			<div class="modal-body" style="font-size: 18px; height: 100px;">${message}</div>
 
-				<button type="button" class="btn btn-success modalbutton-conferma"
-					data-dismiss="modal">Conferma</button>
-			</div>
 		</div>
 	</div>
 

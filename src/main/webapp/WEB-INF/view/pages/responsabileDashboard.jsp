@@ -42,8 +42,8 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="#">Dashboard</a></li>
-							<li class="active"><a href="#homeSubmenuRichieste"
+							<li><a href="#" class="active">Dashboard</a></li>
+							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Richieste</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
@@ -52,7 +52,7 @@
 
 								</ul>
 							</li>
-							<li class="active"><a href="#homeSubmenuDomande"
+							<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">

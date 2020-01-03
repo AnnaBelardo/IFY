@@ -33,17 +33,18 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="/nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-							<li class="active"><a href="#homeSubmenuRichieste"
+							<li><a href="#" class="active">Dashboard</a></li>
+							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="progettiFormativiAttivi">Progetti Formativi</a></li>
+									<li><a href="nuovoProgettoFormativo">Nuovo Progetto Formativo</a></li>
+									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
 									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 
 								</ul>
 							</li>
-							<li class="active"><a href="#homeSubmenuDomande"
+							<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
@@ -102,4 +103,11 @@
 <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="./resources/js/sidebar.js"></script>
+	<c:if test="${successoInserimento != null}">
+		
+		<script> $(window).on('load', function() {
+				alert("${successoInserimento}");
+				});
+		</script>
+	</c:if>
 </html>

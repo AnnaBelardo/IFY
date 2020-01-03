@@ -43,18 +43,18 @@
 						
 						
 						<ul class="list-unstyled components mb-5">
-							<li><a href = "/">Dashboard Delegato</a></li>
-							<li><a href="/nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-							<li class="active"><a href="#homeSubmenuRichieste"
+							<li><a href="/">Dashboard</a></li>
+							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle">Progetti Formativi</a>
+								class="dropdown-toggle active">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="#">Progetti Formativi</a></li>
-									<li><a href="#">Progetti Formativi Archiviati</a></li>
+									<li><a href="nuovoProgettoFormativo" class="active">Nuovo progetto formativo</a></li>
+									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
+									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 
 								</ul>
 							</li>
-							<li class="active"><a href="#homeSubmenuDomande"
+							<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
@@ -97,13 +97,13 @@
 									
 									
 									<div class="form-group">
-										<div  style="margin: 0 auto;" class="col-sm-11">
+										<div style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${DescrizioneError == null}">
-													<textarea rows="5" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control">${nuovoProgettoForm.descrizione}</textarea>
+													<textarea rows="3" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control">${nuovoProgettoForm.descrizione}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea rows="5" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control is-invalid"></textarea>
+													<textarea rows="3" id="descrizione" placeholder="Descrizione" name = "descrizione" class="form-control is-invalid"></textarea>
 													<span class = "myError">${DescrizioneError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -131,10 +131,10 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${AttivitaError == null}">
-													<textarea rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control">${nuovoProgettoForm.attivita}</textarea>
+													<textarea rows="2" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control">${nuovoProgettoForm.attivita}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea rows="5" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control is-invalid"></textarea>
+													<textarea rows="2" id="inputAttivita" placeholder="Attivita di rilievo" name = "attivita" class="form-control is-invalid"></textarea>
 													<span class = "myError">${AttivitaError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -146,10 +146,10 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${ConoscenzeError == null}">
-													<textarea rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.attivita}</textarea>
+													<textarea rows="2" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.attivita}</textarea>
 												</c:when>
 												<c:otherwise>
-													<textarea rows="5" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control is-invalid"></textarea>
+													<textarea rows="2" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control is-invalid"></textarea>
 													<span class = "myError">${ConoscenzeError}</span>
 												</c:otherwise>
 											</c:choose>
@@ -171,7 +171,7 @@
 				
 										</div>
 									</div>
-									<button type="submit" id="reg" class="btn btn-primary btn-block" style="margin: 25px 0 15px 15px">Inserisci</button>
+									<button type="submit" id="reg" class="btn btn-primary btn-block" style="margin: 25px 0 15px 45px">Inserisci</button>
 								</div>
 							</div>
 						</form>

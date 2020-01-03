@@ -30,17 +30,17 @@
 						</div>
 						<div class="p-4 pt-5">
 							<ul class="list-unstyled components mb-5">
-								<li><a href = "/">Dashboard Delegato</a></li>
-								<li><a href="/nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
+								<li><a href = "/">Dashboard</a></li>
 								<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle">Progetti Formativi</a>
+								class="dropdown-toggle active">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="progettiFormativiAttivi">Progetti Formativi</a></li>
+									<li><a href="nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
+									<li><a href="progettiFormativiAttivi" class="active">Progetti Formativi Attivi</a></li>
 									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 								</ul>
 								</li>
-								<li class="active"><a href="#homeSubmenuDomande"
+								<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
@@ -66,7 +66,6 @@
 									<th></th>
 									<th></th>
 									<th></th>
-									<th>Stato</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -94,41 +93,40 @@
 											</form>
 										</td>
 										-->
-										<td class="testo-tabella-progetti">${current.nome}</td>
-										<td class="valuta">
+										<td class="testo-tabella">${current.nome}</td>
+										<td class="testo-tabella">
 												<form name="dettagliForm" method="POST"
 												action="/visualizzaDettagliProgettoFormativoAttivo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
-												<button class="btn btn-warning">
+												<button class="btn reg">
+														<i class="fa fa-info-circle"></i>
   														Dettagli
-													<i class="fa fa-info-circle"></i>
 												</button>
 											</form>
 										</td>
-											<td class="valuta">
+											<td class="testo-tabella">
 											<form name="modificaForm" method="POST"
 												action="/visualizzaFormModificaProgettoFormativoAttivo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
-												<button class="btn btn-success">
-													Modifica
+												<button class="btn reg">
 													<i class="fa fa-edit"></i>
+													Modifica
 												</button>
 											</form>
 											</td>
-											<td class="valuta">
+											<td class="testo-tabella">
 											<form name="accettaForm" method="POST"
 												action="/archiviaProgettoFormativo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
-												<button class="btn btn-danger">
-													Archivia
+												<button class="btn reg" id="red">
 													<i class="fa fa-folder"></i>
+													Archivia
 												</button>
 											</form>
 											</td>
-											<td class="stato-tabella-progetti-attivi"><i class="fa fa-circle"></i></td>
 									</tr>
 
 								</c:forEach>
