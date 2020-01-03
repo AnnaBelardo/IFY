@@ -25,8 +25,8 @@
 				<c:when test="${sessionScope.email!=null}">
 					<div class="btn-group">
   						<div class="btn-group">
-    						<button id="customDropdown" type="button" class="btn btn-outline-secondary dropdown-toggle login-btn btn btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      							${utente.nome}
+    						<button id="customDropdown" type="button" class="btn dropdown-toggle button-dash-login btn btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      							Ciao, ${utente.nome}
       						</button>
     					<div class="dropdown-menu custom-drop-menu" aria-labelledby="customDropdown">
       						<span class="dropdown-menu-arrow"></span>

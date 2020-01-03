@@ -42,7 +42,7 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="#">Home</a></li>
+							<li><a href="#">Dashboard</a></li>
 							<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Richieste</a>

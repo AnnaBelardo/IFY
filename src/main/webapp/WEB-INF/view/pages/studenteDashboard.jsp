@@ -42,6 +42,7 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
+							<li><a href="#">Dashboard</a></li>
 							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
 							<li><a href="#">Tirocini in Corso</a></li>
 							<li><a href="#">Domande di Tirocinio</a></li>
