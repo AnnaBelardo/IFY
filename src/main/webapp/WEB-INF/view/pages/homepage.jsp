@@ -120,7 +120,13 @@
 			<script> $(window).on('load', function() {
 				alert("${successoIscrizione}");
 			});
-			
+			</script>
+		</c:if>
+		<c:if test="${successoConvenzionamento != null}">
+		
+			<script> $(window).on('load', function() {
+				alert("${successoConvenzionamento}");
+			});
 			</script>
 		</c:if>
 	</body>

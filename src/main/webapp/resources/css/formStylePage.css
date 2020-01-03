@@ -52,6 +52,9 @@ body {
 	margin-top: 13px;
 }
 
+h5 {
+	padding-left: 15px;
+}
 
 #reg {
 	background-color: #ff9438;
@@ -67,7 +70,9 @@ body {
 	box-shadow: 0 0 3px #212529, insert 0 0 4px 1px #212529;
 }
 
-
+.regolamento {
+	color: #ff9438!important;
+}
 
 .myError{
 	font-size: 12px;

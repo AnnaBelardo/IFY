@@ -236,7 +236,7 @@
 										<label class="form-check-label" for="accetto"> Accetto
 										</label>
 										<a
-											href="https://www.garanteprivacy.it/il-testo-del-regolamento">Regolamento
+											href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento
 											privacy</a>
 
 							</div>

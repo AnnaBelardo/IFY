@@ -147,7 +147,7 @@
 										<label class="form-check-label" for="accettoDelegato">
 											Accetto
 										</label>
-										<a href="https://www.garanteprivacy.it/il-testo-del-regolamento">Regolamento privacy</a>
+										<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy</a>
 								</div>
 								<c:if test="${CondizioniDelegatoError != null}">
 									<span class="myError">${CondizioniDelegatoError}</span>
@@ -236,7 +236,7 @@
 										<label class="form-check-label" for="accettoAzienda">
 											Accetto
 										</label>
-									<a href="https://www.garanteprivacy.it/il-testo-del-regolamento">Regolamento privacy</a>
+									<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy</a>
 								</div>
 								<c:if test="${CondizioniAziendaError != null}">
 									<span class="myError">${CondizioniAziendaError}</span>
