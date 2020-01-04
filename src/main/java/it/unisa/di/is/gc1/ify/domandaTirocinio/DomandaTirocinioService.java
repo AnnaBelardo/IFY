@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
@@ -20,6 +21,8 @@ import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 * 
 * @author Giusy Castaldo Geremia Cavezza Carmine Ferrara 
 */
+
+@Service
 public class DomandaTirocinioService {
 	@Autowired 
 	DomandaTirocinioRepository domandaTirocinioRepository;
