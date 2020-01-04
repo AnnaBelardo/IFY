@@ -45,7 +45,7 @@
 							<li><a href="#" class="active">Dashboard</a></li>
 							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
 							<li><a href="#">Tirocini in Corso</a></li>
-							<li><a href="#">Domande di Tirocinio</a></li>
+							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
 						</ul>
 					</div>
 				</nav>

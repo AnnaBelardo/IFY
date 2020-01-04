@@ -71,7 +71,7 @@ public class DomandaTirocinioController {
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/inserimentoDomandaTirocinio", method = RequestMethod.POST)
-	public String invioRichiestaConvenzionamento(@ModelAttribute("domandaTirocinioForm") DomandaTirocinioForm domandaTirocinioForm,
+	public String invioDomandaDiTirocinio(@ModelAttribute("domandaTirocinioForm") DomandaTirocinioForm domandaTirocinioForm,
 			@RequestParam("idProgettoFormativo") String idProgettoFormativo, BindingResult result, RedirectAttributes redirectAttribute, Model model) {
 		
 		domandaTirocinioFormValidator.validate(domandaTirocinioForm, result);
