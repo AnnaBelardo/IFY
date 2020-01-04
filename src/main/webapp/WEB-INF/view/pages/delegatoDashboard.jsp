@@ -48,7 +48,7 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="#">Domande in attesa</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
 									<li><a href="#">Domande inoltrate</a></li>
 
 								</ul>
