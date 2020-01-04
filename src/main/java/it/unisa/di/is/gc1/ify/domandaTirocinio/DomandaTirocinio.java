@@ -186,9 +186,6 @@ public class DomandaTirocinio {
 	/** Valore che definisce la minima data di inizio accettabile. */
 	public static final LocalDate MIN_DATE_INIZIO = LocalDate.now();
 
-	/** Valore che definisce la minima data di fine accettabile. */
-	public static final LocalDate MIN_DATE_FINE = MIN_DATE_INIZIO;
-	
 	/**
 	 * Costante che definisce il minimo numero di cfu.
 	 */	

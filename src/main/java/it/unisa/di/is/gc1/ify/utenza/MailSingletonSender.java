@@ -2,13 +2,13 @@ package it.unisa.di.is.gc1.ify.utenza;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
-
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinio;
 
 /**
  * Classe singleton che permette di inviare una email informativa all'utente 
@@ -57,10 +57,10 @@ public class MailSingletonSender  {
 			String cognome = richiestaIscrizione.getStudente().getCognome();
 			if(stato == RichiestaIscrizione.ACCETTATA)
 				return "Gentile " + nome + " " + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
-				stato + ". Cordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+				stato + ".\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 			else if(stato == RichiestaIscrizione.RIFIUTATA)
 				return "Gentile " + nome + " " + cognome + " la informiamo che la sua richiesta di iscrizione alla piattaforma IFY è stata "+ 
-				stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+				stato + ". La invitiamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 		}
 		else if(obj instanceof RichiestaConvenzionamento) {
 			RichiestaConvenzionamento richiestaConvenzionamento = (RichiestaConvenzionamento) obj;
@@ -70,10 +70,34 @@ public class MailSingletonSender  {
 			String nomeAzienda = richiestaConvenzionamento.getAzienda().getRagioneSociale();
 			if(stato == RichiestaConvenzionamento.ACCETTATA)
 				return "Gentile " + nome + " " + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
-						" è stata " + stato + ". Cordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+						" è stata " + stato + ".\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 			else if(stato == RichiestaConvenzionamento.RIFIUTATA)
 				return "Gentile " + nome + " " + cognome + " la informiamo che la richiesta di convenzionamento dell'azienda " + nomeAzienda + 
-						" è stata " + stato + ". La invitiamo a riprovare. Cordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+						" è stata " + stato + ". La invitiamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+		}
+		
+		
+		else if(obj instanceof DomandaTirocinio) {
+			DomandaTirocinio domandaTirocinio = (DomandaTirocinio) obj;
+			String stato = domandaTirocinio.getStato();
+			String nome = domandaTirocinio.getStudente().getNome();
+			String cognome = domandaTirocinio.getStudente().getCognome();
+			
+			String progetto = domandaTirocinio.getProgettoFormativo().getNome();
+			String nomeAzienda = domandaTirocinio.getAzienda().getRagioneSociale();
+			
+			if(stato == DomandaTirocinio.ACCETTATA)
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda + 
+					", per il progetto " + progetto + ", è stata " + stato + " dall'azienda.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+			else if(stato == DomandaTirocinio.RIFIUTATA)
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda + 
+				", per il progetto " + progetto + ", è stata " + stato + " dall'azienda. La invitiamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+			else if(stato == DomandaTirocinio.APPROVATA)
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda + 
+				", per il progetto " + progetto + ", è stata definitivamente" + stato + ".\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
+			else if(stato == DomandaTirocinio.RESPINTA)
+				return "Gentile " + nome + " " + cognome + " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda + 
+				", per il progetto " + progetto + ", è stata definitivamente" + stato + ". La inviriamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";	
 		}
 		return "";
 	}
