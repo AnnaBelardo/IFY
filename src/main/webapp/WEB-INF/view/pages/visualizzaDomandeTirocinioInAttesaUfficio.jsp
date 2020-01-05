@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Gestioni richieste d'iscrizioni in attesa</title>
+<title>Domande tirocinio in attesa</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -26,8 +25,8 @@
 
 <body>
 	<div class="container-fluid">
-
-		<%@ include file="header.jsp"%>
+		
+	<%@ include file="header.jsp"%>
 		<div class="row">
 			<div class="wrapper d-flex align-items-stretch">
 				<nav id="sidebar">
@@ -39,43 +38,43 @@
 					</div>
 					<div class="p-4 pt-5">
 						<!--  <h1><a href="index.html" class="logo">IFY</a></h1>-->
-
-
+						
+						
 						<ul class="list-unstyled components mb-5">
-
+						
 							<li><a href="/">Dashboard</a></li>
 							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle active">Richieste</a>
+								class="dropdown-toggle">Richieste</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="/visualizzaRichiesteIscrizione" class="active">Richieste di iscrizione</a></li>
+									<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
 									<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>
 
-								</ul></li>
+								</ul>
+							</li>
 							<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle">Domande di tirocinio</a>
+								class="dropdown-toggle active">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio" class="active">Domande in attesa</a></li>
 									<li><a href="#">Domande valutate</a></li>
 
-								</ul></li>
-
-							<li><a href="#">Tirocini in corso</a></li>
-
+								</ul>
+								<li><a href="#">Tirocini in corso</a></li>
+							</li>
 						</ul>
 					</div>
 				</nav>
-
-				<!-- Page Content  -->
+				
+			<!-- Page Content  -->
 				<div id="content" class="p-4 p-md-5 pt-5">
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header">Richieste d'iscrizione in attesa</span>
+							<span class="my-4 header">Domande di tirocinio in attesa</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Richieste...">
+							placeholder="Filtra Domande...">
 						<table id="parentTable" data-toggle="table" data-sortable="true"
 							data-detail-view="true">
 							<thead>
@@ -83,69 +82,79 @@
 									<th class="d-none">Hidden nested details table</th>
 									<th class="detail"></th>
 									<th class="detail"></th>
-									<th class="detail titolo" data-sortable="true">ID Richiesta</th>
-									<th data-sortable="true" class="titolo">Nome</th>
-									<th data-sortable="true" class="titolo">Cognome</th>
+									<th class="detail titolo" data-sortable="true">ID Domanda</th>
+									<th data-sortable="true" class="titolo">Studente</th>
 									<th data-sortable="true" class="titolo">Matricola</th>
-
+									<th data-sortable="true" class="titolo">Azienda</th>
+									<th data-sortable="true" class="titolo">Progetto</th>
 								</tr>
 
 							</thead>
 							<tbody>
-
-								<c:forEach items="${richiesteIscrizione}" var="current"
+							
+								<c:forEach items="${domandeTirocinio}" var="current"
 									varStatus="loop">
 									<tr>
 										<td>
 											<dl>
-												<dt>Indirizzo:</dt>
-												<dd>${current.studente.indirizzo}</dd>
+												<dt>CFU:</dt>
+												<dd>${current.cfu}</dd>
 												<br>
-
-												<dt>Data Nascita:</dt>
-												<dd>${current.studente.dataNascita}</dd>
+												<dt>Data inizio:</dt>
+												<dd>${current.dataInizio}</dd>
 												<br>
-												<dt>Sesso:</dt>
-
-												<dd>${current.studente.sesso}</dd>
+												<dt>Data fine:</dt>
+												<dd>${current.dataFine}</dd>
 												<br>
-
-												<dt>Email:</dt>
-												<dd>${current.studente.email}</dd>
+												<dt>Sede azienda:</dt>
+												<dd>${current.azienda.sede}</dd>
 												<br>
-												<dt>Telefono:</dt>
-												<dd>${current.studente.telefono}</dd>
+												<dt>Settore azienda:</dt>
+												<dd>${current.azienda.settore}</dd>
+												<br>
+												<dt>Attività del tirocinio:</dt>
+												<dd>${current.progettoFormativo.attivita}</dd>
+												<br>
+												<dt>Conoscenze richieste:</dt>
+												<dd>${current.progettoFormativo.conoscenze}</dd>
+												<br>
+												<dt>Conoscenze Studente:</dt>
+												<dd>${current.conoscenze}</dd>
+												<br>
+												<dt>Motivazioni Studente:</dt>
+												<dd>${current.motivazioni}</dd>
+												<br>
 
 											</dl>
 										</td>
 										<td class="valuta testo-tabella">
-											<form name="accettaForm" method="POST"
-												action="/accettaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
+											<form name="approvaForm" method="POST"
+												action="/approvazioneDomandaTirocinio">
+												<input type="hidden" name="idDomanda"
 													value="${current.id}">
-												<button class="btn btn-success">
-													<i class="fa fa-user-check"></i>
+												<button class="btn btn-success tir">
+													<i class="fa fa-check"></i>
 												</button>
 											</form>
 										<td class="valuta testo-tabella">
-											<form name="submitForm" method="POST"
-												action="/rifiutaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
+											<form name="respingiForm" method="POST"
+												action="/respintaDomandaTirocinio">
+												<input type="hidden" name="idDomanda"
 													value="${current.id}">
-												<button class="btn btn-danger">
-													<i class="fa fa-user-times"></i>
+												<button class="btn btn-danger tir">
+													<i class="fa fa-times"></i>
 												</button>
 											</form>
 										</td>
-										<td class="testo-tabella">Richiesta ${current.id}</td>
-										<td class="testo-tabella">${current.studente.nome}</td>
-										<td class="testo-tabella">${current.studente.cognome}</td>
+										<td class="testo-tabella">Domanda ${current.id}</td>
+										<td class="testo-tabella">${current.studente.nome} ${current.studente.cognome}</td>
 										<td class="testo-tabella">${current.studente.matricola}</td>
-
+										<td class="testo-tabella">${current.azienda.ragioneSociale}</td>
+										<td class="testo-tabella">${current.progettoFormativo.nome}</td>
+										
 									</tr>
-
+										
 								</c:forEach>
-
 							</tbody>
 						</table>
 					</div>
@@ -155,8 +164,8 @@
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
-
-	<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+	
+		<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
@@ -210,12 +219,6 @@
 
 		//show modal
 	</script>
+
 </body>
-
-
-
-
-
-
 </html>
-

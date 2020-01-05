@@ -56,7 +56,7 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="#">Domande in attesa</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
 									<li><a href="#">Domande valutate</a></li>
 
 								</ul></li>
@@ -124,7 +124,7 @@
 
 											</dl>
 										</td>
-										<td class="valuta">
+										<td class="valuta testo-tabella">
 											<form name="accettaForm" method="POST"
 												action="/accettaRichiestaConvenzionamento">
 												<input type="hidden" name="idRichiesta"
@@ -133,7 +133,7 @@
 													<i class="fa fa-user-check"></i>
 												</button>
 											</form>
-										<td class="valuta">
+										<td class="valuta testo-tabella">
 											<form name="submitForm" method="POST"
 												action="/rifiutaRichiestaConvenzionamento">
 												<input type="hidden" name="idRichiesta"
@@ -143,8 +143,8 @@
 												</button>
 											</form>
 										</td>
-										<td>Richiesta ${current.id}</td>
-										<td>${current.azienda.ragioneSociale}</td>
+										<td class="testo-tabella">Richiesta ${current.id}</td>
+										<td class="testo-tabella">${current.azienda.ragioneSociale}</td>
 
 									</tr>
 

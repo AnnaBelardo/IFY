@@ -206,3 +206,8 @@ th, .valuta {
 .active {
 	color: #ff9438 !important;
 }
+
+.tir {
+	height: 40px;
+	width: 40px;
+}

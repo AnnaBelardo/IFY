@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dashboard Responsabile</title>
+<title>Dashboard</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -56,11 +56,12 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="#">Domande in attesa</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
 									<li><a href="#">Domande valutate</a></li>
 
 								</ul>
 							</li>
+							<li><a href="#">Tirocini in corso</a></li>
 						</ul>
 					</div>
 				</nav>
