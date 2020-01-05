@@ -110,7 +110,15 @@
 																	</form>
 																</td>
 																<td>
+																	<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
+																	-->
+																	<form name="domandaTirocinioForm" method="POST" action="/nuovaDomandaTirocinio">
+																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
+																			<button class="btn btn btn-primary aziende-convenzionate-btn invia-btn">
+  																				Invia
+																			</button>
+																	</form>
 																</td>
 															</tr>
 														</c:if>
@@ -156,6 +164,19 @@
 	</c:if>
 	<c:if test="${progettoPerDettagli!=null}">
 		<%@ include file="modalDettagliProgetto.jsp"%>
+	</c:if>
+	<c:if test="${message != null}">
+		<%@ include file="modalNotifica.jsp"%>
+	</c:if>
+	<c:if test="${progettoFormativo!=null}">
+		<%@ include file="modalInvioDomandeTirocinio.jsp"%>
+	</c:if>
+	<c:if test="${successoInserimentoDomanda != null}">
+		
+		<script> $(window).on('load', function() {
+				alert("${successoInserimentoDomanda}");
+				});
+		</script>
 	</c:if>
 	<script>
 		// Load detail view

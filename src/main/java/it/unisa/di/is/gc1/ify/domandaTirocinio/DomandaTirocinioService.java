@@ -33,6 +33,22 @@ public class DomandaTirocinioService {
 	@Autowired 
 	MailSingletonSender mailSingletonSender;
 	
+	@Transactional(rollbackFor = Exception.class)
+	public String controllaStatoStudente() throws OperazioneNonAutorizzataException {
+		try{
+			Studente s= (Studente) utenzaService.getUtenteAutenticato();
+			List<DomandaTirocinio> domandeTirocinio=domandaTirocinioRepository.findAllByStato(DomandaTirocinio.IN_ATTESA);
+			for(DomandaTirocinio x: domandeTirocinio) {
+				if(x.getStudente().getId()==s.getId()) {
+					return "Hai già una domanda di tirocinio in attesa, non puoi inviarne un'altra al momento.";
+				}
+			}
+			return "";
+		} catch (Exception e) {
+			throw new OperazioneNonAutorizzataException();
+		}
+	}
+	
 	 /** Il metodo fornisce la funzionalità di salvataggio di una domanda di tirocinio
 	 * pervenuta da uno studente e posta in stato di attesa
 	 * @param domandaTirocinio
@@ -509,6 +525,7 @@ public class DomandaTirocinioService {
 		 * @throws DomandaTirocinioNonValidaException
 		 */
 		public LocalDate validaDataFine(LocalDate dataInizio, LocalDate dataFine) throws DomandaTirocinioNonValidaException {
+			System.out.println(dataInizio+""+dataFine);
 			if (dataFine == null)
 				throw new DomandaTirocinioNonValidaException("dataFineError", "Il campo data fine non può essere nullo.");
 			
@@ -527,7 +544,7 @@ public class DomandaTirocinioService {
 			if (cfu == null || cfu.equals(""))
 				throw new DomandaTirocinioNonValidaException("cfuError", "Il campo cfu non può essere nullo.");
 
-			if (Integer.parseInt(cfu) <= DomandaTirocinio.MAX_CFU && Integer.parseInt(cfu) >= DomandaTirocinio.MIN_CFU)
+			if (Integer.parseInt(cfu) < DomandaTirocinio.MIN_CFU || Integer.parseInt(cfu) > DomandaTirocinio.MAX_CFU)
 				throw new DomandaTirocinioNonValidaException("cfuError", "Il campo Numero CFU Associati deve contenere valori che vadano da 6 a 12.");
 			return cfu;
 		}

@@ -65,7 +65,7 @@ public class DomandaTirocinioFormValidator implements Validator {
 		
 		// Validazione del campo dataFine
 		try {
-			domandaTirocinioService.validaDataFine(domandaTirocinioForm.getDataFine(), domandaTirocinioForm.getDataInizio());
+			domandaTirocinioService.validaDataFine(domandaTirocinioForm.getDataInizio(), domandaTirocinioForm.getDataFine());
 		} catch (DomandaTirocinioNonValidaException e4) {
 			errors.reject(e4.getTarget(), e4.getMessage());
 		}
