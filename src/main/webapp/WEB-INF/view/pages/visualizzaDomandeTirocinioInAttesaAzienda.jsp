@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Domande in attesa</title>
+<title>Domande di tirocinio in attesa</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -45,7 +45,7 @@
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="progettiFormativiAttivi" class="active">Progetti Formativi Attivi</a></li>
+									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
 									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 								</ul>
 								</li>
@@ -56,7 +56,7 @@
 									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda" class="active">Domande in attesa</a></li>
 									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="#">Tirocini accettati</a></li>
+								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -66,7 +66,7 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header">Domande in attesa</span>
+							<span class="my-4 header">Domande di tirocinio in attesa</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Domande...">
@@ -112,29 +112,29 @@
 
 											</dl>
 										</td>
-										<td class="valuta">
+										<td class="valuta testo-tabella">
 											<form name="accettaForm" method="POST"
 												action="/accettaDomandaTirocinio">
 												<input type="hidden" name="idDomanda"
 													value="${current.id}">
 												<button class="btn btn-success">
-													<i class="fa fa-user-check"></i>
+													<i class="fa fa-check"></i>
 												</button>
 											</form>
-										<td class="valuta">
+										<td class="valuta testo-tabella">
 											<form name="submitForm" method="POST"
 												action="/rifiutaDomandaTirocinio">
 												<input type="hidden" name="idDomanda"
 													value="${current.id}">
 												<button class="btn btn-danger">
-													<i class="fa fa-user-times"></i>
+													<i class="fa fa-times"></i>
 												</button>
 											</form>
 										</td>
-										<td>Domanda ${current.id}</td>
-										<td>${current.studente.nome}</td>
-										<td>${current.studente.cognome}</td>
-										<td>${current.studente.matricola}</td>
+										<td class="testo-tabella">Domanda ${current.id}</td>
+										<td class="testo-tabella">${current.studente.nome}</td>
+										<td class="testo-tabella">${current.studente.cognome}</td>
+										<td class="testo-tabella">${current.studente.matricola}</td>
 
 									</tr>
 

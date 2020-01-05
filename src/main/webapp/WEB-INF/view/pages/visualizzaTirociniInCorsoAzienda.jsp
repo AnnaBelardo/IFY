@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   		<meta name="description" content="">
   		<meta name="author" content="">  
-<title>Domande di tirocinio inoltrate</title>
+<title>Tirocini in corso</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -50,12 +50,12 @@
 								</li>
 								<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle active">Domande di tirocinio</a>
+								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
 									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda" class="active">Domande inoltrate</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+								<li><a  class="active" href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -65,30 +65,63 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header"> Domande di tirocinio inoltrate</span>
+							<span class="my-4 header"> Tirocini in corso</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Domande...">
-						<table id="parentTable" data-toggle="table" data-sortable="true">
+							placeholder="Filtra Tirocini...">
+						<table id="parentTable" data-toggle="table" data-sortable="true"
+							data-detail-view="true">
 							<thead>
 								<tr>
-									<th class="detail titolo" data-sortable="true">ID Domanda</th>
+									<th class="d-none">Hidden nested details table</th>
+									<th class="detail titolo" data-sortable="true">Progetto</th>
 									<th data-sortable="true" class="titolo">Nome</th>
 									<th data-sortable="true" class="titolo">Cognome</th>
 									<th data-sortable="true" class="titolo">Matricola</th>
-									<th data-sortable="true" class="titolo">Stato</th>
+									<th data-sortable="true" class="titolo">Data inizio</th>
 								</tr>
 
 							</thead>
 							<tbody>
 
-								<c:forEach items="${domandeTirocinio}" var="current" varStatus="loop">
+								<c:forEach items="${tirociniInCorso}" var="current"
+									varStatus="loop">
 									<tr>
-										<td class="testo-tabella">Domanda ${current.id}</td>
+										<td>
+											<dl>
+												<dt>CFU:</dt>
+												<dd>${current.cfu}</dd>
+												<br>
+												
+												<dt>Telefono:</dt>
+												<dd>${current.studente.telefono}</dd>
+												<br>
+												
+												<dt>Email:</dt>
+												<dd>${current.studente.email}</dd>
+												<br>
+												
+												<dt>Conoscenze richieste:</dt>
+												<dd>${current.progettoFormativo.conoscenze}</dd>
+												<br>
+												
+												<dt>Conoscenze studente:</dt>
+												<dd>${current.conoscenze}</dd>
+												<br>
+												
+												<dt>Motivazioni studente:</dt>
+												<dd>${current.motivazioni}</dd>
+												<br>
+
+											</dl>
+										
+										</td>
+											
+										<td class="testo-tabella">${current.progettoFormativo.nome}</td>
 										<td class="testo-tabella">${current.studente.nome}</td>
 										<td class="testo-tabella">${current.studente.cognome}</td>
 										<td class="testo-tabella">${current.studente.matricola}</td>
-										<td class="testo-tabella">${current.stato}</td>
+										<td class="testo-tabella">${current.dataInizio}</td>
 									</tr>
 
 								</c:forEach>
@@ -108,8 +141,26 @@
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
 	
-	
+	<c:if test="${AziendaPerDettagli != null}">
+		<%@ include file="modalDettagliAzienda.jsp" %>
+	</c:if>
+	<c:if test="${progettoPerDettagli!=null}">
+		<%@ include file="modalDettagliProgetto.jsp"%>
+	</c:if>
 	<script>
+		// Load detail view
+		$('#parentTable').on('expand-row.bs.table',
+				function(e, index, row, $detail) {
+
+					// Get subtable from first cell
+					var $rowDetails = $(row[0]);
+
+					// Write rowDetail to detail
+					$detail.html($rowDetails);
+
+					return;
+
+				})
 
 		/*filtraggio campi*/
 		$(document)
@@ -137,6 +188,6 @@
 						});
 
 		//show modal
-	</script>
-</body>
+		</script>
+	</body>
 </html>

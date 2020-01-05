@@ -196,19 +196,4 @@
 		//show modal
 	</script>
 </body>
-
-
-
-
-
-
-</html>
-
-
-
-
-
-
-
-</body>
 </html>

@@ -64,7 +64,7 @@
 								</ul>
 							</li>
 							
-							<li><a href="#">Tirocini accettati</a></li>
+							<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							
 
 						</ul>

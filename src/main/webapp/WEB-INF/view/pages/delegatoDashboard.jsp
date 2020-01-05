@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Dashboard Delegato</title>
+		<title>Dashboard</title>
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
 								</ul>
 							</li>
 							
-							<li><a href="#">Tirocini accettati</a></li>
+							<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 						</ul>
 					</div>
 				</nav>

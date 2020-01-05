@@ -326,7 +326,7 @@ public class DomandaTirocinioController {
 		}
 
 		model.addAttribute("tirociniInCorso", tirocini);
-		return "visualizzaDomandeTirocinioInCorsoAzienda";
+		return "visualizzaTirociniInCorsoAzienda";
 	}
 
 	/**

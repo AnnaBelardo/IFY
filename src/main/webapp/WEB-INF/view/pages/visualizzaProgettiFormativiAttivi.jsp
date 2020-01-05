@@ -47,7 +47,7 @@
 									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
 									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="#">Tirocini accettati</a></li>
+								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
