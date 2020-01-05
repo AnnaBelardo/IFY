@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 	<head>
@@ -6,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Domande tirocinio in attesa</title>
+		<title>Gestioni domande tirocinio valutate</title>
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
@@ -16,8 +17,8 @@
 		<link href="./resources/css/dashboard.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="container-fluid">			
-		<%@ include file="header.jsp"%>
+		<div class="container-fluid">	
+			<%@ include file="header.jsp"%>
 			<div class="row">
 				<div class="wrapper d-flex align-items-stretch">
 					<nav id="sidebar">
@@ -26,117 +27,98 @@
 								<i class="fa fa-bars"></i> <span class="sr-only">Toggle Menu</span>
 							</button>
 						</div>
-						<div class="p-4 pt-5">							
-							<ul class="list-unstyled components mb-5">							
+						<div class="p-4 pt-5">	
+							<ul class="list-unstyled components mb-5">	
 								<li><a href="/">Dashboard</a></li>
-								<li><a href="#homeSubmenuRichieste" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Richieste</a>
+								<li><a href="#homeSubmenuRichieste"
+									data-toggle="collapse" aria-expanded="true"
+									class="dropdown-toggle">Richieste</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 										<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-										<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
-									</ul>
-								</li>
-								<li><a href="#homeSubmenuDomande" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle active">Domande di tirocinio</a>
+										<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>
+	
+									</ul></li>
+								<li><a href="#homeSubmenuDomande"
+									data-toggle="collapse" aria-expanded="true"
+									class="dropdown-toggle active">Domande di tirocinio</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio" class="active">Domande in attesa</a></li>
-										<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
-									</ul>
-									<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
-								</li>
+										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
+										<li><a href="/visualizzaDomandeTirocinioValutateUfficio" class="active">Domande valutate</a></li>	
+									</ul></li>	
+								<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>	
 							</ul>
 						</div>
 					</nav>
-					
-				<!-- Page Content  -->
+	
+					<!-- Page Content  -->
 					<div id="content" class="p-4 p-md-5 pt-5">
 						<div class="container">	
 							<h4>
-								<span class="my-4 header">Domande di tirocinio in attesa</span>
+								<span class="my-4 header">Domande di tirocinio valutate</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
-								placeholder="Filtra Domande...">
+								placeholder="Filtra Richieste...">
 							<table id="parentTable" data-toggle="table" data-sortable="true"
 								data-detail-view="true">
 								<thead>
 									<tr>
 										<th class="d-none">Hidden nested details table</th>
-										<th class="detail"></th>
-										<th class="detail"></th>
 										<th class="detail titolo" data-sortable="true">ID Domanda</th>
 										<th data-sortable="true" class="titolo">Studente</th>
-										<th data-sortable="true" class="titolo">Matricola</th>
-										<th data-sortable="true" class="titolo">Azienda</th>
-										<th data-sortable="true" class="titolo">Progetto</th>
+										<th data-sortable="true" class="titolo">Stato</th>
 									</tr>	
 								</thead>
-								<tbody>								
+								<tbody>
 									<c:forEach items="${domandeTirocinio}" var="current" varStatus="loop">
 										<tr>
 											<td>
 												<dl>
-													<dt>CFU:</dt>
-													<dd>${current.cfu}</dd>
+													<dt>Matricola studente:</dt>
+													<dd>${current.studente.matricola}</dd>
 													<br>
-													<dt>Data inizio:</dt>
-													<dd>${current.dataInizio}</dd>
+													
+													<dt>Telefono studente:</dt>
+													<dd>${current.studente.telefono}</dd>
 													<br>
-													<dt>Data fine:</dt>
-													<dd>${current.dataFine}</dd>
+													
+													<dt>Email studente:</dt>
+													<dd>${current.studente.email}</dd>
 													<br>
+	
+													<dt>Partita iva azienda:</dt>
+													<dd>${current.azienda.pIva}</dd>
+													<br>
+													
+													<dt>Ragione Sociale azienda:</dt>
+													<dd>${current.azienda.ragioneSociale}</dd>
+													<br>
+													
 													<dt>Sede azienda:</dt>
 													<dd>${current.azienda.sede}</dd>
 													<br>
-													<dt>Settore azienda:</dt>
-													<dd>${current.azienda.settore}</dd>
+													
+													<dt>Progetto formativo:</dt>
+													<dd>${current.progettoFormativo.nome}</dd>
 													<br>
-													<dt>Attività del tirocinio:</dt>
+													
+													<dt>Attività progetto formativo:</dt>
 													<dd>${current.progettoFormativo.attivita}</dd>
 													<br>
-													<dt>Conoscenze richieste:</dt>
-													<dd>${current.progettoFormativo.conoscenze}</dd>
-													<br>
-													<dt>Conoscenze Studente:</dt>
-													<dd>${current.conoscenze}</dd>
-													<br>
-													<dt>Motivazioni Studente:</dt>
-													<dd>${current.motivazioni}</dd>
-													<br>	
 												</dl>
-											</td>
-											<td class="valuta testo-tabella">
-												<form name="approvaForm" method="POST"
-													action="/approvazioneDomandaTirocinio">
-													<input type="hidden" name="idDomanda"
-														value="${current.id}">
-													<button class="btn btn-success tir">
-														<i class="fa fa-check"></i>
-													</button>
-												</form>
-											<td class="valuta testo-tabella">
-												<form name="respingiForm" method="POST"
-													action="/respintaDomandaTirocinio">
-													<input type="hidden" name="idDomanda"
-														value="${current.id}">
-													<button class="btn btn-danger tir">
-														<i class="fa fa-times"></i>
-													</button>
-												</form>
-											</td>
-											<td class="testo-tabella">Domanda ${current.id}</td>
-											<td class="testo-tabella">${current.studente.nome} ${current.studente.cognome}</td>
-											<td class="testo-tabella">${current.studente.matricola}</td>
-											<td class="testo-tabella">${current.azienda.ragioneSociale}</td>
-											<td class="testo-tabella">${current.progettoFormativo.nome}</td>											
-										</tr>											
+											</td>											
+											<td>Richiesta ${current.id}</td>
+											<td>${current.studente.nome}</td>
+											<td>${current.stato}</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>
 	<%@ include file="footer.jsp"%>
-	
 	<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
 	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="./resources/js/bootstrap-table.min.js"></script>

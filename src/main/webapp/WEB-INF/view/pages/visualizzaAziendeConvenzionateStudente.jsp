@@ -221,11 +221,4 @@
 		//show modal
 	</script>
 </body>
-
-
-
-
-
-
 </html>
-

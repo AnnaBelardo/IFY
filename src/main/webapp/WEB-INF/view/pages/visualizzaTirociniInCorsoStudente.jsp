@@ -36,12 +36,8 @@
 								Menu</span>
 						</button>
 					</div>
-					<div class="p-4 pt-5">
-						<!--  <h1><a href="index.html" class="logo">IFY</a></h1>-->
-						
-						
-						<ul class="list-unstyled components mb-5">
-						
+					<div class="p-4 pt-5">						
+						<ul class="list-unstyled components mb-5">						
 							<li><a href="/">Dashboard</a></li>
 							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
 							<li><a href="/visualizzaTirociniInCorsoStudente" class="active">Tirocini in Corso</a></li>

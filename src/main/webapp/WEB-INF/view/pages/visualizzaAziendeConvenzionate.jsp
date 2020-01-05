@@ -26,9 +26,6 @@
 </head>
 
 <body>
-	<!--  
-	<button onclick="include()">Include</button>  <div id="container" style="border: 1px solid red;"></div>
-	-->
 	<div class="container-fluid">
 
 		<%@ include file="header.jsp"%>

@@ -33,7 +33,7 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="#" class="active">Dashboard</a></li>
+							<li><a href="/" class="active">Dashboard</a></li>
 							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
@@ -80,7 +80,7 @@
     								<div class="card-body">
 	      								<h5 class="card-title">Domande di tirocinio</h5>
 	      								<p class="card-text">In questa sezione puoi vedere le tue domande di tirocinio</p>
-	      								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Domande Tirocinio</a>
+	      								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande Tirocinio</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -88,7 +88,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Tirocini in corso</h5>
      	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="#">Tirocini in corso</a>
+     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a>
     								</div>
   							</div>
 						</div>						
