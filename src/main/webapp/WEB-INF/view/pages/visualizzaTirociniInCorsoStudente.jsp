@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   		<meta name="description" content="">
   		<meta name="author" content="">  
-<title>Domande di tirocinio studente</title>
+<title> Tirocinio in corso Studente</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -44,8 +44,8 @@
 						
 							<li><a href="/">Dashboard</a></li>
 							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
-							<li><a href="/visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
-							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente" class="active">Domande di Tirocinio</a></li>
+							<li><a href="/visualizzaTirociniInCorsoStudente" class="active">Tirocini in Corso</a></li>
+							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -55,25 +55,24 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header"> Domande di tirocinio</span>
+							<span class="my-4 header"> Tirocini in corso </span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Domande...">
+							placeholder="Filtra Tirocini...">
 						<table id="parentTable" data-toggle="table" data-sortable="true"
 							data-detail-view="true">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
-									<th class="detail titolo" data-sortable="true">ID Domanda</th>
 									<th data-sortable="true" class="titolo">Azienda</th>
 									<th data-sortable="true" class="titolo">Progetto</th>
-									<th data-sortable="true" class="titolo">Stato</th>
+									<th data-sortable="true" class="titolo">Data Inizio</th>
 								</tr>
 
 							</thead>
 							<tbody>
 
-								<c:forEach items="${domandeInoltrate}" var="current"
+								<c:forEach items="${tirociniInCorso}" var="current"
 									varStatus="loop">
 									<tr>
 										<td>
@@ -91,22 +90,12 @@
 												<dd>${current.progettoFormativo.attivita}</dd>
 												<br>
 												
-												
-												<dt>Conoscenze richieste:</dt>
-												<dd>${current.progettoFormativo.conoscenze}</dd>
-												<br>
-												
 												<dt>Conoscenze Personali:</dt>
 												<dd>${current.conoscenze}</dd>
 												<br>
 
 												<dt>Motivazioni Personali:</dt>
 												<dd>${current.motivazioni}</dd>
-												<br>
-												
-											
-												<dt>Data inizio:</dt>
-												<dd>${current.dataInizio}</dd>
 												<br>
 												
 												<dt>Data fine:</dt>
@@ -124,10 +113,9 @@
 										
 										</td>
 											
-										<td>Domanda ${current.id}</td>
 										<td>${current.azienda.ragioneSociale}</td>
 										<td>${current.progettoFormativo.nome}</td>
-										<td>${current.stato}</td>
+										<td>${current.dataInizio}</td>
 									</tr>
 
 								</c:forEach>

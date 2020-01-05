@@ -366,7 +366,7 @@ public class DomandaTirocinioService {
 		List<DomandaTirocinio> tirociniInCorso = new ArrayList<DomandaTirocinio>();
 		
 		for(DomandaTirocinio d : domandeTirocinio) {
-			if(d.getDataInizio().isBefore(LocalDate.now()) && d.getDataFine().isAfter(LocalDate.now())) {
+			if(d.getDataInizio().isBefore(LocalDate.now().plusDays(1L)) && d.getDataFine().isAfter(LocalDate.now())) {
 				tirociniInCorso.add(d);
 			}
 		}		
