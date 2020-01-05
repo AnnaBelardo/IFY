@@ -74,7 +74,7 @@
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
-									<th class="detail titolo" data-sortable="true">Progetto</th>
+									<th data-sortable="true" class="titolo">Progetto</th>
 									<th data-sortable="true" class="titolo">Nome</th>
 									<th data-sortable="true" class="titolo">Cognome</th>
 									<th data-sortable="true" class="titolo">Matricola</th>
@@ -141,12 +141,6 @@
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
 	
-	<c:if test="${AziendaPerDettagli != null}">
-		<%@ include file="modalDettagliAzienda.jsp" %>
-	</c:if>
-	<c:if test="${progettoPerDettagli!=null}">
-		<%@ include file="modalDettagliProgetto.jsp"%>
-	</c:if>
 	<script>
 		// Load detail view
 		$('#parentTable').on('expand-row.bs.table',

@@ -159,7 +159,7 @@ public class DomandaTirocinioController {
 		}
 
 		redirectAttribute.addFlashAttribute("message",
-				"La domanda di tirocinio dello studente" + domandaTirocinio.getStudente().getNome() + " "
+				"La domanda di tirocinio dello studente " + domandaTirocinio.getStudente().getNome() + " "
 						+ domandaTirocinio.getStudente().getCognome() + " è stata accettata con successo");
 		return "redirect:/visualizzaDomandeTirocinioInAttesaAzienda";
 	}
@@ -185,7 +185,7 @@ public class DomandaTirocinioController {
 		}
 
 		redirectAttribute.addFlashAttribute("message",
-				"La domanda di tirocinio dello studente" + domandaTirocinio.getStudente().getNome() + " "
+				"La domanda di tirocinio dello studente " + domandaTirocinio.getStudente().getNome() + " "
 						+ domandaTirocinio.getStudente().getCognome() + " è stata rifiutata con successo");
 		return "redirect:/visualizzaDomandeTirocinioInAttesaAzienda";
 	}
@@ -211,7 +211,7 @@ public class DomandaTirocinioController {
 		}
 
 		redirectAttribute.addFlashAttribute("message",
-				"La domanda di tirocinio dello studente" + domandaTirocinio.getStudente().getNome() + " "
+				"La domanda di tirocinio dello studente " + domandaTirocinio.getStudente().getNome() + " "
 						+ domandaTirocinio.getStudente().getCognome() + " è stata approvata con successo");
 		return "redirect:/visualizzaDomandeTirocinioInAttesaUfficio";
 	}
@@ -237,7 +237,7 @@ public class DomandaTirocinioController {
 		}
 
 		redirectAttribute.addFlashAttribute("message",
-				"La domanda di tirocinio dello studente" + domandaTirocinio.getStudente().getNome() + " "
+				"La domanda di tirocinio dello studente " + domandaTirocinio.getStudente().getNome() + " "
 						+ domandaTirocinio.getStudente().getCognome() + " è stata respinta con successo");
 		return "redirect:/visualizzaDomandeTirocinioInAttesaUfficio";
 	}

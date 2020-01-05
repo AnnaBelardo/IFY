@@ -57,10 +57,10 @@
 								class="dropdown-toggle active">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
 									<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio" class="active">Domande in attesa</a></li>
-									<li><a href="#">Domande valutate</a></li>
+									<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>
 
 								</ul>
-								<li><a href="#">Tirocini in corso</a></li>
+								<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
 							</li>
 						</ul>
 					</div>
