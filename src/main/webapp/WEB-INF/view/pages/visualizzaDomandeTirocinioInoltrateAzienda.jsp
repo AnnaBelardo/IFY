@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<!DOCTYPE html>
 
-<title>Domande in attesa</title>
+<html>
+<head>
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  		<meta name="description" content="">
+  		<meta name="author" content="">  
+<title>Domande inoltrate</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -20,6 +18,7 @@
 <!-- Custom styles for this template -->
 
 <link rel="stylesheet" href="./resources/css/sidebar.css">
+<link rel="stylesheet" href="./resources/css/style.css">
 <link href="./resources/css/dashboard.css" rel="stylesheet">
 
 </head>
@@ -53,8 +52,8 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle active">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda" class="active">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
+									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda" class="active">Domande inoltrate</a></li>
 								</ul></li>
 								<li><a href="#">Tirocini accettati</a></li>
 							</ul>
@@ -66,82 +65,36 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header">Domande in attesa</span>
+							<span class="my-4 header"> Domande inoltrate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Domande...">
-						<table id="parentTable" data-toggle="table" data-sortable="true"
-							data-detail-view="true">
+						<table id="parentTable" data-toggle="table" data-sortable="true">
 							<thead>
 								<tr>
-									<th class="d-none">Hidden nested details table</th>
-									<th class="detail"></th>
-									<th class="detail"></th>
 									<th class="detail titolo" data-sortable="true">ID Domanda</th>
 									<th data-sortable="true" class="titolo">Nome</th>
 									<th data-sortable="true" class="titolo">Cognome</th>
 									<th data-sortable="true" class="titolo">Matricola</th>
-
+									<th data-sortable="true" class="titolo">Stato</th>
 								</tr>
 
 							</thead>
 							<tbody>
 
-								<c:forEach items="${domandeTirocinio}" var="current"
-									varStatus="loop">
+								<c:forEach items="${domandeTirocinio}" var="current" varStatus="loop">
 									<tr>
-										<td>
-											<dl>
-												<dt>CFU:</dt>
-												<dd>${current.cfu}</dd>
-												<br>
-
-												<dt>Conoscenze:</dt>
-												<dd>${current.conoscenze}</dd>
-												<br>
-												<dt>Data inizio:</dt>
-
-												<dd>${current.dataInizio}</dd>
-												<br>
-												<dt>Data fine:</dt>
-												<dd>${current.dataFine}</dd>
-												<br>
-												<dt>Motivazioni:</dt>
-												<dd>${current.motivazioni}</dd>
-												<br>
-
-											</dl>
-										</td>
-										<td class="valuta">
-											<form name="accettaForm" method="POST"
-												action="/accettaDomandaTirocinio">
-												<input type="hidden" name="idDomanda"
-													value="${current.id}">
-												<button class="btn btn-success">
-													<i class="fa fa-user-check"></i>
-												</button>
-											</form>
-										<td class="valuta">
-											<form name="submitForm" method="POST"
-												action="/rifiutaDomandaTirocinio">
-												<input type="hidden" name="idDomanda"
-													value="${current.id}">
-												<button class="btn btn-danger">
-													<i class="fa fa-user-times"></i>
-												</button>
-											</form>
-										</td>
 										<td>Domanda ${current.id}</td>
 										<td>${current.studente.nome}</td>
 										<td>${current.studente.cognome}</td>
 										<td>${current.studente.matricola}</td>
-
+										<td>${current.stato}</td>
 									</tr>
 
 								</c:forEach>
 
 							</tbody>
-						</table>
+						</table>					
 					</div>
 				</div>
 
@@ -154,28 +107,9 @@
 	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
-	<c:if test="${message != null}">
-		<%@ include file="modalNotifica.jsp"%>
-	</c:if>
-
+	
+	
 	<script>
-		// Load detail view
-		$('#parentTable').on('expand-row.bs.table',
-				function(e, index, row, $detail) {
-
-					// Get subtable from first cell
-					var $rowDetails = $(row[0]);
-
-					// Give new id to avoid conflict with first cell    
-					var id = $rowDetails.attr("id");
-					$rowDetails.attr("id", id + "-Show");
-
-					// Write rowDetail to detail
-					$detail.html($rowDetails);
-
-					return;
-
-				})
 
 		/*filtraggio campi*/
 		$(document)
@@ -205,11 +139,4 @@
 		//show modal
 	</script>
 </body>
-
-
-
-
-
-
 </html>
-
