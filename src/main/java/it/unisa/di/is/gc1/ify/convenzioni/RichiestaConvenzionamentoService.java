@@ -327,7 +327,7 @@ public class RichiestaConvenzionamentoService {
 				throw new RichiestaConvenzionamentoNonValidaException("PasswordError", "Il campo password deve contenere al massimo 24 caratteri.");
 
 			if (!password.matches(DelegatoAziendale.PASSWORD_PATTERN))
-				throw new RichiestaConvenzionamentoNonValidaException("PasswordError", "Il campo password deve contenere almeno" 
+				throw new RichiestaConvenzionamentoNonValidaException("PasswordError", "Il campo password deve contenere almeno " 
 						+ "un numero, almeno una lettera e non deve contenere spazi.");
 			return password;
 		}

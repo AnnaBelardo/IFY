@@ -1033,7 +1033,7 @@ public class RichiestaConvenzionamentoUT {
 		descrizione = "Consulenza e Data Analytics";
 		condizioniAzienda = "on";	
 
-		final String message = "Il campo password deve contenere almenoun numero, almeno una lettera e non deve contenere spazi.";
+		final String message = "Il campo password deve contenere almeno un numero, almeno una lettera e non deve contenere spazi.";
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 		
 		try {

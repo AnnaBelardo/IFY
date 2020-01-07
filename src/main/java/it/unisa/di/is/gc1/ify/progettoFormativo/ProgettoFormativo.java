@@ -177,7 +177,7 @@ public class ProgettoFormativo {
 	
 	
 	/** Espressione regolare che definisce il formato del campo max_partecipanti del progetto formativo. */
-	public static final String MAX_PARTECIPANTI_PATTERN = "^[0-9]{1,3}$";
+	public static final String MAX_PARTECIPANTI_PATTERN = "^[0-9]+$";
 	
 	/**
 	 * Costante che definisce la minima lunghezza dei campi nome, ambito del progetto formativo.
