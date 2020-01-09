@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,10 +45,10 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="/">Dashboard</a></li>
-							<li><a href="/visualizzaAziendeConvenzionateStudente" class="active">Aziende Convenzionate</a></li>
-							<li><a href="/visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
-							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
+							<li><a href="./">Dashboard</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente" class="active">Aziende Convenzionate</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -60,8 +61,8 @@
 							<span class="my-4 header">Aziende Convenzionate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Aziende...">
-						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false">
+							placeholder="Filtra Aziende">
+						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
@@ -79,6 +80,15 @@
 									varStatus="loop">
 									<tr>
 										<td>
+										
+											<c:set var = "check" value = "${false}"/>
+                        					<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
+                          						<c:if test="${progetto.stato.equals('attivo')}"> 
+                            						<c:set var = "check" value = "${true}"/>
+                          						</c:if>
+                        					</c:forEach>
+                        	 				<c:if test="${check}">
+                        	 				
 											<table>
 												<thead>
 													<tr class="bg-dark" style="color: #fff;">
@@ -95,14 +105,14 @@
 														<c:if test="${progetto.stato.equals('attivo')}">
 															<tr>
 																<td>${progetto.nome}</td>
-																<td>${progetto.data_compilazione}</td>
+																<td><fmt:parseDate  value="${progetto.data_compilazione}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></td>
 																<td>${progetto.ambito}</td>
 																<td>${progetto.max_partecipanti}</td>
 																<td>
 																	<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
 																	-->
-																	<form name="dettagliForm" method="POST" action="/visualizzaDettagliProgettoFormativoStudente">
+																	<form name="dettagliForm" method="POST" action="./visualizzaDettagliProgettoFormativoStudente">
 																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
 																			<button class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
   																				Dettagli
@@ -113,7 +123,7 @@
 																	<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
 																	-->
-																	<form name="domandaTirocinioForm" method="POST" action="/nuovaDomandaTirocinio">
+																	<form name="domandaTirocinioForm" method="POST" action="./nuovaDomandaTirocinio">
 																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
 																			<button class="btn btn btn-primary aziende-convenzionate-btn invia-btn">
   																				Invia
@@ -125,12 +135,15 @@
 													</c:forEach>
 												</tbody>
 											</table>
+											
+											</c:if>
+											
 										</td>
 										<td class="testo-tabella">${current.ragioneSociale}</td>
 										<td class="testo-tabella">${current.sede}</td>
 										<td class="testo-tabella">${current.settore}</td>
 										<td class="testo-tabella">
-											<form method="post" action="/dettagliAziendaStudente">
+											<form method="post" action="./dettagliAziendaStudente">
 												<input type="hidden" name="pIva" value="${current.pIva}">
 												<input type="submit" class="btn reg" value="Dettagli">
 											</form>

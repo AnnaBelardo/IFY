@@ -33,14 +33,14 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="/" class="active">Dashboard</a></li>
+							<li><a href="./" class="active">Dashboard</a></li>
 							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="nuovoProgettoFormativo">Nuovo Progetto Formativo</a></li>
-									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./nuovoProgettoFormativo">Nuovo Progetto Formativo</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
+									<li><a href=".progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 
 								</ul>
 							</li>
@@ -48,13 +48,13 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 
 								</ul>
 							</li>
 							
-							<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+							<li><a href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -72,7 +72,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Progetti Formativi</h5>
       									<p class="card-text">In questa sezione puoi vedere i progetti formativi</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="progettiFormativiAttivi">Progetti Formativi</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="./progettiFormativiAttivi">Progetti Formativi</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -80,7 +80,7 @@
     								<div class="card-body">
 	      								<h5 class="card-title">Domande di tirocinio</h5>
 	      								<p class="card-text">In questa sezione puoi vedere le tue domande di tirocinio</p>
-	      								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande Tirocinio</a>
+	      								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="./visualizzaDomandeTirocinioInAttesaAzienda">Domande Tirocinio</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -88,7 +88,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Tirocini in corso</h5>
      	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a>
+     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a>
     								</div>
   							</div>
 						</div>						

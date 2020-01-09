@@ -15,7 +15,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="/modificaProgettoFormativoAttivo" modelAttribute="modificaProgettoFormativoForm">
+				<form method="POST" action="./modificaProgettoFormativoAttivo" modelAttribute="modificaProgettoFormativoForm">
   					<input type="hidden" name="id" value="${progettoPerModifica.id}">
   					<div class="form-group">
     					<label for="formGroupExampleInput">Descrizione</label>

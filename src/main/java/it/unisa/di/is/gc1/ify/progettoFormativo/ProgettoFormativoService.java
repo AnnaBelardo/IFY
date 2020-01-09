@@ -49,6 +49,7 @@ public class ProgettoFormativoService {
 	 * @param idProgettoFormativo è l'id del progetto formativo
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * archiviato
+	 * @throws OperazioneNonAutorizzataException
 	 */
 	
 	@Transactional(rollbackFor = Exception.class)
@@ -90,6 +91,7 @@ public class ProgettoFormativoService {
 	 * @param idProgettoFormativo è l'id del progetto formativo
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * riattivato
+	 * @throws OperazioneNonAutorizzataException
 	 */
 	
 	@Transactional(rollbackFor = Exception.class)
@@ -125,9 +127,11 @@ public class ProgettoFormativoService {
 	/** Il metodo fornisce la funzionalità di visualizzazione dei progetti formativi
 	 * attivi
 	 * 
+	 * @param pIva
 	 * @return Lista di {@link ProgettoFormativo} che rappresenta la lista dei
 	 *         progetti formativi attivi <b>Può essere vuota</b> se nel database non
 	 *         sono presenti progetti formativi attivi di quella determinata azienda
+	 * @throws OperazioneNonAutorizzataException
 	 */	
 	@Transactional(rollbackFor = Exception.class)
 	public List<ProgettoFormativo> visualizzaProgettiFormativiAttiviByAzienda(String pIva) 
@@ -141,9 +145,11 @@ public class ProgettoFormativoService {
 	/** Il metodo fornisce la funzionalità di visualizzazione dei progetti formativi
 	 * archiviati
 	 * 
+	 * @param pIva
 	 * @return Lista di {@link ProgettoFormativo} che rappresenta la lista dei
 	 *         progetti formativi archiviati <b>Può essere vuota</b> se nel database non
 	 *         sono presenti progetti formativi archiviati di quella determinata azienda
+	 * @throws OperazioneNonAutorizzataException
 	 */	
 	@Transactional(rollbackFor = Exception.class)
 	public List<ProgettoFormativo> visualizzaProgettiFormativiArchiviatiByAzienda(String pIva) 
@@ -180,6 +186,7 @@ public class ProgettoFormativoService {
 	 * @param numPartecipanti è il numero massimo di partecipanti
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * da modificare
+	 * @throws OperazioneNonAutorizzataException
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public ProgettoFormativo modificaProgettoFormativo(Long idProgettoFormativo, String descrizione, String conoscenze, int numPartecipanti)

@@ -17,7 +17,7 @@
 			<a style="margin-left: 5px;" href="/">
 				<img src="./resources/images/logos/logo pre login.png" style="width:50px;">
 			</a>
-			<a class="navbar-brand col-sm-3 col-md-2 mr-0 ify-title" href="/">Internship for you</a>
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0 ify-title" href="./">Internship For You</a>
 		</div>
 		<div style="margin-right: 5px; display: flex; flex-direction: row; align-items: center;">
 			
@@ -30,7 +30,7 @@
       						</button>
     					<div class="dropdown-menu custom-drop-menu" aria-labelledby="customDropdown">
       						<span class="dropdown-menu-arrow"></span>
-      						<a class="dropdown-item custom-drop-menu-testo" href="/logout">Logout</a>
+      						<a class="dropdown-item custom-drop-menu-testo" href="./logout">Logout</a>
     					</div>
   						</div>
 					</div>
@@ -38,10 +38,10 @@
 				<c:otherwise>
 					<c:choose>
 					<c:when test="${pageContext.request.servletPath == '/WEB-INF/view/pages/homepage.jsp'}">
-						<a href="/loginPage" type="submit" class="login-btn btn btn-primary btn-block">Login</a>
+						<a href="./loginPage" type="submit" class="login-btn btn btn-primary btn-block">Login</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/" type="submit" class="login-btn btn btn-primary btn-block">Homepage</a>
+						<a href="./" type="submit" class="login-btn btn btn-primary btn-block">Homepage</a>
 						
 					</c:otherwise>
 					</c:choose>					

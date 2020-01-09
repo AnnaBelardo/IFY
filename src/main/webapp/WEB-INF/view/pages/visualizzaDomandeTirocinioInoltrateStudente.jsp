@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -42,10 +42,10 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="/">Dashboard</a></li>
-							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
-							<li><a href="/visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
-							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente" class="active">Domande di Tirocinio</a></li>
+							<li><a href="./">Dashboard</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente" class="active">Domande di Tirocinio</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -58,9 +58,9 @@
 							<span class="my-4 header"> Domande di tirocinio</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Domande...">
+							placeholder="Filtra Domande">
 						<table id="parentTable" data-toggle="table" data-sortable="true"
-							data-detail-view="true">
+							data-detail-view="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
@@ -106,11 +106,11 @@
 												
 											
 												<dt>Data inizio:</dt>
-												<dd>${current.dataInizio}</dd>
+												<dd><fmt:parseDate  value="${current.dataInizio}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 												<br>
 												
 												<dt>Data fine:</dt>
-												<dd>${current.dataFine}</dd>
+												<dd><fmt:parseDate  value="${current.dataFine}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 												<br>
 												
 												<dt>Numero cfu:</dt>

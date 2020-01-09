@@ -43,14 +43,14 @@
 						
 						
 						<ul class="list-unstyled components mb-5">
-							<li><a href="/">Dashboard</a></li>
+							<li><a href="./">Dashboard</a></li>
 							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle active">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="nuovoProgettoFormativo" class="active">Nuovo progetto formativo</a></li>
-									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./nuovoProgettoFormativo" class="active">Nuovo progetto formativo</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 
 								</ul>
 							</li>
@@ -58,13 +58,13 @@
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 
 								</ul>
 							</li>
 							
-							<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+							<li><a href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							
 
 						</ul>
@@ -74,7 +74,7 @@
 				<!-- Page Content  -->
 				<div id="content" class="p-4 p-md-5 pt-5">
 					<div style="margin-top: 35px; class="container">
-						<form class="form-horizontal" role="form" name="iscrizioneForm" method="post" action="/inserimentoProgettoFormativo" modelAttribute="InserimentoProgettoFormativoForm">
+						<form class="form-horizontal" role="form" name="iscrizioneForm" method="post" action="./inserimentoProgettoFormativo" modelAttribute="InserimentoProgettoFormativoForm">
 			            <div style="margin-top: 15px;">
 						<h3>Nuovo Progetto Formativo</h3>
 						</div>

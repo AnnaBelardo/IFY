@@ -42,10 +42,10 @@
 						
 						<ul class="list-unstyled components mb-5">
 						
-							<li><a href="/" class="active">Dashboard</a></li>
-							<li><a href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
-							<li><a href="/visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
-							<li><a href="/visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
+							<li><a href="./" class="active">Dashboard</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -63,7 +63,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Aziende Convenzionate</h5>
       									<p class="card-text">In questa sezione puoi vedere le aziende convenzionate</p>
-      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente bottonecard" href="/visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a>
+      									<a type="button" class="btn btn-primary login-btn btn-dimensione-studente bottonecard" href="./visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -71,7 +71,7 @@
     								<div class="card-body">
 	      								<h5 class="card-title">Domande di tirocinio</h5>
 	      								<p class="card-text">In questa sezione puoi vedere le tue domande di tirocinio</p>
-    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaDomandeTirocinioInoltrateStudente">Domande Tirocinio</a>
+    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="./visualizzaDomandeTirocinioInoltrateStudente">Domande Tirocinio</a>
     								</div>
   							</div>
   							<div class="card border-dark bordo-carta dimensione-carta">
@@ -79,7 +79,7 @@
     								<div class="card-body">
       									<h5 class="card-title">Tirocini in corso</h5>
      	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="/visualizzaTirociniInCorsoStudente">Tirocini in corso</a>
+    									<a type="button" class="btn btn-primary login-btn btn-dimensione bottonecard" href="./visualizzaTirociniInCorsoStudente">Tirocini in corso</a>
     								</div>
   							</div>
 						</div>						

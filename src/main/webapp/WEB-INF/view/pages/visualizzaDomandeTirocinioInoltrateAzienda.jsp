@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -38,24 +38,24 @@
 						</div>
 						<div class="p-4 pt-5">
 							<ul class="list-unstyled components mb-5">
-								<li><a href = "/">Dashboard</a></li>
+								<li><a href = "./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 								</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle active">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda" class="active">Domande inoltrate</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInoltrateAzienda" class="active">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+								<li><a href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -68,8 +68,8 @@
 							<span class="my-4 header"> Domande di tirocinio inoltrate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Domande...">
-						<table id="parentTable" data-toggle="table" data-sortable="true">
+							placeholder="Filtra Domande">
+						<table id="parentTable" data-toggle="table" data-sortable="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="detail titolo" data-sortable="true">ID Domanda</th>

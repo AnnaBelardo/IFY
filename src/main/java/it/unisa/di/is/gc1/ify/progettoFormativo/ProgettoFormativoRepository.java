@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
-import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
-
+/**
+ * classe per interfacciamento con il database 
+ * @author Carmine Ferrara
+ */
 public interface ProgettoFormativoRepository extends JpaRepository<ProgettoFormativo, Long> {
 	
 	/**
@@ -17,7 +18,7 @@ public interface ProgettoFormativoRepository extends JpaRepository<ProgettoForma
 	 *@pre stato = {@link ProgettoFormativo#ATTIVO} or stato =
 	 *      {@link  ProgettoFormativo#ARCHIVIATO} 
 	 *@param stato Stringa - rappresenta lo stato di un progetto fromativo
-	 *@param string pIVA - rappresenta la partita iva dell'azienda associata al progetto formativo
+	* @param pIva stringa - rappresenta la partita iva dell'azienda associata al progetto formativo
 	 *@return Lista di {@link ProgettoFormativo} che rappresenta una lista di progetti formativi di una azienda
 	 *       	<b>Può essere vuota</b> se nel database non
 	 *        sono presenti progetti formativi di un azienda 

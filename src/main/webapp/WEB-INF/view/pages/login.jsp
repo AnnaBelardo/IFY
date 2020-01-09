@@ -15,12 +15,12 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body background= "../../../resources/images/login.png">
+<body background= "./resources/images/login.png">
 <%@ include file="header.jsp" %>
 	<div style="margin-top:100px; margin-bottom: 100px;" class="container">
 	
 		<form class="form-horizontal" role="form" name="loginForm"
-			method="post" action="/login"
+			method="post" action="./login"
 			modelAttribute="utenteForm">
 			
 			<h3>Login</h3>

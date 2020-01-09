@@ -1,11 +1,7 @@
 package it.unisa.di.is.gc1.ify.studente;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -30,13 +26,14 @@ import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 import it.unisa.di.is.gc1.ify.web.StudenteController;
 
-@RunWith(MockitoJUnitRunner.class)
+
 /**
  * classe di test di unità per la richiesta di iscrizione
  * 
  * @author Giusy Castaldo, Giacomo Izzo
  *
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RichiestaIscrizioneUT {
 
 	@Mock
@@ -739,6 +736,35 @@ public class RichiestaIscrizioneUT {
 		}
 	}
 
+	
+	/**
+	 * verifica se la email sia già presente nel db
+	 */
+	@Test
+	public void validaMatricola_Esistenza() {
+		nome = "Mario";
+		cognome = "Rossi";
+		indirizzo = "Via Roma 4 84080 Salerno SA";
+		telefono = "333-3544541";
+		dataNascita = LocalDate.parse("1997-12-24");
+		matricola = "0512105144";
+		sesso = "M";
+		email = "m.rossi@studenti.unisa.it";
+		password = "Password#1";
+		confermaPassword = "Password#1";
+		condizioni = "on";
+
+		when(studenteRepository.findByMatricola(matricola)).thenReturn(new Studente());
+
+		final String message = "La matricola inserita è già esistente nel database";
+
+		try {
+			validaCampi();
+		} catch (RichiestaIscrizioneNonValidaException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
 	/**
 	 * verifica che il campo sesso non sia null
 	 */

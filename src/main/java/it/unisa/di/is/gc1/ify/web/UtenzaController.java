@@ -39,12 +39,13 @@ public class UtenzaController {
 
 	@Autowired
 	private RichiestaIscrizioneService richiestaIscrizioneService;
-	
+
 	@Autowired
 	private RichiestaConvenzionamentoService richiestaConvenzionamentoService;
 
 	/**
 	 * Metodo per effettuare il login
+	 * 
 	 * @param request
 	 * @param loginForm
 	 * @param result
@@ -53,57 +54,57 @@ public class UtenzaController {
 	 * @return String stringa che rapprestenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request, @ModelAttribute LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttribute, Model model) {
-		
+	public String login(HttpServletRequest request, @ModelAttribute LoginForm loginForm, BindingResult result,
+			RedirectAttributes redirectAttribute, Model model) {
+
 		System.out.println(loginForm.getEmail());
-		
+
 		Utente utente = null;
-		
+
 		loginFormValidator.validate(loginForm, result);
-		if(result.hasErrors()) {
-		      //se ci sono errori il metodo controller setta tutti i parametri 
-			
-		      redirectAttribute.addFlashAttribute("EmailError", result.getGlobalError().getDefaultMessage());
-		      return "redirect:/loginPage";
+		if (result.hasErrors()) {
+			// se ci sono errori il metodo controller setta tutti i parametri
+
+			redirectAttribute.addFlashAttribute("EmailError", result.getGlobalError().getDefaultMessage());
+			return "redirect:/loginPage";
 		}
-		
+
 		try {
-		utente = utenzaService.login(loginForm.getEmail(), loginForm.getPassword());
-		} catch(PasswordNonValidaException e) {
+			utente = utenzaService.login(loginForm.getEmail(), loginForm.getPassword());
+		} catch (PasswordNonValidaException e) {
 			redirectAttribute.addFlashAttribute("EmailPrecedente", loginForm.getEmail());
 			redirectAttribute.addFlashAttribute("PasswordError", e.getMessage());
 			model.addAttribute("utente", utente);
 			return "redirect:/loginPage";
 		}
-		
-		if(utente instanceof Studente) {
-			if(richiestaIscrizioneService.getStatoRichiestaByEmail(utente.getEmail()).equals(RichiestaIscrizione.ACCETTATA)) {
+
+		if (utente instanceof Studente) {
+			if (richiestaIscrizioneService.getStatoRichiestaByEmail(utente.getEmail())
+					.equals(RichiestaIscrizione.ACCETTATA)) {
 				request.getSession().setAttribute("email", utente.getEmail());
 				return "studenteDashboard";
-			}
-			else {
-				redirectAttribute.addFlashAttribute("message","Le sue credenziali sono ancora in attesa di valutazione");
+			} else {
+				redirectAttribute.addFlashAttribute("message",
+						"Le sue credenziali sono ancora in attesa di valutazione");
 				return "redirect:/loginPage";
 			}
-		}
-		else if(utente instanceof DelegatoAziendale) {
-			if(richiestaConvenzionamentoService.getStatoRichiestaByEmail(utente.getEmail()).equals(RichiestaConvenzionamento.ACCETTATA)) {
+		} else if (utente instanceof DelegatoAziendale) {
+			if (richiestaConvenzionamentoService.getStatoRichiestaByEmail(utente.getEmail())
+					.equals(RichiestaConvenzionamento.ACCETTATA)) {
 				request.getSession().setAttribute("email", utente.getEmail());
 				return "delegatoDashboard";
-			} 
-			else {
-				redirectAttribute.addFlashAttribute("message","Le sue credenziali sono ancora in attesa di valutazione");
+			} else {
+				redirectAttribute.addFlashAttribute("message",
+						"Le sue credenziali sono ancora in attesa di valutazione");
 				return "redirect:/loginPage";
 			}
-		}
-		else if(utente instanceof ResponsabileUfficioTirocini){
+		} else if (utente instanceof ResponsabileUfficioTirocini) {
 			request.getSession().setAttribute("email", utente.getEmail());
 			return "responsabileDashboard";
-		}
-		else {
+		} else {
 			return "redirect:/";
 		}
-		
+
 	}
 
 	/**
@@ -124,13 +125,14 @@ public class UtenzaController {
 	 * Metodo per la visualizzazione dell'homepage o della dashboard
 	 * 
 	 * @param model
+	 * @param session
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String visualizzaHome(HttpSession session, Model model) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
-		if(session.getAttribute("email") != null && utente != null) {
+		if (session.getAttribute("email") != null && utente != null) {
 			if (utente instanceof Studente) {
 				return "studenteDashboard";
 			} else if (utente instanceof DelegatoAziendale) {

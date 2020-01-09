@@ -15,11 +15,11 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body background= "../../../resources/images/convenzione.png">
+<body background= "./resources/images/convenzione.png">
 <%@ include file="header.jsp" %>
 	<div style="margin-top: 50px; margin-bottom: 30px;" class="container">
             <form class="form-horizontal" role="form" name="convenzioneForm"
-				method="post" action="/richiestaConvenzionamento"
+				method="post" action="./richiestaConvenzionamento"
 				modelAttribute="convenzioneForm">
 				
                 <h3>Richiesta convenzionamento</h3>

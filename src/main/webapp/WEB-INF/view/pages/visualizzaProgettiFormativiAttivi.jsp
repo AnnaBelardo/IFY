@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -30,24 +31,24 @@
 						</div>
 						<div class="p-4 pt-5">
 							<ul class="list-unstyled components mb-5">
-								<li><a href = "/">Dashboard</a></li>
+								<li><a href = "./">Dashboard</a></li>
 								<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle active">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="progettiFormativiAttivi" class="active">Progetti Formativi Attivi</a></li>
-									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
+									<li><a href="./progettiFormativiAttivi" class="active">Progetti Formativi Attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 								</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInAttesaAzienda">Domande in attesa</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+								<li><a href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -58,8 +59,8 @@
 								<span class="my-4 header">Progetti Formativi Attivi</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Progetti...">
-							<table id="parentTable" data-toggle="table" data-sortable="true">
+							placeholder="Filtra Progetti">
+							<table id="parentTable" data-toggle="table" data-sortable="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="detail" data-sortable="true">Nome Progetto</th>
@@ -96,7 +97,7 @@
 										<td class="testo-tabella">${current.nome}</td>
 										<td class="testo-tabella">
 												<form name="dettagliForm" method="POST"
-												action="/visualizzaDettagliProgettoFormativoAttivo">
+												action="./visualizzaDettagliProgettoFormativoAttivo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
 												<button class="btn reg">
@@ -107,7 +108,7 @@
 										</td>
 											<td class="testo-tabella">
 											<form name="modificaForm" method="POST"
-												action="/visualizzaFormModificaProgettoFormativoAttivo">
+												action="./visualizzaFormModificaProgettoFormativoAttivo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
 												<button class="btn reg">
@@ -118,7 +119,7 @@
 											</td>
 											<td class="testo-tabella">
 											<form name="accettaForm" method="POST"
-												action="/archiviaProgettoFormativo">
+												action="./archiviaProgettoFormativo">
 												<input type="hidden" name="idProgettoFormativo"
 													value="${current.id}">
 												<button class="btn reg" id="red">

@@ -26,6 +26,7 @@ public class RichiestaConvenzionamento {
 	 * 
 	 * @param stato
 	 * @param azienda
+	 * @param delegatoAziendale
 	 */
 	public RichiestaConvenzionamento(String stato, Azienda azienda, DelegatoAziendale delegatoAziendale) {
 		super();

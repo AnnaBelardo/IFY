@@ -24,7 +24,7 @@
 				<p><b>Numero massimo partecipanti:</b> ${progettoPerDettagli.max_partecipanti}</p>
 				<p><b>Descrizione</b> <br>${progettoPerDettagli.descrizione}</p>
 				-->
-				<form method="POST" action="/inserimentoDomandaTirocinio"
+				<form method="POST" action="./inserimentoDomandaTirocinio"
 					modelAttribute="domandaTirocinioForm">
 					<input type="hidden" name="idProgettoFormativo"
 						value="${progettoFormativo.id}">
@@ -64,15 +64,14 @@
 						<label for="formGroupExampleInput2">Numero CFU Tirocinio</label>
 						<c:choose>
 							<c:when test="${cfuError == null}">
-								<input type="number" class="form-control"
+								<input min="6" max="12" type="number" class="form-control"
 									id="formGroupExampleInput2"
-									value="${domandaTirocinioForm.numeroCFU}" name="numeroCFU"
-									min="1" max="999">
+									value="${domandaTirocinioForm.numeroCFU}" name="numeroCFU">
 							</c:when>
 							<c:otherwise>
-								<input type="number"
+								<input min="6" max="12" type="number"
 									class="form-control form-control is-invalid"
-									id="formGroupExampleInput2" name="numeroCFU" min="1" max="999">
+									id="formGroupExampleInput2" name="numeroCFU">
 								<span class="myError">${cfuError}</span>
 							</c:otherwise>
 						</c:choose>

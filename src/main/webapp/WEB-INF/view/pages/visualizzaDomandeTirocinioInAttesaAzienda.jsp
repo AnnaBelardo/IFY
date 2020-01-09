@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,24 +40,24 @@
 						</div>
 						<div class="p-4 pt-5">
 							<ul class="list-unstyled components mb-5">
-								<li><a href = "/">Dashboard</a></li>
+								<li><a href = "./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle">Progetti Formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-									<li><a href="nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
 								</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
 								data-toggle="collapse" aria-expanded="true"
 								class="dropdown-toggle active">Domande di tirocinio</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-									<li><a href="/visualizzaDomandeTirocinioInAttesaAzienda" class="active">Domande in attesa</a></li>
-									<li><a href="/visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInAttesaAzienda" class="active">Domande in attesa</a></li>
+									<li><a href="./visualizzaDomandeTirocinioInoltrateAzienda">Domande inoltrate</a></li>
 								</ul></li>
-								<li><a href="/visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
+								<li><a href="./visualizzaTirociniInCorsoAzienda">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -69,9 +70,9 @@
 							<span class="my-4 header">Domande di tirocinio in attesa</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Domande...">
+							placeholder="Filtra Domande">
 						<table id="parentTable" data-toggle="table" data-sortable="true"
-							data-detail-view="true">
+							data-detail-view="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
@@ -101,10 +102,10 @@
 												<br>
 												<dt>Data inizio:</dt>
 
-												<dd>${current.dataInizio}</dd>
+												<dd><fmt:parseDate  value="${current.dataInizio}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 												<br>
 												<dt>Data fine:</dt>
-												<dd>${current.dataFine}</dd>
+												<dd><fmt:parseDate  value="${current.dataFine}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 												<br>
 												<dt>Motivazioni:</dt>
 												<dd>${current.motivazioni}</dd>
@@ -114,7 +115,7 @@
 										</td>
 										<td class="valuta testo-tabella">
 											<form name="accettaForm" method="POST"
-												action="/accettaDomandaTirocinio">
+												action="./accettaDomandaTirocinio">
 												<input type="hidden" name="idDomanda"
 													value="${current.id}">
 												<button class="btn btn-success">
@@ -123,7 +124,7 @@
 											</form>
 										<td class="valuta testo-tabella">
 											<form name="submitForm" method="POST"
-												action="/rifiutaDomandaTirocinio">
+												action="./rifiutaDomandaTirocinio">
 												<input type="hidden" name="idDomanda"
 													value="${current.id}">
 												<button class="btn btn-danger">

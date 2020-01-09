@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,8 +42,8 @@
 							<span class="my-4 header">Aziende Convenzionate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
-							placeholder="Filtra Aziende...">
-						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false">
+							placeholder="Filtra Aziende">
+						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
@@ -60,7 +61,15 @@
 									varStatus="loop">
 									<tr>
 										<td>
-											<table>
+											<c:set var = "check" value = "${false}"/>
+                        					<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
+                          						<c:if test="${progetto.stato.equals('attivo')}"> 
+                            						<c:set var = "check" value = "${true}"/>
+                          						</c:if>
+                        					</c:forEach>
+                        	 				<c:if test="${check}">
+                        	 				
+											<table date-pagination="true" date-pagination-loop="false">
 												<thead>
 													<tr class="bg-dark" style="color: #fff;">
 														<th data-sortable="true">Progetto</th>
@@ -75,14 +84,14 @@
 														<c:if test="${progetto.stato.equals('attivo')}">
 															<tr>
 																<td>${progetto.nome}</td>
-																<td>${progetto.data_compilazione}</td>
+																<td><fmt:parseDate  value="${progetto.data_compilazione}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></td>
 																<td>${progetto.ambito}</td>
 																<td>${progetto.max_partecipanti}</td>
 																<td>
 																	<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
 																	-->
-																	<form name="dettagliForm" method="POST" action="/visualizzaDettagliProgettoFormativoUtente">
+																	<form name="dettagliForm" method="POST" action="./visualizzaDettagliProgettoFormativoUtente">
 																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
 																			<button class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
   																				Dettagli
@@ -94,12 +103,15 @@
 													</c:forEach>
 												</tbody>
 											</table>
+											
+											</c:if>
+											
 										</td>
 										<td class="testo-tabella">${current.ragioneSociale}</td>
 										<td class="testo-tabella">${current.sede}</td>
 										<td class="testo-tabella">${current.settore}</td>
 										<td class="testo-tabella">
-											<form method="post" action="/dettagliAzienda">
+											<form method="post" action="./dettagliAzienda">
 												<input type="hidden" name="pIva" value="${current.pIva}">
 												<input type="submit" class="btn reg" value="Dettagli">
 											</form>

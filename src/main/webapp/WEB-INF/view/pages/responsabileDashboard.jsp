@@ -33,19 +33,19 @@
 								<li><a href="#" class="active">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Richieste</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-										<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-										<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
+										<li><a href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
+										<li><a href="./visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
 									</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
 									data-toggle="collapse" aria-expanded="true"
 									class="dropdown-toggle">Domande di tirocinio</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
-										<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
+										<li><a href="./visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
+										<li><a href="./visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
 									</ul>
 								</li>
-								<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
+								<li><a href="./visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -63,7 +63,7 @@
 	    								<div class="card-body">
 	      									<h5 class="card-title">Richieste di iscrizione</h5>
 	      									<p class="card-text">In questa sezione puoi vedere i le richieste di iscrizione alla piattaforma</p>
-	      									<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a>
+	      									<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a>
 	    								</div>
 	  							</div>
 	  							<div class="card border-dark bordo-carta dimensione-carta">
@@ -71,7 +71,7 @@
 	    								<div class="card-body">
 		      								<h5 class="card-title">Domande di tirocinio</h5>
 		      								<p class="card-text">In questa sezione puoi vedere le domande di tirocinio</p>
-		      								<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande di tirocinio</a>
+		      								<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="./visualizzaDomandeTirocinioInAttesaUfficio">Domande di tirocinio</a>
 	    								</div>
 	  							</div>
 	  							<div class="card border-dark bordo-carta dimensione-carta">
@@ -79,7 +79,7 @@
 	    								<div class="card-body">
 	      									<h5 class="card-title">Tirocini in corso</h5>
 	     	 								<p class="card-text">In questa sezione puoi vedere i tirocini in corso</p>
-	     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a>
+	     	 								<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="./visualizzaTirociniInCorsoUfficio">Tirocini in corso</a>
 	    								</div>
 	  							</div>
 							</div>						

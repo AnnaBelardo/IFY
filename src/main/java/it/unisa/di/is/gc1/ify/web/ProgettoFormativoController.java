@@ -33,19 +33,19 @@ import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 @Controller
 public class ProgettoFormativoController {
-	
+
 	@Autowired
 	UtenzaService utenzaService;
-	
+
 	@Autowired
 	ProgettoFormativoService progettoFormativoService;
-	
+
 	@Autowired
 	InserimentoProgettoFormativoFormValidator inserimentoProgettoFormativoFormValidator;
-	
+
 	@Autowired
 	ModificaProgettoFormativoFormValidator modificaProgettoFormativoFormValidator;
-	
+
 	/**
 	 * Metodo per l'inserimento di un progetto formativo
 	 * 
@@ -56,7 +56,8 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/inserimentoProgettoFormativo", method = RequestMethod.POST)
-	public String inserimentoProgettoFormativo(@ModelAttribute("InserimentoProgettoFormativoForm") InserimentoProgettoFormativoForm inserimentoProgettoFormativoForm,
+	public String inserimentoProgettoFormativo(
+			@ModelAttribute("InserimentoProgettoFormativoForm") InserimentoProgettoFormativoForm inserimentoProgettoFormativoForm,
 			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
 
 		inserimentoProgettoFormativoFormValidator.validate(inserimentoProgettoFormativoForm, result);
@@ -73,8 +74,8 @@ public class ProgettoFormativoController {
 			return "redirect:/nuovoProgettoFormativo";
 		}
 		Utente utente = utenzaService.getUtenteAutenticato();
-		DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
-		
+		DelegatoAziendale delegatoAziendale = (DelegatoAziendale) utente;
+
 		ProgettoFormativo progettoFormativo = new ProgettoFormativo();
 		progettoFormativo.setNome(inserimentoProgettoFormativoForm.getNome());
 		progettoFormativo.setDescrizione(inserimentoProgettoFormativoForm.getDescrizione());
@@ -92,10 +93,11 @@ public class ProgettoFormativoController {
 			return "redirect:/";
 		}
 
-		redirectAttribute.addFlashAttribute("successoInserimento", "Il progetto formativo è stato inserito con successo.");
+		redirectAttribute.addFlashAttribute("successoInserimento",
+				"Il progetto formativo è stato inserito con successo.");
 		return "redirect:/";
 	}
-	
+
 	/**
 	 * Metodo per la modifica di un progetto formativo attivo
 	 * 
@@ -106,14 +108,16 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/modificaProgettoFormativoAttivo", method = RequestMethod.POST)
-	public String modificaProgettoFormativoAttivo(@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
+	public String modificaProgettoFormativoAttivo(
+			@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
 			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
 
 		modificaProgettoFormativoFormValidator.validate(modificaProgettoFormativoForm, result);
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
+			redirectAttribute.addFlashAttribute("progettoPerModifica",
+					progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
@@ -124,16 +128,18 @@ public class ProgettoFormativoController {
 		}
 
 		try {
-			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
-					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
+			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(),
+					modificaProgettoFormativoForm.getDescrizione(), modificaProgettoFormativoForm.getConoscenze(),
+					Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
 		} catch (Exception e) {
 			return "redirect:/progettiFormativiAttivi";
 		}
 
-		redirectAttribute.addFlashAttribute("successoModificaAttivo", "Il progetto formativo è stato correttamente modificato.");
+		redirectAttribute.addFlashAttribute("successoModificaAttivo",
+				"Il progetto formativo è stato correttamente modificato.");
 		return "redirect:/progettiFormativiAttivi";
 	}
-	
+
 	/**
 	 * Metodo per la modifica di un progetto formativo archiviato
 	 * 
@@ -144,15 +150,16 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/modificaProgettoFormativoArchiviato", method = RequestMethod.POST)
-	public String modificaProgettoFormativoArchiviato(@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
+	public String modificaProgettoFormativoArchiviato(
+			@ModelAttribute("ModificaProgettoFormativoForm") ModificaProgettoFormativoForm modificaProgettoFormativoForm,
 			BindingResult result, RedirectAttributes redirectAttribute, Model model) {
 		System.out.println(modificaProgettoFormativoForm.getMaxPartecipanti());
 		modificaProgettoFormativoFormValidator.validate(modificaProgettoFormativoForm, result);
 		if (result.hasErrors()) {
 			// se ci sono errori il metodo controller setta tutti i parametri
 
-		
-			redirectAttribute.addFlashAttribute("progettoPerModifica", progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
+			redirectAttribute.addFlashAttribute("progettoPerModifica",
+					progettoFormativoService.cercaProgettoPerId(modificaProgettoFormativoForm.getId()));
 
 			for (ObjectError x : result.getGlobalErrors()) {
 				redirectAttribute.addFlashAttribute(x.getCode(), x.getDefaultMessage());
@@ -163,16 +170,17 @@ public class ProgettoFormativoController {
 		}
 
 		try {
-			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(), modificaProgettoFormativoForm.getDescrizione(), 
-					modificaProgettoFormativoForm.getConoscenze(), Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
+			progettoFormativoService.modificaProgettoFormativo(modificaProgettoFormativoForm.getId(),
+					modificaProgettoFormativoForm.getDescrizione(), modificaProgettoFormativoForm.getConoscenze(),
+					Integer.parseInt(modificaProgettoFormativoForm.getMaxPartecipanti()));
 		} catch (Exception e) {
 			return "redirect:/progettiFormativiArchiviati";
 		}
-		
+
 		redirectAttribute.addFlashAttribute("message", "Il progetto formativo è stato correttamente modificato.");
 		return "redirect:/progettiFormativiArchiviati";
 	}
-	
+
 	/**
 	 * Metodo per inserire un nuovo progetto formativo
 	 * 
@@ -183,22 +191,24 @@ public class ProgettoFormativoController {
 	public String nuovoProgettoFormativo(Model model) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
-		if (utente instanceof DelegatoAziendale) {			
+		if (utente instanceof DelegatoAziendale) {
 
 			return "inserimentoProgettoFormativo";
 		} else
 			return "redirect:/";
 	}
-	
+
 	/**
 	 * Metodo per archiviare un progetto formativo attivo
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/archiviaProgettoFormativo", method = RequestMethod.POST)
-	public String archiviaProgettoFormativo(@RequestParam("idProgettoFormativo") long id, Model model, RedirectAttributes redirectAttribute) {
+	public String archiviaProgettoFormativo(@RequestParam("idProgettoFormativo") long id, Model model,
+			RedirectAttributes redirectAttribute) {
 
 		ProgettoFormativo progettoFormativo;
 		try {
@@ -206,24 +216,26 @@ public class ProgettoFormativoController {
 			model.addAttribute("progettoFormativoArchiviato", progettoFormativo);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
-			
+
 			return "redirect:/progettiFormativiAttivi";
 		}
-		
-		redirectAttribute.addFlashAttribute("message", "Il progetto formativo " + progettoFormativo.getNome() + 
-				" è stato archiviato con successo");
+
+		redirectAttribute.addFlashAttribute("message",
+				"Il progetto formativo " + progettoFormativo.getNome() + " è stato archiviato con successo");
 		return "redirect:/progettiFormativiAttivi";
 	}
-	
+
 	/**
 	 * Metodo per riattivare un progetto formativo archiviato
 	 * 
 	 * @param model
 	 * @param id
+	 * @param redirectAttribute
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/riattivaProgettoFormativo", method = RequestMethod.POST)
-	public String riattivaProgettoFormativo(@RequestParam("idProgettoFormativo") long id, Model model, RedirectAttributes redirectAttribute) {
+	public String riattivaProgettoFormativo(@RequestParam("idProgettoFormativo") long id, Model model,
+			RedirectAttributes redirectAttribute) {
 
 		ProgettoFormativo progettoFormativo;
 		try {
@@ -231,15 +243,15 @@ public class ProgettoFormativoController {
 			model.addAttribute("progettoFormativoRiattivato", progettoFormativo);
 		} catch (OperazioneNonAutorizzataException e) {
 			System.out.println(e.getMessage());
-			
+
 			return "redirect:/progettiFormativiArchiviati";
 		}
-		
-		redirectAttribute.addFlashAttribute("message", "Il progetto formativo " + progettoFormativo.getNome() + 
-				" è stato riattivato con successo");
+
+		redirectAttribute.addFlashAttribute("message",
+				"Il progetto formativo " + progettoFormativo.getNome() + " è stato riattivato con successo");
 		return "redirect:/progettiFormativiArchiviati";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare la lista dei progetti formativi attivi
 	 * 
@@ -253,8 +265,9 @@ public class ProgettoFormativoController {
 		if (utente instanceof DelegatoAziendale) {
 
 			try {
-				DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
-				List<ProgettoFormativo> progettiFormativi = progettoFormativoService.visualizzaProgettiFormativiAttiviByAzienda(delegatoAziendale.getAzienda().getpIva());
+				DelegatoAziendale delegatoAziendale = (DelegatoAziendale) utente;
+				List<ProgettoFormativo> progettiFormativi = progettoFormativoService
+						.visualizzaProgettiFormativiAttiviByAzienda(delegatoAziendale.getAzienda().getpIva());
 				model.addAttribute("progettiFormativiAttivi", progettiFormativi);
 			} catch (OperazioneNonAutorizzataException e) {
 				System.out.println(e.getMessage());
@@ -265,7 +278,7 @@ public class ProgettoFormativoController {
 		} else
 			return "redirect:/";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare la lista dei progetti formativi archiviati
 	 * 
@@ -279,8 +292,9 @@ public class ProgettoFormativoController {
 		if (utente instanceof DelegatoAziendale) {
 
 			try {
-				DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
-				List<ProgettoFormativo> progettiFormativi = progettoFormativoService.visualizzaProgettiFormativiArchiviatiByAzienda(delegatoAziendale.getAzienda().getpIva());
+				DelegatoAziendale delegatoAziendale = (DelegatoAziendale) utente;
+				List<ProgettoFormativo> progettiFormativi = progettoFormativoService
+						.visualizzaProgettiFormativiArchiviatiByAzienda(delegatoAziendale.getAzienda().getpIva());
 				model.addAttribute("progettiFormativiArchiviati", progettiFormativi);
 			} catch (OperazioneNonAutorizzataException e) {
 				System.out.println(e.getMessage());
@@ -291,7 +305,7 @@ public class ProgettoFormativoController {
 		} else
 			return "redirect:/";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare i dettagli dei progetti formativi attivi
 	 * 
@@ -300,7 +314,8 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoAttivo", method = RequestMethod.POST)
-	public String visualizzaDettagliProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+	public String visualizzaDettagliProgettoFormativoAttivo(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
 		if (utente instanceof DelegatoAziendale) {
@@ -311,7 +326,7 @@ public class ProgettoFormativoController {
 		} else
 			return "/";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare i dettagli dei progetti formativi archiviati
 	 * 
@@ -320,7 +335,8 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoArchiviato", method = RequestMethod.POST)
-	public String visualizzaDettagliProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+	public String visualizzaDettagliProgettoFormativoArchiviato(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
 		if (utente instanceof DelegatoAziendale) {
@@ -331,7 +347,7 @@ public class ProgettoFormativoController {
 		} else
 			return "/";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare i progetti formativi archiviati
 	 * 
@@ -340,7 +356,8 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoArchiviato", method = RequestMethod.POST)
-	public String visualizzaFormModificaProgettoFormativoArchiviato(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+	public String visualizzaFormModificaProgettoFormativoArchiviato(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
 		if (utente instanceof DelegatoAziendale) {
@@ -351,7 +368,7 @@ public class ProgettoFormativoController {
 		} else
 			return "/";
 	}
-	
+
 	/**
 	 * Metodo per visualizzare i progetti formativi attivi
 	 * 
@@ -360,7 +377,8 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaFormModificaProgettoFormativoAttivo", method = RequestMethod.POST)
-	public String visualizzaFormModificaProgettoFormativoAttivo(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+	public String visualizzaFormModificaProgettoFormativoAttivo(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
 		Utente utente = utenzaService.getUtenteAutenticato();
 
 		if (utente instanceof DelegatoAziendale) {
@@ -371,25 +389,26 @@ public class ProgettoFormativoController {
 		} else
 			return "/";
 	}
-	
+
 	/**
-	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista generale
-	 * delle aziende convenzionate 
+	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista
+	 * generale delle aziende convenzionate
 	 * 
 	 * @param redirectAttribute
 	 * @param id
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoUtente", method = RequestMethod.POST)
-	public String visualizzaDettagliProgettoFormativoUtente(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
+	public String visualizzaDettagliProgettoFormativoUtente(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
 
-			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
-			redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
-			return "redirect:/visualizzaAziendeConvenzionate";	
+		ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+		redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+		return "redirect:/visualizzaAziendeConvenzionate";
 	}
-	
+
 	/**
-	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista della 
+	 * Metodo per visualizzare i dettagli dei progetti formativi nella vista della
 	 * dashboard dello studente
 	 * 
 	 * @param redirectAttribute
@@ -397,15 +416,16 @@ public class ProgettoFormativoController {
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/visualizzaDettagliProgettoFormativoStudente", method = RequestMethod.POST)
-	public String visualizzaDettagliProgettoFormativoStudente(RedirectAttributes redirectAttribute, @RequestParam("idProgettoFormativo") long id) {
-			
-			Utente utente=utenzaService.getUtenteAutenticato();
-			if(utente instanceof Studente) {
-				ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
-				redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
-				return "redirect:/visualizzaAziendeConvenzionateStudente";	
-			} else {
-				return "redirect:/";
-			}
+	public String visualizzaDettagliProgettoFormativoStudente(RedirectAttributes redirectAttribute,
+			@RequestParam("idProgettoFormativo") long id) {
+
+		Utente utente = utenzaService.getUtenteAutenticato();
+		if (utente instanceof Studente) {
+			ProgettoFormativo progettoFormativo = progettoFormativoService.cercaProgettoPerId(id);
+			redirectAttribute.addFlashAttribute("progettoPerDettagli", progettoFormativo);
+			return "redirect:/visualizzaAziendeConvenzionateStudente";
+		} else {
+			return "redirect:/";
+		}
 	}
 }

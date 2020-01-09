@@ -27,14 +27,19 @@ import it.unisa.di.is.gc1.ify.Studente.Studente;
 public class MailSingletonSenderUT {
 
 	
-	@Mock private JavaMailSender javaMailSender;
-	@InjectMocks private MailSingletonSender mailSender;
+	@Mock 
+	private JavaMailSender javaMailSender;
+	@InjectMocks
+	private MailSingletonSender mailSender;
 	
-	@Captor ArgumentCaptor<String> captor;
+	@Captor 
+	ArgumentCaptor<String> captor;
 	
-	@Mock private RichiestaIscrizione richiesta;
+	@Mock
+	private RichiestaIscrizione richiesta;
 	
-	@Mock private Studente studente;
+	@Mock
+	private Studente studente;
 
 	/**
 	 * Testa il caso in cui l'oggetto passato al metodo sendEmal non sia un 

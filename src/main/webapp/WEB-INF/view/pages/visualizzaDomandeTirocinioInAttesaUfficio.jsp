@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 	<head>
@@ -28,19 +29,19 @@
 						</div>
 						<div class="p-4 pt-5">							
 							<ul class="list-unstyled components mb-5">							
-								<li><a href="/">Dashboard</a></li>
+								<li><a href="./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Richieste</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-										<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-										<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
+										<li><a href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
+										<li><a href="./visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
 									</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle active">Domande di tirocinio</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio" class="active">Domande in attesa</a></li>
-										<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
+										<li><a href="./visualizzaDomandeTirocinioInAttesaUfficio" class="active">Domande in attesa</a></li>
+										<li><a href="./visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
 									</ul>
-									<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
+									<li><a href="./visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>
 								</li>
 							</ul>
 						</div>
@@ -53,9 +54,9 @@
 								<span class="my-4 header">Domande di tirocinio in attesa</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
-								placeholder="Filtra Domande...">
+								placeholder="Filtra Domande">
 							<table id="parentTable" data-toggle="table" data-sortable="true"
-								data-detail-view="true">
+								data-detail-view="true" data-pagination="true" data-page-size="5">
 								<thead>
 									<tr>
 										<th class="d-none">Hidden nested details table</th>
@@ -77,10 +78,10 @@
 													<dd>${current.cfu}</dd>
 													<br>
 													<dt>Data inizio:</dt>
-													<dd>${current.dataInizio}</dd>
+													<dd><fmt:parseDate  value="${current.dataInizio}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 													<br>
 													<dt>Data fine:</dt>
-													<dd>${current.dataFine}</dd>
+													<dd><fmt:parseDate  value="${current.dataFine}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></dd>
 													<br>
 													<dt>Sede azienda:</dt>
 													<dd>${current.azienda.sede}</dd>
@@ -104,7 +105,7 @@
 											</td>
 											<td class="valuta testo-tabella">
 												<form name="approvaForm" method="POST"
-													action="/approvazioneDomandaTirocinio">
+													action="./approvazioneDomandaTirocinio">
 													<input type="hidden" name="idDomanda"
 														value="${current.id}">
 													<button class="btn btn-success tir">
@@ -113,7 +114,7 @@
 												</form>
 											<td class="valuta testo-tabella">
 												<form name="respingiForm" method="POST"
-													action="/respintaDomandaTirocinio">
+													action="./respintaDomandaTirocinio">
 													<input type="hidden" name="idDomanda"
 														value="${current.id}">
 													<button class="btn btn-danger tir">

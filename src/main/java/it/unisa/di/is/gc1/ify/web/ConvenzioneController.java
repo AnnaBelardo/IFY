@@ -45,7 +45,7 @@ public class ConvenzioneController {
 	/**
 	 * Metodo per inviare una richiesta di convenzionamento
 	 * 
-	 * @param ConvenzioneForm
+	 * @param convenzioneForm
 	 * @param result
 	 * @param redirectAttribute
 	 * @param model

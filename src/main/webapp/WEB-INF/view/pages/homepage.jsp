@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   		<meta name="description" content="">
   		<meta name="author" content="">
-		<title>IFY - Internship for you</title>
+		<title>IFY - Internship For You</title>
 		<!--  
 		<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -70,7 +70,7 @@
 			<h1 class="my-4 testosopracard">Benvenuto sulla piattaforma per la gestione dei tirocini</h1><br>
 			<!-- Marketing Icons Section -->
 			<div class="row">
-				<div class="col-lg-4 mb-4">
+				<div class="col-lg-4 mb-4 card-hompage">
 			      	<div class="card h-100">
 			        	<h4 class="card-header">Aziende convenzionate</h4>
 			          	<div class="card-body">
@@ -78,11 +78,11 @@
 							<p class="card-text">Visiona le aziende convenzionate con noi</p>
 			          	</div>
 			          	<div class="card-footer bottone-card-centro">
-			            	<a href="/visualizzaAziendeConvenzionate" class="btn btn-primary bottonecard">Visualizza</a>
+			            	<a href="./visualizzaAziendeConvenzionate" class="btn btn-primary bottonecard">Visualizza</a>
 			          	</div>
 			        </div>
 			    </div>
-				<div class="col-lg-4 mb-4"> <!-- aggiungi mx-auto per centrare-->
+				<div class="col-lg-4 mb-4 card-hompage"> <!-- aggiungi mx-auto per centrare-->
 			    	<div class="card h-100">
 			        	<h4 class="card-header">Sei uno studente?</h4>
 			          		<div class="card-body">
@@ -95,7 +95,7 @@
 			          		</div>
 			        </div>
 			      </div>
-			      <div class="col-lg-4 mb-4">
+			      <div class="col-lg-4 mb-4 card-hompage">
 			      	<div class="card h-100">
 			        	<h4 class="card-header">Sei un'azienda?</h4>
 			          	<div class="card-body">

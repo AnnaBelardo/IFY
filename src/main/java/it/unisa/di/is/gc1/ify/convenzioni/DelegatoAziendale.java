@@ -20,14 +20,25 @@ public class DelegatoAziendale extends Utente {
 	
 	/**
 	 * Costruisce un oggetto Delegato aziendale vuoto che deve essere popolato con i metodi
-	 * setters.*/
+	 * setters.
+	 * 
+	 * */
 	
 	public DelegatoAziendale() {
 		super();
 	}
 	
+	
 	/**
 	 * costruttore di un delegato con parametri utile nei casi di test
+	 * @param nome
+	 * @param cognome
+	 * @param sesso
+	 * @param email
+	 * @param indirizzo
+	 * @param password
+	 * @param ruolo
+	 * @param azienda
 	 */
 	public DelegatoAziendale(String nome, String cognome, String sesso, String email, String indirizzo,
 			String password, String ruolo, Azienda azienda) {

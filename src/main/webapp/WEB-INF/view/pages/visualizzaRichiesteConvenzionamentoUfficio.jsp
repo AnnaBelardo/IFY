@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
 	<head>
@@ -30,20 +31,20 @@
 						</div>
 						<div class="p-4 pt-5">	
 							<ul class="list-unstyled components mb-5">	
-								<li><a href="/">Dashboard</a></li>
+								<li><a href="./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle active">Richieste</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-										<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-										<li><a href="/visualizzaRichiesteConvenzionamento" class="active">Richieste di convenzionamento</a></li>	
+										<li><a href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
+										<li><a href="./visualizzaRichiesteConvenzionamento" class="active">Richieste di convenzionamento</a></li>	
 									</ul></li>
 								<li><a href="#homeSubmenuDomande"
 									data-toggle="collapse" aria-expanded="true"
 									class="dropdown-toggle">Domande di tirocinio</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
-										<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
+										<li><a href="./visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
+										<li><a href="./visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
 									</ul></li>	
-								<li><a href="/visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>	
+								<li><a href="./visualizzaTirociniInCorsoUfficio">Tirocini in corso</a></li>	
 							</ul>
 						</div>
 					</nav>
@@ -55,9 +56,9 @@
 								<span class="my-4 header">Richieste di convenzionamento in attesa</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
-								placeholder="Filtra Richieste...">
+								placeholder="Filtra Richieste">
 							<table id="parentTable" data-toggle="table" data-sortable="true"
-								data-detail-view="true">
+								data-detail-view="true" data-pagination="true" data-page-size="5">
 								<thead>
 									<tr>
 										<th class="d-none">Hidden nested details table</th>
@@ -102,7 +103,7 @@
 											</td>
 											<td class="valuta testo-tabella">
 												<form name="accettaForm" method="POST"
-													action="/accettaRichiestaConvenzionamento">
+													action="./accettaRichiestaConvenzionamento">
 													<input type="hidden" name="idRichiesta"
 														value="${current.id}">
 													<button class="btn btn-success">
@@ -111,7 +112,7 @@
 												</form>
 											<td class="valuta testo-tabella">
 												<form name="submitForm" method="POST"
-													action="/rifiutaRichiestaConvenzionamento">
+													action="./rifiutaRichiestaConvenzionamento">
 													<input type="hidden" name="idRichiesta"
 														value="${current.id}">
 													<button class="btn btn-danger">

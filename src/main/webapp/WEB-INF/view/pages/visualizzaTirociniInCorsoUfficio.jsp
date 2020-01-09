@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,24 +30,24 @@
 						</div>
 						<div class="p-4 pt-5">							
 							<ul class="list-unstyled components mb-5">							
-								<li><a href="/">Dashboard</a></li>
+								<li><a href="./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste"
 									data-toggle="collapse" aria-expanded="true"
 									class="dropdown-toggle">Richieste</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
-										<li><a href="/visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
-										<li><a href="/visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
+										<li><a href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a></li>
+										<li><a href="./visualizzaRichiesteConvenzionamento">Richieste di convenzionamento</a></li>	
 									</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
 									data-toggle="collapse" aria-expanded="true"
 									class="dropdown-toggle">Domande di tirocinio</a>
 									<ul class="collapse list-unstyled" id="homeSubmenuDomande">
-										<li><a href="/visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
-										<li><a href="/visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
+										<li><a href="./visualizzaDomandeTirocinioInAttesaUfficio">Domande in attesa</a></li>
+										<li><a href="./visualizzaDomandeTirocinioValutateUfficio">Domande valutate</a></li>	
 									</ul>
 								</li>
-								<li><a href="/visualizzaTirociniInCorsoUfficio" class="active">Tirocini in corso</a></li>
+								<li><a href="./visualizzaTirociniInCorsoUfficio" class="active">Tirocini in corso</a></li>
 							</ul>
 						</div>
 					</nav>
@@ -58,9 +59,9 @@
 								<span class="my-4 header"> Tirocini in corso</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
-								placeholder="Filtra Tirocini...">
+								placeholder="Filtra Tirocini">
 							<table id="parentTable" data-toggle="table" data-sortable="true"
-								data-detail-view="true">
+								data-detail-view="true" data-pagination="true" data-page-size="5">
 								<thead>
 									<tr>
 										<th class="d-none">Hidden nested details table</th>
@@ -117,7 +118,7 @@
 											<td class="testo-tabella">${current.studente.nome} ${current.studente.cognome}</td>
 											<td class="testo-tabella">${current.azienda.ragioneSociale}</td>
 											<td class="testo-tabella">${current.progettoFormativo.nome}</td>
-											<td class="testo-tabella">${current.dataInizio}</td>
+											<td class="testo-tabella"><fmt:parseDate  value="${current.dataInizio}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></td>
 										</tr>	
 									</c:forEach>	
 								</tbody>

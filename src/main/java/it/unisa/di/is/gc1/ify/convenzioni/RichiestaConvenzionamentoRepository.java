@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
+/**
+ * 
+ * @author carmi
+ *
+ */
 
 public interface RichiestaConvenzionamentoRepository extends JpaRepository<RichiestaConvenzionamento, Long> {
 	

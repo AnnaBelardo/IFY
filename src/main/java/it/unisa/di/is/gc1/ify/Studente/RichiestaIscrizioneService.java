@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoNonValidaException;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.MailSingletonSender;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
@@ -40,7 +41,7 @@ public class RichiestaIscrizioneService {
 	/**
 	 * Il metodo fornisce la funzionalità di salvataggio di uno studente con la relativa
 	 * richiesta d'iscrizione posta in stato di attesa
-	 * @param studente
+	 * @param richiestaIscrizione
 	 * 
 	 * @return Richiesta Iscrizione richiestaIscrizione
 	 * @pre studente != null
@@ -62,6 +63,7 @@ public class RichiestaIscrizioneService {
 	 * @param idRichiesta
 	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
 	 *         iscrizione.
+	 * @throws OperazioneNonAutorizzataException
 	 */
 	
 	@Transactional(rollbackFor = Exception.class)
@@ -96,6 +98,7 @@ public class RichiestaIscrizioneService {
 	 * @param idRichiesta
 	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
 	 *         iscrizione.
+	 * @throws OperazioneNonAutorizzataException
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public RichiestaIscrizione rifiutaRichiestaIscrizione(Long idRichiesta)
@@ -129,7 +132,8 @@ public class RichiestaIscrizioneService {
 	 * 
 	 * @return Lista di {@link RichiestaIscrizione} che rappresenta la lista delle
 	 *         richieste di iscrizione <b>Può essere vuota</b> se nel database non
-	 *         sono presenti richieste di iscrizione in attesa
+	 *         sono presenti richieste di iscrizione in attesaù
+	 * @throws OperazioneNonAutorizzataException
 	 */	
 	@Transactional(rollbackFor = Exception.class)
 	public List<RichiestaIscrizione> visualizzaRichiesteIscrizioneDettagli() 
@@ -283,6 +287,11 @@ public class RichiestaIscrizioneService {
 		if (!matricola.matches(Studente.MATRICOLA_PATTERN))
 			throw new RichiestaIscrizioneNonValidaException("MatricolaError",
 					"Il campo matricola deve contenere solo caratteri numerici.");
+		
+		if (studenteRepository.findByMatricola(matricola) != null)
+			throw new RichiestaIscrizioneNonValidaException("MatricolaError",
+					"La matricola inserita è già esistente nel database");
+		
 		return matricola;
 	}
 

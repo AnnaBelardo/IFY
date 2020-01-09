@@ -23,13 +23,14 @@ import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 
-@RunWith(MockitoJUnitRunner.class)
+
 /**
  * classe di test di unità per la richiesta di iscrizione
  * 
  * @author Geremia Cavezza
  *
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RichiestaConvenzionamentoUT {
 
 	@Mock
@@ -1341,6 +1342,41 @@ public class RichiestaConvenzionamentoUT {
 
 		final String message = "Il campo partita IVA deve contenere esattamente 11 numeri ";
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
+		
+		try {
+			validaCampi();
+		} catch (RichiestaConvenzionamentoNonValidaException exception) {
+			assertEquals(message, exception.getMessage());
+		}
+	}
+	
+	/**
+	 * Verifica che il campo pIva rispetti il formato
+	 */
+	@Test
+	public void ValidaPIva_Esistenza() {
+
+		nome = "Mario";
+		cognome = "Rossi";
+		ruolo = "Direttore";
+		sesso = "M";
+		email = "m.rossi2@gmail.com";
+		indirizzo = "Via san paolo, 20 Napoli NA - Italia";
+		password = "20Mario?";
+		confermaPassword = "20Mario?";
+		condizioniDelegato = "on";
+
+		pIva = "12345678914";
+		ragioneSociale = "NetData Società per azioni";
+		sede = "Via Roma, 39 Milano MI - Italia";
+		settore = "Informatica";
+		descrizione = "Consulenza e Data Analytics";
+		condizioniAzienda = "on";	
+
+		final String message = "La Partita IVA inserita è già esistente nel database ";
+		when(utenteRepository.existsByEmail(email)).thenReturn(false);
+		
+		when(aziendaRepository.findByPIva(pIva)).thenReturn(new Azienda());
 		
 		try {
 			validaCampi();

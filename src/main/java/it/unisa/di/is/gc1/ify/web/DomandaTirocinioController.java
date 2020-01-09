@@ -47,7 +47,7 @@ public class DomandaTirocinioController {
 	 * tirocinio
 	 * 
 	 * @param redirectAttribute
-	 * @param id
+	 * @param idProgetto
 	 * @return String stringa che rappresenta la pagina da visualizzare
 	 */
 	@RequestMapping(value = "/nuovaDomandaTirocinio", method = RequestMethod.POST)
@@ -78,7 +78,8 @@ public class DomandaTirocinioController {
 	/**
 	 * Metodo per inviare una domanda di tirocinio
 	 * 
-	 * @param ConvenzioneForm
+	 * @param domandaTirocinioForm
+	 * @param idProgettoFormativo
 	 * @param result
 	 * @param redirectAttribute
 	 * @param model

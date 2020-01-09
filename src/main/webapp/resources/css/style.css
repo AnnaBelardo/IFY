@@ -1,3 +1,21 @@
+.col-lg-4.mb-4.card-hompage{
+	margin-bottom: 150px !important;
+}
+
+.page-item.active .page-link {
+	color: #fff !important;
+    background-color: #666666 !important;
+    border-color: #666666 !important;
+}
+
+.page-list{
+	display: none!important;
+}
+
+.page-link{
+	color: #666666 !important;
+}
+
 .container.container-footer {
 	display: flex;
 	justify-content: space-evenly;
@@ -266,12 +284,11 @@ figure {
 		margin: 0;
 		position: relative;
 		min-height: 100%;
-		padding-bottom: 100px;
 	}
 	footer {
 		position: absolute;
 		bottom: 0;
-		width: 100%
+		width: 100%;
 	}
 }
 
@@ -317,6 +334,12 @@ figure {
 	color: #212529 !important;
 	width: auto;
 	margin: 15px;
+}
+
+.bootstrap-table .table thead > tr > th {
+    padding: 0;
+    margin: 0;
+    font-weight: normal !important;
 }
 
 @media only screen and (max-width: 600px) {

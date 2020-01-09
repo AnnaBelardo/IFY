@@ -15,12 +15,12 @@
 <script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body background= "../../../resources/images/iscrizioneStudente.png">
+<body background= "./resources/images/iscrizioneStudente.png">
 <%@ include file="header.jsp" %>
 	<div style="margin-top: 50px; margin-bottom: 30px;" class="container">
 	
 		<form class="form-horizontal" role="form" name="iscrizioneForm"
-			method="post" action="/richiestaIscrizione"
+			method="post" action="./richiestaIscrizione"
 			modelAttribute="studenteForm">
 			
 			<h3>Richiesta iscrizione studente</h3>
