@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
 <link href="./resources/css/modern-business.css" rel="stylesheet">
 <link href="./resources/css/style.css" rel="stylesheet">
+<link rel="shortcut icon" href="/IFY/src/main/webapp/resources/images/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 	
