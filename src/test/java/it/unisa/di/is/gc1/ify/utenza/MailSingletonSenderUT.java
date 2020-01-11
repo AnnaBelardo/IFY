@@ -3,7 +3,8 @@ package it.unisa.di.is.gc1.ify.utenza;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -16,6 +17,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
+import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinio;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 
 /**
  * Test di unità per la classe MailSingletonSender ; tipologia di test: whitebox
@@ -35,11 +41,58 @@ public class MailSingletonSenderUT {
 	@Captor 
 	ArgumentCaptor<String> captor;
 	
-	@Mock
-	private RichiestaIscrizione richiesta;
+	private RichiestaIscrizione richiestaIscrizione;
 	
-	@Mock
+	private RichiestaConvenzionamento richiestaConvenzionamento;
+	
+	private DomandaTirocinio domandaTirocinio;
+	
 	private Studente studente;
+	
+	private DelegatoAziendale delegato;
+	
+	private Azienda azienda;
+	
+	private ProgettoFormativo progettoFormativo;
+	
+	/**
+	 * Salva lo studente, la richiesta di iscrizione, l'azienda, il delegato aziendale,
+	 * il progetto formativo, la domanda di tirocinio e la richiesta di convenzionamento
+	 * prima dell'esecuzione di ogni singolo test.
+	 */
+	@Before
+	public void setUp() {
+		studente = new Studente();
+		studente.setNome("Mario");
+		studente.setCognome("Rossi");
+		studente.setEmail("m.rossi@studenti.unisa.it");
+		
+		richiestaIscrizione = new RichiestaIscrizione();
+		richiestaIscrizione.setStudente(studente);
+		
+		azienda = new Azienda();
+		azienda.setRagioneSociale("NetData");
+		
+		delegato = new DelegatoAziendale();
+		delegato.setNome("Paolo");
+		delegato.setCognome("Bianchi");
+		delegato.setEmail("p.bianchi@gmail.com");
+		delegato.setAzienda(azienda);
+		
+		progettoFormativo = new ProgettoFormativo();
+		progettoFormativo.setNome("DataScience");
+		progettoFormativo.setAzienda(azienda);
+	
+		domandaTirocinio = new DomandaTirocinio();
+		domandaTirocinio.setAzienda(azienda);
+		domandaTirocinio.setStudente(studente);
+		domandaTirocinio.setProgettoFormativo(progettoFormativo);
+		
+		richiestaConvenzionamento = new RichiestaConvenzionamento();
+		richiestaConvenzionamento.setDelegatoAziendale(delegato);
+		richiestaConvenzionamento.setAzienda(azienda);
+		
+	}
 
 	/**
 	 * Testa il caso in cui l'oggetto passato al metodo sendEmal non sia un 
@@ -47,8 +100,8 @@ public class MailSingletonSenderUT {
 	 * 
 	 * @test {@link MailSingletonSender#sendMail(Object,String)}
 	 * 
-	 * @result Il test e superato se la ricerca delle matricole deglis studenti
-	 *         presenti nella lista utilizzata per il test ha successo
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
 	 */
 	@Test
 	public void message_Not_Instance() {
@@ -61,51 +114,191 @@ public class MailSingletonSenderUT {
 	}
 	
 	/**
-	 * Testa il caso in cui la richiesta sia stata accettata.
+	 * Testa il caso in cui la richiesta d'iscrizione sia stata accettata.
 	 * 
 	 * @test {@link MailSingletonSender#sendMail(Object,String)}
 	 * 
-	 * @result Il test e superato se la ricerca delle matricole deglis studenti
-	 *         presenti nella lista utilizzata per il test ha successo
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
 	 */
 	@Test
-	public void message_Acettata() {
-	
-		String destinatario = "m.rossi@studenti.unisa.it"; 
+	public void messageRichiestaIscrizioneAcettata() {
+		String destinatario = studente.getEmail(); 
+		richiestaIscrizione.setStato(RichiestaIscrizione.ACCETTATA);
 		
-		when(richiesta.getStato()).thenReturn(RichiestaIscrizione.ACCETTATA);
-		when(richiesta.getStudente()).thenReturn(studente);
-		when(studente.getNome()).thenReturn("Mario");
-		when(studente.getCognome()).thenReturn("Rossi");
-		
-		mailSender.sendEmail(richiesta, destinatario);
+		mailSender.sendEmail(richiestaIscrizione, destinatario);
 		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
-
-	
 	}
 	
 	/**
-	 * Testa il caso in cui la richiesta sia stata rifiutata.
+	 * Testa il caso in cui la richiesta d'iscrizione sia stata rifiutata.
 	 * 
 	 * @test {@link MailSingletonSender#sendMail(Object,String)}
 	 * 
-	 * @result Il test e superato se la ricerca delle matricole deglis studenti
-	 *         presenti nella lista utilizzata per il test ha successo
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
 	 */
 	@Test
-	public void message_Rifiutata() {
+	public void messageRichiestaIscrizioneRifiutata() {
+		String destinatario = studente.getEmail(); 
+		richiestaIscrizione.setStato(RichiestaIscrizione.RIFIUTATA);
 		
-		String destinatario = "m.rossi@studenti.unisa.it"; 
-		
-		when(richiesta.getStato()).thenReturn(RichiestaIscrizione.RIFIUTATA);
-		when(richiesta.getStudente()).thenReturn(studente);
-		when(studente.getNome()).thenReturn("Mario");
-		when(studente.getCognome()).thenReturn("Rossi");
-		
-		mailSender.sendEmail(richiesta, destinatario);
+		mailSender.sendEmail(richiestaIscrizione, destinatario);
 		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la richiesta d'iscrizione sia stata posta in attesa.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageRichiestaIscrizioneInAttesa() {
+		String destinatario = studente.getEmail(); 
+		richiestaIscrizione.setStato(RichiestaIscrizione.IN_ATTESA);
+		
+		mailSender.sendEmail(richiestaIscrizione, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la richiesta di convenzionamento sia stata accettata.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageRichiestaConvenzionamentoAcettata() {
+		String destinatario = delegato.getEmail(); 
+		richiestaConvenzionamento.setStato(RichiestaConvenzionamento.ACCETTATA);
+		
+		mailSender.sendEmail(richiestaConvenzionamento, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la richiesta di convenzionamento sia stata rifiutata.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageRichiestaConvenzionamentoRifiutata() {
+		String destinatario = delegato.getEmail(); 
+		richiestaConvenzionamento.setStato(RichiestaConvenzionamento.RIFIUTATA);
+		
+		mailSender.sendEmail(richiestaConvenzionamento, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la richiesta di convenzionamento sia stata posta in attesa.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageRichiestaConvenzionamentoInAttesa() {
+		String destinatario = delegato.getEmail(); 
+		richiestaConvenzionamento.setStato(RichiestaConvenzionamento.IN_ATTESA);
+		
+		mailSender.sendEmail(richiestaConvenzionamento, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la domanda di tirocinio sia stata accettata.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageDomandaTirocinioAccettata() {
+		String destinatario = studente.getEmail(); 
+		domandaTirocinio.setStato(DomandaTirocinio.ACCETTATA);
+		
+		mailSender.sendEmail(domandaTirocinio, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la domanda di tirocinio sia stata rifiutata.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageDomandaTirocinioRifiutata() {
+		String destinatario = studente.getEmail(); 
+		domandaTirocinio.setStato(DomandaTirocinio.RIFIUTATA);
+		
+		mailSender.sendEmail(domandaTirocinio, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la domanda di tirocinio sia stata approvata.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageDomandaTirocinioApprovata() {
+		String destinatario = studente.getEmail(); 
+		domandaTirocinio.setStato(DomandaTirocinio.APPROVATA);
+		
+		mailSender.sendEmail(domandaTirocinio, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la domanda di tirocinio sia stata respinta.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageDomandaTirocinioRespinta() {
+		String destinatario = studente.getEmail(); 
+		domandaTirocinio.setStato(DomandaTirocinio.RESPINTA);
+		
+		mailSender.sendEmail(domandaTirocinio, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
+	/**
+	 * Testa il caso in cui la domanda di tirocinio sia stata posta in attesa.
+	 * 
+	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * 
+	 * @result Il test è superato se il metodo send della classe javaMailSender 
+	 *		   è correttamente invocato
+	 */
+	@Test
+	public void messageDomandaTirocinioInAttesa() {
+		String destinatario = studente.getEmail(); 
+		domandaTirocinio.setStato(DomandaTirocinio.IN_ATTESA);
+		
+		mailSender.sendEmail(domandaTirocinio, destinatario);
+		verify(javaMailSender, times(1)).send(any(SimpleMailMessage.class));
+	}
+	
 
-	
-	} 
-	
 }

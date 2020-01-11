@@ -74,6 +74,7 @@ public class ProgettoFormativoRepositoryIT {
 		progettoFormativo1.setMax_partecipanti(3);
 		progettoFormativo1.setNome("Progetto 1");
 		progettoFormativo1.setStato(ProgettoFormativo.ATTIVO);
+		progettoFormativo1.toString();
 		
 		aziendaRepository.save(azienda1);
 		progettoFormativoRepository.save(progettoFormativo1);
@@ -113,7 +114,6 @@ public class ProgettoFormativoRepositoryIT {
 	 * @result Il test è superato se la ricerca dell'id dei progetti formativi
 	 * 		   presenti nella lista utilizzata per il test ha successo.
 	 */
-	
 	@Test
 	public void findById() {
 		/* Controlla che ogni progetto formativo della lista utilizzata per il test sia esistente
@@ -134,7 +134,6 @@ public class ProgettoFormativoRepositoryIT {
 	 * @result Il test è superato se la ricerca della partita iva e lo stato del progetto formativo
 	 *         presenti nella lista utilizzata per il test ha successo.
 	 */
-	
 	@Test
 	public void findAllByAziendaPIvaAndStato() {
 		/* Controlla che ogni progetto formativo inserito per il test sia presente sul database
