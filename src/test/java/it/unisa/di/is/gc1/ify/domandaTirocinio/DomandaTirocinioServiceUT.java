@@ -1,12 +1,9 @@
 package it.unisa.di.is.gc1.ify.domandaTirocinio;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +22,6 @@ import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
-import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoService;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.MailSingletonSender;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;

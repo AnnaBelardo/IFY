@@ -37,7 +37,7 @@ import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
 @Transactional
 @Rollback
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class domandaTirocinioRepositoryIT {
+public class DomandaTirocinioRepositoryIT {
 
 	@Autowired
 	private DomandaTirocinioRepository domandeRepository;
