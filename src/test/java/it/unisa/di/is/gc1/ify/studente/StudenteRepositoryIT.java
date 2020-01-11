@@ -1,6 +1,5 @@
 package it.unisa.di.is.gc1.ify.studente;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -11,11 +10,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,10 +20,6 @@ import org.springframework.test.annotation.Rollback;
 
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
-import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 
 import org.springframework.test.context.junit4.SpringRunner;

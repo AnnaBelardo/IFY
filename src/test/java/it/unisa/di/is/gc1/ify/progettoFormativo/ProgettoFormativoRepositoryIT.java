@@ -20,8 +20,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
-import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
 import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
 import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
 
