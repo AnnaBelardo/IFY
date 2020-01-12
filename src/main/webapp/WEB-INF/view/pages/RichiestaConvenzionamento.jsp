@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-<title>Registrazione studente</title>
+<title>Richiesta convenzionamento</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
 <link href="<c:url value="/resources/css/formStylePage.css" />" rel="stylesheet">
@@ -147,7 +147,7 @@
 										<label class="form-check-label" for="accettoDelegato">
 											Accetto
 										</label>
-										<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy</a>
+										<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy Delegato</a>
 								</div>
 								<c:if test="${CondizioniDelegatoError != null}">
 									<span class="myError">${CondizioniDelegatoError}</span>
@@ -236,7 +236,7 @@
 										<label class="form-check-label" for="accettoAzienda">
 											Accetto
 										</label>
-									<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy</a>
+									<a href="https://www.garanteprivacy.it/il-testo-del-regolamento" class="regolamento">Regolamento privacy Azienda</a>
 								</div>
 								<c:if test="${CondizioniAziendaError != null}">
 									<span class="myError">${CondizioniAziendaError}</span>

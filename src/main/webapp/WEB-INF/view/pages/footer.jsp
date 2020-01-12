@@ -1,4 +1,4 @@
-<footer style="background-color: #444444 !important; bottom: 0px; width: 100%;">
+<footer>
 				<!--  
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active col-md-12"><a>Contatti</a></li>

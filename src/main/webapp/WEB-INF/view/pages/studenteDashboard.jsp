@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dashboard Studente</title>
+<title>Dashboard</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"

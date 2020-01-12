@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-<title>Registrazione studente</title>
+<title>Richiesta iscrizione</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
 <link href="<c:url value="/resources/css/formStylePage.css" />" rel="stylesheet">

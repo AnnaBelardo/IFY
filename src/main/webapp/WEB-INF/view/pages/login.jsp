@@ -12,8 +12,8 @@
 <link href="<c:url value="/resources/css/formStylePage.css" />" rel="stylesheet">
 
 <style>
-.form-horizontal{
-	margin-bottom: 168px;
+footer {
+	position: absolute!important;
 }
 </style>
 
