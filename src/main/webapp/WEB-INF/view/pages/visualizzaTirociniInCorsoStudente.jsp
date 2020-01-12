@@ -39,9 +39,9 @@
 					<div class="p-4 pt-5">						
 						<ul class="list-unstyled components mb-5">						
 							<li><a href="./">Dashboard</a></li>
-							<li><a href="./visualizzaAziendeConvenzionateStudente">Aziende Convenzionate</a></li>
-							<li><a href="./visualizzaTirociniInCorsoStudente" class="active">Tirocini in Corso</a></li>
-							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente">Aziende convenzionate</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di tirocinio</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente" class="active">Tirocini in corso</a></li>
 						</ul>
 					</div>
 				</nav>

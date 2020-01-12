@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Aziende Convenzionate</title>
+<title>Aziende convenzionate</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -46,9 +46,9 @@
 						<ul class="list-unstyled components mb-5">
 						
 							<li><a href="./">Dashboard</a></li>
-							<li><a href="./visualizzaAziendeConvenzionateStudente" class="active">Aziende Convenzionate</a></li>
-							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in Corso</a></li>
-							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di Tirocinio</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente" class="active">Aziende convenzionate</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di tirocinio</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in corso</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -58,7 +58,7 @@
 					<div class="container">
 
 						<h4>
-							<span class="my-4 header">Aziende Convenzionate</span>
+							<span class="my-4 header">Aziende convenzionate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Aziende">

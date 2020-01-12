@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Progetti Formativi Archiviati</title>
+		<title>Progetti formativi archiviati</title>
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
@@ -56,14 +56,14 @@
 					<div id="content" class="p-4 p-md-5 pt-5">
 						<div class="container">
 							<h4>
-								<span class="my-4 header">Progetti Formativi Archiviati</span>
+								<span class="my-4 header">Progetti formativi archiviati</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Progetti">
 							<table id="parentTable" data-toggle="table" data-sortable="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
-									<th class="detail" data-sortable="true">Nome Progetto</th>
+									<th class="detail" data-sortable="true">Nome progetto</th>
 									<th></th>
 									<th></th>
 									<th></th>

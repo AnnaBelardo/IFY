@@ -43,11 +43,11 @@
 								<li><a href = "./">Dashboard</a></li>
 								<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle">Progetti Formativi</a>
+								class="dropdown-toggle">Progetti formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="./nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti formativi attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti formativi archiviati</a></li>
 								</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"

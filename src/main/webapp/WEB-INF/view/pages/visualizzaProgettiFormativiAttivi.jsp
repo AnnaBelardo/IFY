@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Progetti Formativi Attivi</title>
+		<title>Progetti formativi attivi</title>
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
@@ -34,11 +34,11 @@
 								<li><a href = "./">Dashboard</a></li>
 								<li class="active"><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle active">Progetti Formativi</a>
+								class="dropdown-toggle active">Progetti formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="./nuovoProgettoFormativo">Nuovo progetto formativo</a></li>
-									<li><a href="./progettiFormativiAttivi" class="active">Progetti Formativi Attivi</a></li>
-									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./progettiFormativiAttivi" class="active">Progetti formativi attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti formativi archiviati</a></li>
 								</ul>
 								</li>
 								<li><a href="#homeSubmenuDomande"
@@ -56,14 +56,14 @@
 					<div id="content" class="p-4 p-md-5 pt-5">
 						<div class="container">
 							<h4>
-								<span class="my-4 header">Progetti Formativi Attivi</span>
+								<span class="my-4 header">Progetti formativi attivi</span>
 							</h4>
 							<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Progetti">
 							<table id="parentTable" data-toggle="table" data-sortable="true" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
-									<th class="detail" data-sortable="true">Nome Progetto</th>
+									<th class="detail" data-sortable="true">Nome progetto</th>
 									<th></th>
 									<th></th>
 									<th></th>

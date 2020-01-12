@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Aziende Convenzionate</title>
+<title>Aziende convenzionate</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"

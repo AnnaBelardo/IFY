@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Nuovo Progetto</title>
+<title>Nuovo progetto</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -46,11 +46,11 @@
 							<li><a href="./">Dashboard</a></li>
 							<li><a href="#homeSubmenuRichieste"
 								data-toggle="collapse" aria-expanded="true"
-								class="dropdown-toggle active">Progetti Formativi</a>
+								class="dropdown-toggle active">Progetti formativi</a>
 								<ul class="collapse list-unstyled" id="homeSubmenuRichieste">
 									<li><a href="./nuovoProgettoFormativo" class="active">Nuovo progetto formativo</a></li>
-									<li><a href="./progettiFormativiAttivi">Progetti Formativi Attivi</a></li>
-									<li><a href="./progettiFormativiArchiviati">Progetti Formativi Archiviati</a></li>
+									<li><a href="./progettiFormativiAttivi">Progetti formativi attivi</a></li>
+									<li><a href="./progettiFormativiArchiviati">Progetti formativi archiviati</a></li>
 
 								</ul>
 							</li>
@@ -76,7 +76,7 @@
 					<div style="margin-top: 35px; class="container">
 						<form class="form-horizontal" role="form" name="iscrizioneForm" method="post" action="./inserimentoProgettoFormativo" modelAttribute="InserimentoProgettoFormativoForm">
 			            <div style="margin-top: 15px;">
-						<h3>Nuovo Progetto Formativo</h3>
+						<h3>Nuovo progetto formativo</h3>
 						</div>
 						<div style="justify-content:center;"  class="row" >
 							<div style="margin-top: 15px;" class="col-11">
