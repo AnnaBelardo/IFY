@@ -50,8 +50,8 @@
 									<th class="detail titolo" data-sortable="true">Azienda</th>
 									<th class="detail titolo" data-sortable="true">Sede</th>
 									<th class="detail titolo" data-sortable="true">Settore</th>
-									<th class="titolo">Dettagli Azienda</th>
-									<th class="titolo">Progetti Formativi Azienda</th>
+									<th></th>
+									<th></th>
 								</tr>
 
 							</thead>
@@ -76,7 +76,7 @@
 														<th data-sortable="true">Attivazione</th>
 														<th data-sortable="true">Ambito</th>
 														<th data-sortable="true">Numero Tirocinanti</th>
-														<th data-sortable="true">Dettagli progetto</th>
+														<th data-sortable="true"></th>
 													</tr>
 												</thead>
 												<tbody>

@@ -12,8 +12,26 @@
 <link rel="shortcut icon" href="/IFY/src/main/webapp/resources/images/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
+	<!--  <div class = "fixed-top header-div">-->
+	<c:if test="${successoIscrizione != null}">
+			<div class="alert alert-success alert-home alert-dismissible">
+			  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			  	<strong> ${successoIscrizione} </strong>
+			</div>	
+	</c:if>
 	
-	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
+	<c:if test="${successoConvenzionamento != null}">
+		<div class="alert alert-success alert-home alert-dismissible">
+			  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			  	<strong> ${successoConvenzionamento} </strong>
+			</div>	
+	</c:if>
+	
+	
+	
+
+	
+	<nav class="fixed-top navbar navbar-dark  bg-dark flex-md-nowrap p-0">
 		<div>
 			<a style="margin-left: 5px;" href="/">
 				<img src="./resources/images/logos/logo pre login.png" style="width:50px;">
@@ -54,5 +72,8 @@
 			</figure>
 		</div>
 	</nav>
+	<!--  </div>-->
+	
+	
 </body>
 </html>

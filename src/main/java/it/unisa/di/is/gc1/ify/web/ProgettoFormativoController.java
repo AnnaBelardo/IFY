@@ -135,8 +135,8 @@ public class ProgettoFormativoController {
 			return "redirect:/progettiFormativiAttivi";
 		}
 
-		redirectAttribute.addFlashAttribute("successoModificaAttivo",
-				"Il progetto formativo è stato correttamente modificato.");
+		redirectAttribute.addFlashAttribute("message",
+				"Il progetto formativo è stato modificato correttamente.");
 		return "redirect:/progettiFormativiAttivi";
 	}
 
@@ -177,7 +177,7 @@ public class ProgettoFormativoController {
 			return "redirect:/progettiFormativiArchiviati";
 		}
 
-		redirectAttribute.addFlashAttribute("message", "Il progetto formativo è stato correttamente modificato.");
+		redirectAttribute.addFlashAttribute("message", "Il progetto formativo è stato modificato correttamente.");
 		return "redirect:/progettiFormativiArchiviati";
 	}
 

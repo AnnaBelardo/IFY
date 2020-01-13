@@ -27,7 +27,7 @@ public abstract class Utente {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.sesso = sesso;
-		this.email = email;
+		this.email = email.toLowerCase();
 		this.indirizzo = indirizzo;
 		this.password = password;
 	}
@@ -61,11 +61,11 @@ public abstract class Utente {
 	}
 
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public String getIndirizzo() {

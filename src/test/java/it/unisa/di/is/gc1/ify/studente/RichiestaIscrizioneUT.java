@@ -1010,7 +1010,7 @@ public class RichiestaIscrizioneUT {
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
-		final String message = "Il campo password deve contenere almeno 8 caratteri.";
+		final String message = "Il campo password deve contenere almeno 8 caratteri, almeno una lettera, almeno un numero e nessuno spazio.";
 
 		try {
 			validaCampi();
@@ -1038,7 +1038,7 @@ public class RichiestaIscrizioneUT {
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
-		final String message = "Il campo password deve contenere al massimo 24 caratteri.";
+		final String message = "Il campo password deve contenere al massimo 24 caratteri, almeno una lettera, almeno un numero e nessuno spazio.";
 
 		try {
 			validaCampi();
@@ -1066,8 +1066,7 @@ public class RichiestaIscrizioneUT {
 
 		when(utenteRepository.existsByEmail(email)).thenReturn(false);
 
-		final String message = "Il campo password deve contenere almeno"
-				+ "un numero, almeno una lettera e non deve contenere spazi.";
+		final String message = "Il campo password deve contenere almeno un numero, almeno una lettera e nessuno spazio.";
 
 		try {
 			validaCampi();

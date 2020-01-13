@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,36 +41,51 @@
 					</div>
 					<div class="p-4 pt-5">
 						<!--  <h1><a href="index.html" class="logo">IFY</a></h1>-->
-						
-						
+
+
 						<ul class="list-unstyled components mb-5">
-						
+
 							<li><a href="./">Dashboard</a></li>
-							<li><a href="./visualizzaAziendeConvenzionateStudente" class="active">Aziende convenzionate</a></li>
-							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande di tirocinio</a></li>
-							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini in corso</a></li>
+							<li><a href="./visualizzaAziendeConvenzionateStudente"
+								class="active">Aziende convenzionate</a></li>
+							<li><a href="./visualizzaDomandeTirocinioInoltrateStudente">Domande
+									di tirocinio</a></li>
+							<li><a href="./visualizzaTirociniInCorsoStudente">Tirocini
+									in corso</a></li>
 						</ul>
 					</div>
 				</nav>
 
 				<!-- Page Content  -->
 				<div id="content" class="p-4 p-md-5 pt-5">
+					
 					<div class="container">
+
+						<c:if test="${successoInserimentoDomanda != null}">
+							<div
+								class="alert alert-success alert-dashboard alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong> ${successoInserimentoDomanda} </strong>
+							</div>
+						</c:if>
 
 						<h4>
 							<span class="my-4 header">Aziende convenzionate</span>
 						</h4>
 						<input class="form-control" id="filter" type="text"
 							placeholder="Filtra Aziende">
-						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false" data-pagination="true" data-page-size="5">
+						<table class="table-sm" id="parentTable" data-toggle="table"
+							data-sortable="true" data-detail-view="true"
+							data-detail-view-icon="false" data-pagination="true"
+							data-page-size="5">
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
 									<th class="detail titolo" data-sortable="true">Azienda</th>
 									<th class="detail titolo" data-sortable="true">Sede</th>
 									<th class="detail titolo" data-sortable="true">Settore</th>
-									<th class="titolo">Dettagli Azienda</th>
-									<th class="titolo">Progetti Formativi Azienda</th>
+									<th class="titolo"></th>
+									<th class="titolo"></th>
 								</tr>
 
 							</thead>
@@ -79,66 +94,72 @@
 								<c:forEach items="${aziendeConvenzionate}" var="current"
 									varStatus="loop">
 									<tr>
-										<td>
-										
-											<c:set var = "check" value = "${false}"/>
-                        					<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
-                          						<c:if test="${progetto.stato.equals('attivo')}"> 
-                            						<c:set var = "check" value = "${true}"/>
-                          						</c:if>
-                        					</c:forEach>
-                        	 				<c:if test="${check}">
-                        	 				
-											<table>
-												<thead>
-													<tr class="bg-dark" style="color: #fff;">
-														<th data-sortable="true">Progetto</th>
-														<th data-sortable="true">Attivazione</th>
-														<th data-sortable="true">Ambito</th>
-														<th data-sortable="true">Numero Tirocinanti</th>
-														<th data-sortable="true">Dettagli progetto</th>
-														<th data-sortable="true">Invio domanda</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach items="${current.progettiFormativi}" var="progetto" varStatus="loop">
-														<c:if test="${progetto.stato.equals('attivo')}">
-															<tr>
-																<td>${progetto.nome}</td>
-																<td><fmt:parseDate  value="${progetto.data_compilazione}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" /><fmt:formatDate value="${parsedDate}" pattern = "dd-MM-yyyy"   type="date" var="stdDatum" /><c:out value="${stdDatum}"></c:out></td>
-																<td>${progetto.ambito}</td>
-																<td>${progetto.max_partecipanti}</td>
-																<td>
-																	<!--  
+										<td><c:set var="check" value="${false}" /> <c:forEach
+												items="${current.progettiFormativi}" var="progetto"
+												varStatus="loop">
+												<c:if test="${progetto.stato.equals('attivo')}">
+													<c:set var="check" value="${true}" />
+												</c:if>
+											</c:forEach> <c:if test="${check}">
+
+												<table>
+													<thead>
+														<tr class="bg-dark" style="color: #fff;">
+															<th data-sortable="true">Progetto</th>
+															<th data-sortable="true">Attivazione</th>
+															<th data-sortable="true">Ambito</th>
+															<th data-sortable="true">Numero Tirocinanti</th>
+															<th data-sortable="true"></th>
+															<th data-sortable="true"></th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${current.progettiFormativi}"
+															var="progetto" varStatus="loop">
+															<c:if test="${progetto.stato.equals('attivo')}">
+																<tr>
+																	<td>${progetto.nome}</td>
+																	<td><fmt:parseDate
+																			value="${progetto.data_compilazione}" type="date"
+																			pattern="yyyy-MM-dd" var="parsedDate" />
+																		<fmt:formatDate value="${parsedDate}"
+																			pattern="dd-MM-yyyy" type="date" var="stdDatum" />
+																		<c:out value="${stdDatum}"></c:out></td>
+																	<td>${progetto.ambito}</td>
+																	<td>${progetto.max_partecipanti}</td>
+																	<td>
+																		<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn dettagli-btn" value="Dettagli">
 																	-->
-																	<form name="dettagliForm" method="POST" action="./visualizzaDettagliProgettoFormativoStudente">
-																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
-																			<button class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
-  																				Dettagli
-																			</button>
-																	</form>
-																</td>
-																<td>
-																	<!--  
+																		<form name="dettagliForm" method="POST"
+																			action="./visualizzaDettagliProgettoFormativoStudente">
+																			<input type="hidden" name="idProgettoFormativo"
+																				value="${progetto.id}">
+																			<button
+																				class="btn btn btn-primary aziende-convenzionate-btn dettagli-btn">
+																				Dettagli</button>
+																		</form>
+																	</td>
+																	<td>
+																		<!--  
 																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
 																	-->
-																	<form name="domandaTirocinioForm" method="POST" action="./nuovaDomandaTirocinio">
-																		<input type="hidden" name="idProgettoFormativo" value="${progetto.id}">
-																			<button class="btn btn btn-primary aziende-convenzionate-btn invia-btn">
-  																				Invia
-																			</button>
-																	</form>
-																</td>
-															</tr>
-														</c:if>
-													</c:forEach>
-												</tbody>
-											</table>
-											
-											</c:if>
-											
-										</td>
+																		<form name="domandaTirocinioForm" method="POST"
+																			action="./nuovaDomandaTirocinio">
+																			<input type="hidden" name="idProgettoFormativo"
+																				value="${progetto.id}">
+																			<button
+																				class="btn btn btn-primary aziende-convenzionate-btn invia-btn">
+																				Invia domanda</button>
+																		</form>
+																	</td>
+																</tr>
+															</c:if>
+														</c:forEach>
+													</tbody>
+												</table>
+
+											</c:if></td>
 										<td class="testo-tabella">${current.ragioneSociale}</td>
 										<td class="testo-tabella">${current.sede}</td>
 										<td class="testo-tabella">${current.settore}</td>
@@ -148,8 +169,9 @@
 												<input type="submit" class="btn reg" value="Dettagli">
 											</form>
 										</td>
-										<td class="testo-tabella"><a class="detail-icon btn reg" style="width: 160px;">Progetti Formativi</a></td>
-											
+										<td class="testo-tabella"><a class="detail-icon btn reg"
+											style="width: 160px;">Progetti Formativi</a></td>
+
 										</td>
 
 									</tr>
@@ -158,7 +180,7 @@
 
 							</tbody>
 						</table>
-						
+
 					</div>
 				</div>
 
@@ -171,9 +193,9 @@
 	<script src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="./resources/js/bootstrap-table.min.js"></script>
 	<script src="./resources/js/sidebar.js"></script>
-	
+
 	<c:if test="${AziendaPerDettagli != null}">
-		<%@ include file="modalDettagliAzienda.jsp" %>
+		<%@ include file="modalDettagliAzienda.jsp"%>
 	</c:if>
 	<c:if test="${progettoPerDettagli!=null}">
 		<%@ include file="modalDettagliProgetto.jsp"%>
@@ -184,13 +206,7 @@
 	<c:if test="${progettoFormativo!=null}">
 		<%@ include file="modalInvioDomandeTirocinio.jsp"%>
 	</c:if>
-	<c:if test="${successoInserimentoDomanda != null}">
-		
-		<script> $(window).on('load', function() {
-				alert("${successoInserimentoDomanda}");
-				});
-		</script>
-	</c:if>
+
 	<script>
 		// Load detail view
 		$('#parentTable').on('expand-row.bs.table',

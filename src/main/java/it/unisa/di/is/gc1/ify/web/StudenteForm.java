@@ -26,7 +26,7 @@ public class StudenteForm {
 		this.dataNascita = dataNascita;
 		this.sesso = sesso;
 		this.matricola = matricola;
-		this.email = email;
+		this.email = email.toLowerCase();
 		this.password = password;
 		this.confermaPsw = confermaPsw;
 		this.condizioni = condizioni;
@@ -83,10 +83,10 @@ public class StudenteForm {
 		this.matricola = matricola;
 	}
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 	public String getPassword() {
 		return password;

@@ -346,15 +346,14 @@ public class RichiestaIscrizioneService {
 			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password non può essere nullo.");
 
 		if (password.length() < Studente.MIN_LUNGHEZZA_PASSWORD)
-			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno 8 caratteri.");
+			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno 8 caratteri, almeno una lettera, almeno un numero e nessuno spazio.");
 
 		if (password.length() > Studente.MAX_LUNGHEZZA_PASSWORD)
 			throw new RichiestaIscrizioneNonValidaException("PasswordError",
-					"Il campo password deve contenere al massimo 24 caratteri.");
+					"Il campo password deve contenere al massimo 24 caratteri, almeno una lettera, almeno un numero e nessuno spazio.");
 
 		if (!password.matches(Studente.PASSWORD_PATTERN))
-			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno"
-					+ "un numero, almeno una lettera e non deve contenere spazi.");
+			throw new RichiestaIscrizioneNonValidaException("PasswordError", "Il campo password deve contenere almeno un numero, almeno una lettera e nessuno spazio.");
 		return password;
 	}
 	

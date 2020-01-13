@@ -88,7 +88,7 @@ public class Studente extends Utente {
 	public static final String TELEFONO_PATTERN = "^[0-9]{3}[\\-]?[0-9]{7}$";
 
 	/** Espressione regolare che definisce il formato del campo Email Studente */
-	public static final String EMAIL_STUDENTE_PATTERN = "^([a-z]\\.[a-z]+[1-9]?[0-9]*)@studenti.unisa.it$";
+	public static final String EMAIL_STUDENTE_PATTERN = "^([A-Za-z]\\.[A-Za-z]+[1-9]?[0-9]*)@studenti.unisa.it$";
 
 	/** Valore che definisce la minima data di nascita accettabile. */
 	public static final LocalDate MIN_DATE = LocalDate.of(1900, Month.JANUARY, 1);

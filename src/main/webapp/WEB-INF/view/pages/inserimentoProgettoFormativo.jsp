@@ -146,7 +146,7 @@
 										<div  style="margin: 0 auto;" class="col-sm-11">
 											<c:choose>
 												<c:when test="${ConoscenzeError == null}">
-													<textarea rows="2" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.attivita}</textarea>
+													<textarea rows="2" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control">${nuovoProgettoForm.conoscenze}</textarea>
 												</c:when>
 												<c:otherwise>
 													<textarea rows="2" id="inputConoscenze" placeholder="Conoscenze necessarie" name = "conoscenze" class="form-control is-invalid"></textarea>

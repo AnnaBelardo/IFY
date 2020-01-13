@@ -16,16 +16,16 @@ public class LoginForm {
 	}
 	
 	public LoginForm(String email, String password) {
-		this.email=email;
+		this.email=email.toLowerCase();
 		this.password=password;
 	}
 	
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public String getPassword() {

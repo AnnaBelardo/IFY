@@ -106,7 +106,7 @@
 													action="./accettaRichiestaConvenzionamento">
 													<input type="hidden" name="idRichiesta"
 														value="${current.id}">
-													<button class="btn btn-success">
+													<button class="btn btn-success" data-toggle="tooltip" title="Accetta richiesta">
 														<i class="fa fa-user-check"></i>
 													</button>
 												</form>
@@ -115,7 +115,7 @@
 													action="./rifiutaRichiestaConvenzionamento">
 													<input type="hidden" name="idRichiesta"
 														value="${current.id}">
-													<button class="btn btn-danger">
+													<button class="btn btn-danger" data-toggle="tooltip" title="Rifiuta richiesta">
 														<i class="fa fa-user-times"></i>
 													</button>
 												</form>

@@ -115,19 +115,6 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="./resources/vendor/jquery/jquery.min.js"></script>
 		<script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<c:if test="${successoIscrizione != null}">
 		
-			<script> $(window).on('load', function() {
-				alert("${successoIscrizione}");
-			});
-			</script>
-		</c:if>
-		<c:if test="${successoConvenzionamento != null}">
-		
-			<script> $(window).on('load', function() {
-				alert("${successoConvenzionamento}");
-			});
-			</script>
-		</c:if>
 	</body>
 </html>

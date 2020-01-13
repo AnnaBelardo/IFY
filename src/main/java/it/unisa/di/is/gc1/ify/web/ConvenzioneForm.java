@@ -23,7 +23,7 @@ public class ConvenzioneForm {
 		this.indirizzo = indirizzo;
 		this.sesso = sesso;
 		this.ruolo = ruolo;
-		this.email = email;
+		this.email = email.toLowerCase();
 		this.password = password;
 		this.confermaPassword = confermaPassword;
 		this.condizioniDelegato = condizioniDelegato;
@@ -66,10 +66,10 @@ public class ConvenzioneForm {
 		this.ruolo = ruolo;
 	}
 	public String getEmail() {
-		return email;
+		return email.toLowerCase();
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 	public String getPassword() {
 		return password;
