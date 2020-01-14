@@ -16,8 +16,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendaleRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
 
+import org.junit.Before;
 /**
 * Classe di test d'integrazione UtenzaService: testa l'integrazione delle componenti
 * UtenzaService, UtenteRepository e AutenticazioneHolder.
@@ -32,14 +41,52 @@ import it.unisa.di.is.gc1.ify.Studente.Studente;
 public class UtenzaServiceRepositoriesIT {
 	
 	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
+	@Autowired
 	private UtenzaService utenzaService;
 	
 	@Autowired
 	private UtenteRepository utenteRepository;	
+
 	
 	private Studente studente;
 	private Utente utente;
 	
+	
+	@Before
+	public void setUp() {
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+	}
 	/**
 	 * Testa il metodo validaMail() , nel caso in cui la mail passata sia null.
 	 * 

@@ -17,6 +17,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+
 
 /**
  * Test di integrazione fra la classe DelegatoAziendaleRepository e il Database. 
@@ -35,6 +42,37 @@ public class DelegatoAziendaleRepositoryIT {
 	@Autowired
 	private DelegatoAziendaleRepository delegatoAziendaleRepository;
 	
+	
+	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	/*@Autowired
+	private TestSupporter testSupporter;*/
+	
+	
 	private Azienda azienda;
 	private DelegatoAziendale delegatoAziendale;
 	
@@ -45,6 +83,19 @@ public class DelegatoAziendaleRepositoryIT {
 	 */
 	@Before
 	public void salvaAziendaDelegato() {
+		//testSupporter.clearDB();
+		
+		
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+		
 		
 		azienda = new Azienda();
 		azienda.setpIva("12345678911");

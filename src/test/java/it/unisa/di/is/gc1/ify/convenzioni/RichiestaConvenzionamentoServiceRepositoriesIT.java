@@ -19,8 +19,13 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 /**
@@ -50,6 +55,34 @@ public class RichiestaConvenzionamentoServiceRepositoriesIT {
 	@Autowired
 	private ResponsabileUfficioTirociniRepository responsabileUfficioTirociniRepository;
 	
+	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
+	
 	private Azienda azienda1;
 	
 	private Azienda azienda2;
@@ -75,6 +108,16 @@ public class RichiestaConvenzionamentoServiceRepositoriesIT {
 	
 	@Before
 	public void setUp() {
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+		
 		azienda1=new Azienda();
 		azienda1.setpIva("01234567895");
 		

@@ -25,6 +25,13 @@ import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendaleRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 
 /**
  * Classe di test d'integrazione RichiestaIscrizioneRepository - DataBase
@@ -44,6 +51,35 @@ public class RichiestaIscrizioneRepositoryIT {
 
 	@Autowired
 	private RichiestaIscrizioneRepository richiestaIscrizioneRepository;
+	
+	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
+	/*@Autowired
+	private TestSupporter testSupporter;*/
 
 	private List<Studente> listaStudenti;
 	private List<RichiestaIscrizione> listaRichieste;
@@ -54,6 +90,18 @@ public class RichiestaIscrizioneRepositoryIT {
 	 */
 	@Before
 	public void salvaStudente() {
+		//testSupporter.clearDB();
+		
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+		
 		listaRichieste = new ArrayList<RichiestaIscrizione>();
 		listaStudenti = new ArrayList<Studente>();
 

@@ -16,9 +16,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
 import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneService;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendaleRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
@@ -43,6 +51,31 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 	@Autowired
 	private UtenzaService utenzaService;
 	
+	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
 	private Studente studente;
 	private RichiestaIscrizione richiestaIscrizione;
 	private ResponsabileUfficioTirocini responsabile;
@@ -58,6 +91,15 @@ public class ServiceRichiestaIscrizioneRepositoriesIT {
 	
 	@Test
 	public void salvaRichiestaIscrizione() {
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
 		
 		studente = new Studente();
 		

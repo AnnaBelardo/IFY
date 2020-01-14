@@ -81,9 +81,9 @@
 							<thead>
 								<tr>
 									<th class="d-none">Hidden nested details table</th>
-									<th class="detail titolo" data-sortable="true">Azienda</th>
-									<th class="detail titolo" data-sortable="true">Sede</th>
-									<th class="detail titolo" data-sortable="true">Settore</th>
+									<th class="titolo" data-sortable="true">Azienda</th>
+									<th class="titolo" data-sortable="true">Sede</th>
+									<th class="titolo" data-sortable="true">Settore</th>
 									<th class="titolo"></th>
 									<th class="titolo"></th>
 								</tr>

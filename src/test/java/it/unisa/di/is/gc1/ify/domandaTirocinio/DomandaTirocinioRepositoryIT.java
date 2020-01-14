@@ -19,12 +19,17 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
 import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
 import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendaleRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoRepository;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
 
 /**
  * Test di integrazione fra la classe DomandaTirocinioRepository e il Database. 
@@ -47,9 +52,30 @@ public class DomandaTirocinioRepositoryIT {
 
 	@Autowired
 	private AziendaRepository aziendeRepository;
-
+	
 	@Autowired
 	private ProgettoFormativoRepository progettiRepository;
+	
+
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
 
 	private List<ProgettoFormativo> listaProgettiFormativi;
 
@@ -67,6 +93,17 @@ public class DomandaTirocinioRepositoryIT {
 	 */
 	@Before
 	public void setUp() {
+		
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+		
 		listaProgettiFormativi = new ArrayList<ProgettoFormativo>();
 		listaAziende = new ArrayList<Azienda>();
 		listaStudenti = new ArrayList<Studente>();

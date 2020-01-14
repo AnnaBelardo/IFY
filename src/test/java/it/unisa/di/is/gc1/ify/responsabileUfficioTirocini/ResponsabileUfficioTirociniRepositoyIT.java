@@ -17,6 +17,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.AziendaRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendaleRepository;
+import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+
 
 /**
  * Test di integrazione fra la classe ResponsabileUfficioTirocini e il Database. 
@@ -32,7 +41,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ResponsabileUfficioTirociniRepositoyIT {
 
 	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
 	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
 	
 	private List<ResponsabileUfficioTirocini> listaResponsabili ; 
 	
@@ -42,6 +76,18 @@ public class ResponsabileUfficioTirociniRepositoyIT {
 	 */
 	@Before
 	public void setUp() {
+		//testSupporter.clearDB();
+		
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
+		
 		//cresazione e implementazione di un responsabile
 		String nome1 = "Mario";
 		String cognome1 = "Rossi"; 

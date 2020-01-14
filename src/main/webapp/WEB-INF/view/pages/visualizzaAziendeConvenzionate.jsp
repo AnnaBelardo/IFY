@@ -46,10 +46,10 @@
 						<table class="table-sm" id="parentTable" data-toggle="table" data-sortable="true" data-detail-view="true" data-detail-view-icon="false" data-pagination="true" data-page-size="5">
 							<thead>
 								<tr>
-									<th class="d-none">Hidden nested details table</th>
-									<th class="detail titolo" data-sortable="true">Azienda</th>
-									<th class="detail titolo" data-sortable="true">Sede</th>
-									<th class="detail titolo" data-sortable="true">Settore</th>
+									<th class= "d-none">Hidden nested details table</th>
+									<th class= "titolo" data-sortable="true">Azienda</th>
+									<th class= "titolo" data-sortable="true">Sede</th>
+									<th class= "titolo" data-sortable="true">Settore</th>
 									<th></th>
 									<th></th>
 								</tr>

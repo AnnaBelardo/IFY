@@ -20,6 +20,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizioneRepository;
+import it.unisa.di.is.gc1.ify.Studente.StudenteRepository;
+import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinioRepository;
+import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoRepository;
+import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirociniRepository;
+import it.unisa.di.is.gc1.ify.utenza.UtenteRepository;
+
+
 /**
  * Test di integrazione fra la classe RichiestaConvenzionamentoRepository e il Database. 
  * Metodologia: bottom-up.
@@ -40,6 +48,33 @@ public class RichiestaConvenzionamentoRepositoryIT {
 	@Autowired
 	private RichiestaConvenzionamentoRepository richiestaConvenzionamentoRepository;
 	
+	@Autowired
+	private DomandaTirocinioRepository domandeRepository;
+
+	@Autowired
+	private AziendaRepository aziendeRepository;
+	
+	@Autowired 
+	private RichiestaConvenzionamentoRepository convenzionamentiRepository;
+	
+	@Autowired
+	private ProgettoFormativoRepository progettiRepository;
+	
+	@Autowired
+	private DelegatoAziendaleRepository delegatoRepository;
+	
+	@Autowired
+	private RichiestaIscrizioneRepository iscrizioneRepository;
+	
+	@Autowired
+	private StudenteRepository studenteRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private ResponsabileUfficioTirociniRepository responsabileRepository;
+	
 	private Azienda azienda, azienda2;
 	private DelegatoAziendale delegatoAziendale, delegatoAziendale2;
 	private RichiestaConvenzionamento richiestaConvenzionamento, richiestaConvenzionamento2;
@@ -50,6 +85,15 @@ public class RichiestaConvenzionamentoRepositoryIT {
 	 */
 	@Before
 	public void salvaAziendaDelegato() {
+		domandeRepository.deleteAll();
+		progettiRepository.deleteAll();
+		convenzionamentiRepository.deleteAll();
+		delegatoRepository.deleteAll();
+		aziendeRepository.deleteAll();
+		iscrizioneRepository.deleteAll();
+		studenteRepository.deleteAll();
+		responsabileRepository.deleteAll();
+		utenteRepository.deleteAll();
 		
 		azienda = new Azienda();
 		azienda.setpIva("12345678911");
