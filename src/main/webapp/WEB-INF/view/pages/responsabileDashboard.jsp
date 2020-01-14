@@ -7,7 +7,6 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Dashboard</title>
-		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" 	href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 		<link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
@@ -62,7 +61,7 @@
 	    							<img src="./resources/images/dashDelegato/RichiestaIscrizione.png" class="card-img-top .my_img img-responsive" alt="..." height="232" width="100">
 	    								<div class="card-body">
 	      									<h5 class="card-title">Richieste di iscrizione</h5>
-	      									<p class="card-text">In questa sezione puoi vedere i le richieste di iscrizione alla piattaforma</p>
+	      									<p class="card-text">In questa sezione puoi vedere le richieste di iscrizione alla piattaforma</p>
 	      									<a type="button" class="btn btn-primary login-btn btn-dimensione-responsabile bottonecard" href="./visualizzaRichiesteIscrizione">Richieste di iscrizione</a>
 	    								</div>
 	  							</div>

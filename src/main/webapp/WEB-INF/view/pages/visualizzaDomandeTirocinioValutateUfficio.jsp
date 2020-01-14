@@ -108,7 +108,7 @@
 												</dl>
 											</td>											
 											<td>Richiesta ${current.id}</td>
-											<td>${current.studente.nome}</td>
+											<td>${current.studente.nome} ${current.studente.cognome}</td>
 											<td>${current.stato}</td>
 										</tr>
 									</c:forEach>

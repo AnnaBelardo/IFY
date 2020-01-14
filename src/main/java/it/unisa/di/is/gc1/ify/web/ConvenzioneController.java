@@ -19,7 +19,6 @@ import it.unisa.di.is.gc1.ify.convenzioni.Azienda;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamento;
 import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoService;
-import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;

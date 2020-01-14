@@ -16,14 +16,6 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<!--  
-				<p><b>Ambito</b> <br>${progettoPerDettagli.ambito}</p>
-				<p><b>Attività</b> <br>${progettoPerDettagli.attivita}</p>
-				<p><b>Conoscenze</b> <br>${progettoPerDettagli.conoscenze}</p>
-				<p><b>Data Compilazione:</b> ${progettoPerDettagli.data_compilazione}</p>
-				<p><b>Numero massimo partecipanti:</b> ${progettoPerDettagli.max_partecipanti}</p>
-				<p><b>Descrizione</b> <br>${progettoPerDettagli.descrizione}</p>
-				-->
 				<form method="POST" action="./inserimentoDomandaTirocinio"
 					modelAttribute="domandaTirocinioForm">
 					<input type="hidden" name="idProgettoFormativo"

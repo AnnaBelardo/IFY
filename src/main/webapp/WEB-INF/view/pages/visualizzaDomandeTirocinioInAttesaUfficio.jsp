@@ -8,7 +8,6 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Domande tirocinio in attesa</title>
-		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 		<link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
@@ -108,7 +107,7 @@
 													action="./approvazioneDomandaTirocinio">
 													<input type="hidden" name="idDomanda"
 														value="${current.id}">
-													<button class="btn btn-success tir">
+													<button class="btn btn-success tir"  data-toggle="tooltip" title="Approva domanda">
 														<i class="fa fa-check"></i>
 													</button>
 												</form>
@@ -117,7 +116,7 @@
 													action="./respintaDomandaTirocinio">
 													<input type="hidden" name="idDomanda"
 														value="${current.id}">
-													<button class="btn btn-danger tir">
+													<button class="btn btn-danger tir"  data-toggle="tooltip" title="Respingi domanda">
 														<i class="fa fa-times"></i>
 													</button>
 												</form>

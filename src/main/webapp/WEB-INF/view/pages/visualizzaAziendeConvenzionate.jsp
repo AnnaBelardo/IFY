@@ -118,8 +118,6 @@
 										</td>
 										<td class="testo-tabella"><a class="detail-icon btn reg" style="width: 160px;">Progetti Formativi</a></td>
 											
-										</td>
-
 									</tr>
 
 								</c:forEach>

@@ -10,7 +10,6 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Progetti formativi archiviati</title>
-		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 		<link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
@@ -52,7 +51,6 @@
 							</ul>
 						</div>
 					</nav>
-					<!-- Page Content  -->
 					<div id="content" class="p-4 p-md-5 pt-5">
 						<div class="container">
 							<h4>
@@ -73,27 +71,6 @@
 								<c:forEach items="${progettiFormativiArchiviati}" var="current"
 									varStatus="loop">
 									<tr>
-										<!--
-										<td class="valuta">
-											<form name="accettaForm" method="POST"
-												action="/accettaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
-													value="${current.id}">
-												<button class="btn btn-success">
-													<i class="fa fa-user-check"></i>
-												</button>
-											</form>
-										<td class="valuta">
-											<form name="submitForm" method="POST"
-												action="/rifiutaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
-													value="${current.id}">
-												<button class="btn btn-danger">
-													<i class="fa fa-user-times"></i>
-												</button>
-											</form>
-										</td>
-										-->
 										<td class="testo-tabella">${current.nome}</td>
 										<td class="testo-tabella">
 												<form name="dettagliForm" method="POST"

@@ -13,12 +13,12 @@
 
 <title>Aziende convenzionate</title>
 
-<!-- Bootstrap core CSS -->
+
 <link rel="stylesheet"
 	href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 <link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
-<!-- Custom styles for this template -->
+
 
 <link rel="stylesheet" href="./resources/css/sidebar.css">
 <link rel="stylesheet" href="./resources/css/style.css">
@@ -141,9 +141,7 @@
 																		</form>
 																	</td>
 																	<td>
-																		<!--  
-																	<input type="submit" class="btn btn-primary aziende-convenzionate-btn invia-btn" value="Invia">
-																	-->
+																		
 																		<form name="domandaTirocinioForm" method="POST"
 																			action="./nuovaDomandaTirocinio">
 																			<input type="hidden" name="idProgettoFormativo"
@@ -172,7 +170,6 @@
 										<td class="testo-tabella"><a class="detail-icon btn reg"
 											style="width: 160px;">Progetti Formativi</a></td>
 
-										</td>
 
 									</tr>
 

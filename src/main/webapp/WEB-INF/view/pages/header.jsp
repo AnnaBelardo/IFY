@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="/IFY/src/main/webapp/resources/images/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
-	<!--  <div class = "fixed-top header-div">-->
+
 	<c:if test="${successoIscrizione != null}">
 			<div class="alert alert-success alert-home alert-dismissible">
 			  	<button type="button" class="close" data-dismiss="alert">&times;</button>

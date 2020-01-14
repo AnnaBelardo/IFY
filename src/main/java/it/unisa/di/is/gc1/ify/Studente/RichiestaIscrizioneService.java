@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.unisa.di.is.gc1.ify.convenzioni.RichiestaConvenzionamentoNonValidaException;
 import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.MailSingletonSender;
 import it.unisa.di.is.gc1.ify.utenza.Utente;

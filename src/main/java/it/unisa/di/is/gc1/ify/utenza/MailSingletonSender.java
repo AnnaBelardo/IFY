@@ -93,23 +93,23 @@ public class MailSingletonSender {
 
 			if (stato == DomandaTirocinio.ACCETTATA)
 				return "Gentile " + nome + " " + cognome
-						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda
+						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda " + nomeAzienda
 						+ ", per il progetto " + progetto + ", è stata " + stato
 						+ " dall'azienda.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 			else if (stato == DomandaTirocinio.RIFIUTATA)
 				return "Gentile " + nome + " " + cognome
-						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda
+						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda " + nomeAzienda
 						+ ", per il progetto " + progetto + ", è stata " + stato
 						+ " dall'azienda. La invitiamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 			else if (stato == DomandaTirocinio.APPROVATA)
 				return "Gentile " + nome + " " + cognome
-						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda
-						+ ", per il progetto " + progetto + ", è stata definitivamente" + stato
+						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda " + nomeAzienda
+						+ ", per il progetto " + progetto + ", è stata definitivamente " + stato
 						+ ".\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 			else if (stato == DomandaTirocinio.RESPINTA)
 				return "Gentile " + nome + " " + cognome
-						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda" + nomeAzienda
-						+ ", per il progetto " + progetto + ", è stata definitivamente" + stato
+						+ " la informiamo che la sua domanda di tirocinio inviata all'azienda " + nomeAzienda
+						+ ", per il progetto " + progetto + ", è stata definitivamente " + stato
 						+ ". La inviriamo a riprovare.\nCordiali saluti, l'Ufficio Tirocini dell'Università degli Studi di Salerno.";
 		}
 		return "";

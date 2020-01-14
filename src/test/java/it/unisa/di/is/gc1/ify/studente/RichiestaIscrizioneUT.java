@@ -1264,8 +1264,6 @@ public class RichiestaIscrizioneUT {
 
 		try {
 			validaCampi();
-			Studente studente = new Studente(nome, cognome, indirizzo, telefono, email, matricola, sesso, dataNascita,
-					password);
 
 			when(richiestaIscrizioneRepository.save(any(RichiestaIscrizione.class))).thenReturn(null);
 			richiestaIscrizioneService.salvaRichiestaIscrizione(richiestaIscrizione);

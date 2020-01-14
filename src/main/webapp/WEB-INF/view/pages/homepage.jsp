@@ -8,18 +8,8 @@
   		<meta name="description" content="">
   		<meta name="author" content="">
 		<title>IFY - Internship For You</title>
-		<!--  
-		<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    	<script src="./resources/js/bootstrap.min.js"></script>
-    	-->
+		
     	<link rel="stylesheet" href="webjars/bootstrap/4.4.1/css/bootstrap.css">
-    	<!-- vecchio <link rel="stylesheet" href="./resources/css/testo.css">-->
-    	<!-- Bootstrap core CSS 
-  		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		-->
-  		<!-- Custom styles for this template -->
   		<link href="./resources/css/modern-business.css" rel="stylesheet">
  		<link href="./resources/css/style.css" rel="stylesheet">
 	</head>
@@ -33,21 +23,18 @@
 		        	<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		      	</ol>
 		      	<div class="carousel-inner" role="listbox">
-		        <!-- Slide One - Set the background image for this slide in the line below -->
 		        	<div class="carousel-item active" style="background-image: url('./resources/images/carosello/campus.jpg')">
 		          		<div class="carousel-caption d-none d-md-block">
 		            		<h3 class="testo">Dipartimento di Informatica dell'Università degli Studi di Salerno</h3>
 		            		<p class="testo">L'università mette in contatto studenti e aziende</p>
 		          		</div>
 		        	</div>
-		        <!-- Slide Two - Set the background image for this slide in the line below -->
 		        	<div class="carousel-item" style="background-image: url('./resources/images/carosello/tirocini.jpg')">
 		          		<div class="carousel-caption d-none d-md-block">
 		            		<h3 class="testo">Tirocinio</h3>
 		            		<p class="testo">IFY facilita agli studenti lo svolgimento di tirocini esterni</p>
 		          		</div>
 		        	</div>
-		        	<!-- Slide Three - Set the background image for this slide in the line below -->
 		        	<div class="carousel-item" style="background-image: url('./resources/images/carosello/aziendacarousel.jpg')">
 		          		<div class="carousel-caption d-none d-md-block">
 		            		<h3 class="testo">Azienda</h3>
@@ -68,7 +55,6 @@
 		<!-- Page Content -->
 		<div class="container page-wrap">
 			<h1 class="my-4 testosopracard">Benvenuto sulla piattaforma per la gestione dei tirocini</h1><br>
-			<!-- Marketing Icons Section -->
 			<div class="row">
 				<div class="col-lg-4 mb-4 card-hompage">
 			      	<div class="card h-100">
@@ -86,7 +72,6 @@
 			    	<div class="card h-100">
 			        	<h4 class="card-header">Sei uno studente?</h4>
 			          		<div class="card-body">
-							<!--<img src="./img/studente.png" class="img-fluid">-->
 								<img src="./resources/images/card/studente.png" class="img-thumbnail">
 			            		<p class="card-text">Cosa aspetti a registrarti?</p>
 			          		</div>
@@ -108,9 +93,7 @@
 			        </div>
 			      </div>
 			</div>
-			<!-- /.row -->
 		</div>
-		<!-- /.container -->
 		<%@ include file="footer.jsp" %>
 		<!-- Bootstrap core JavaScript -->
 		<script src="./resources/vendor/jquery/jquery.min.js"></script>

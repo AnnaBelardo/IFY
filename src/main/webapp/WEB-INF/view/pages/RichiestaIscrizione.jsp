@@ -17,7 +17,7 @@
 
 <body background= "./resources/images/iscrizioneStudente.png">
 <%@ include file="header.jsp" %>
-	<div style="margin-top: 50px; margin-bottom: 30px;" class="container">
+	<div style="margin-top: 50px; margin-bottom: 130px;" class="container">
 	
 		<form class="form-horizontal" role="form" name="iscrizioneForm"
 			method="post" action="./richiestaIscrizione"
@@ -253,7 +253,6 @@
 			</div>
 		</form>
 	</div>
-	<!-- ./container -->
 	
 <%@ include file="footer.jsp" %>
 </body>

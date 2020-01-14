@@ -10,12 +10,12 @@
   		<meta name="author" content="">  
 <title>Domande di tirocinio inoltrate</title>
 
-<!-- Bootstrap core CSS -->
+
 <link rel="stylesheet"
 	href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 <link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
-<!-- Custom styles for this template -->
+
 
 <link rel="stylesheet" href="./resources/css/sidebar.css">
 <link rel="stylesheet" href="./resources/css/style.css">
@@ -37,9 +37,6 @@
 						</button>
 					</div>
 					<div class="p-4 pt-5">
-						<!--  <h1><a href="index.html" class="logo">IFY</a></h1>-->
-						
-						
 						<ul class="list-unstyled components mb-5">
 						
 							<li><a href="./">Dashboard</a></li>

@@ -13,12 +13,11 @@
 
 <title>Domande di tirocinio in attesa</title>
 
-<!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="webjars/font-awesome/5.12.0/css/all.css" rel="stylesheet" />
 <link href="./resources/css/bootstrap-table.css" rel="stylesheet" />
-<!-- Custom styles for this template -->
+
 
 <link rel="stylesheet" href="./resources/css/sidebar.css">
 <link href="./resources/css/dashboard.css" rel="stylesheet">

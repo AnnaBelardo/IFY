@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.unisa.di.is.gc1.ify.Studente.OperazioneNonAutorizzataException;
-import it.unisa.di.is.gc1.ify.Studente.RichiestaIscrizione;
 import it.unisa.di.is.gc1.ify.Studente.Studente;
 import it.unisa.di.is.gc1.ify.convenzioni.DelegatoAziendale;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativo;
 import it.unisa.di.is.gc1.ify.progettoFormativo.ProgettoFormativoService;
-import it.unisa.di.is.gc1.ify.responsabileUfficioTirocini.ResponsabileUfficioTirocini;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 

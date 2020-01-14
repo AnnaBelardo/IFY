@@ -73,27 +73,6 @@
 								<c:forEach items="${progettiFormativiAttivi}" var="current"
 									varStatus="loop">
 									<tr>
-										<!--
-										<td class="valuta">
-											<form name="accettaForm" method="POST"
-												action="/accettaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
-													value="${current.id}">
-												<button class="btn btn-success">
-													<i class="fa fa-user-check"></i>
-												</button>
-											</form>
-										<td class="valuta">
-											<form name="submitForm" method="POST"
-												action="/rifiutaRichiestaIscrizione">
-												<input type="hidden" name="idRichiesta"
-													value="${current.id}">
-												<button class="btn btn-danger">
-													<i class="fa fa-user-times"></i>
-												</button>
-											</form>
-										</td>
-										-->
 										<td class="testo-tabella">${current.nome}</td>
 										<td class="testo-tabella">
 												<form name="dettagliForm" method="POST"
