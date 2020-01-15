@@ -23,7 +23,6 @@ public class DelegatoAziendale extends Utente {
 	 * setters.
 	 * 
 	 * */
-	
 	public DelegatoAziendale() {
 		super();
 	}
@@ -47,19 +46,34 @@ public class DelegatoAziendale extends Utente {
 	}
 
 	
-	
+	/**
+	 * Restituisce il campo ruolo
+	 * @return ruolo
+	 */
 	public String getRuolo() {
 		return ruolo;
 	}
 
+	/**
+	 * Setta il ruolo
+	 * @param ruolo
+	 */
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
 
+	/**
+	 * Restituisce l'azienda associata
+	 * @return azienda associata
+	 */
 	public Azienda getAzienda() {
 		return azienda;
 	}
 
+	/**
+	 * Setta l'azienda associata
+	 * @param azienda
+	 */
 	public void setAzienda(Azienda azienda) {
 		this.azienda = azienda;
 	}

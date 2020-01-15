@@ -35,35 +35,66 @@ public class RichiestaConvenzionamento {
 		this.delegatoAziendale = delegatoAziendale;
 	}
 	
-	
+	/**
+	 * Rerstituisce l'id
+	 * @return id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * Configura l'id
+	 * @param id
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Rerstituisce lo stato
+	 * @return stato
+	 */
 	public String getStato() {
 		return stato;
 	}
 
+	/**
+	 * Configura lo stato
+	 * @param stato
+	 */
 	public void setStato(String stato) {
 		this.stato = stato;
 	}
 
+	/**
+	 * Rerstituisce l'azienda associata
+	 * @return azienda associata
+	 */
 	public Azienda getAzienda() {
 		return azienda;
 	}
 
+	/**
+	 * Configura l'azienda associata
+	 * @param azienda associata
+	 */
 	public void setAzienda(Azienda azienda) {
 		this.azienda = azienda;
 	}
 	
+	/**
+	 * Rerstituisce il delegato aziendale associato
+	 * @return delegato aziendale associato
+	 */
 	public DelegatoAziendale getDelegatoAziendale() {
 		return delegatoAziendale;
 	}
-
+	
+	/**
+	 * Configura il delegato aziendale associato
+	 * @param delegatoAziendale
+	 */
 	public void setDelegatoAziendale(DelegatoAziendale delegatoAziendale) {
 		this.delegatoAziendale = delegatoAziendale;
 	}

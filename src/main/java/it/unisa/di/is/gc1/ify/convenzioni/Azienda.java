@@ -47,41 +47,99 @@ public class Azienda {
 		this.settore = settore;
 		this.descrizione = descrizione;
 	}
+	
+	/**
+	 * Restituisce il campo piva
+	 * @return partita iva
+	 */
 	public String getpIva() {
 		return pIva;
 	}
+	
+	/**
+	 * Setta il campo partita iva
+	 * @param pIva
+	 */
 	public void setpIva(String pIva) {
 		this.pIva = pIva;
 	}
+	
+	/**
+	 * Restituisce il campo ragione sociale
+	 * @return ragione sociale
+	 */
 	public String getRagioneSociale() {
 		return ragioneSociale;
 	}
+	
+	/**
+	 * Setta il campo ragione sociale
+	 * @param ragioneSociale
+	 */
 	public void setRagioneSociale(String ragioneSociale) {
 		this.ragioneSociale = ragioneSociale;
 	}
+	
+	/**
+	 * Restituisce il campo sede
+	 * @return sede
+	 */
 	public String getSede() {
 		return sede;
 	}
+	
+	/**
+	 * Setta il campo sede
+	 * @param sede
+	 */
 	public void setSede(String sede) {
 		this.sede = sede;
 	}
+	
+	/**
+	 * Restituisce il campo settore
+	 * @return settore
+	 */
 	public String getSettore() {
 		return settore;
 	}
+	
+	/**
+	 * Setta il campo settore
+	 * @param settore
+	 */
 	public void setSettore(String settore) {
 		this.settore = settore;
 	}
+	
+	/**
+	 * Restituisce il campo descrizione
+	 * @return descrizione
+	 */
 	public String getDescrizione() {
 		return descrizione;
 	}
+	
+	/**
+	 * Setta il campo descrizione
+	 * @param descrizione
+	 */
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
 
+	/**
+	 * Restituisce la lista di progetti formativi associati
+	 * @return lista di progetti formativi associati
+	 */
 	public List<ProgettoFormativo> getProgettiFormativi() {
 		return progettiFormativi;
 	}
-
+	
+	/**
+	 * Setta la lista di progetti formativi associati
+	 * @param progettiFormativi
+	 */
 	public void setProgettiFormativi(List<ProgettoFormativo> progettiFormativi) {
 		this.progettiFormativi = progettiFormativi;
 	}

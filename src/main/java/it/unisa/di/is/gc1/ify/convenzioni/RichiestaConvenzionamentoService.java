@@ -590,10 +590,20 @@ public class RichiestaConvenzionamentoService {
 		return condizioniAzienda;
 	}
 
+	/**
+	 * Restiuisce l'azienda associata a partire dalla partita iva
+	 * @param pIva 
+	 * @return azienda associata
+	 */
 	public Azienda getAziendaFromPIva(String pIva) {
 		return aziendaRepository.findByPIva(pIva);
 	}
 
+	/**
+	 * Restituisce il delegato aziendale associato a partire dalla partita iva
+	 * @param pIva
+	 * @return delegato aziendale associato
+	 */
 	public DelegatoAziendale getDelegatoFromAziendaPIva(String pIva) {
 		return delegatoAziendaleRepository.findByAziendaPIva(pIva);
 	}

@@ -51,11 +51,18 @@ public class RichiestaConvenzionamentoNonValidaException extends Exception {
 		this.target = target;
 	}
 	
-	
+	/**
+	 * Restituisce il target associato all'exception
+	 * @return target
+	 */
 	public String getTarget() {
 		return target;
 	}
 
+	/**
+	 * Configura il target associato all'exception
+	 * @param target
+	 */
 	public void setTarget(String target) {
 		this.target = target;
 	}
