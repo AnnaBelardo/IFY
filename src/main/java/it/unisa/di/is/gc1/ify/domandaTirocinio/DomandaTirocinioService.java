@@ -111,7 +111,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di rifiuto aziendale di una domanda di
+	 * Il metodo fornisce la funzionalita' di rifiuto aziendale di una domanda di
 	 * tirocinio
 	 * 
 	 * 
@@ -152,7 +152,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di approvazione dell'ufficio tirocini di
+	 * Il metodo fornisce la funzionalita' di approvazione dell'ufficio tirocini di
 	 * una domanda di tirocinio
 	 * 
 	 * 
@@ -188,7 +188,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di respinta dell'ufficio tirocini di una
+	 * Il metodo fornisce la funzionalita' di respinta dell'ufficio tirocini di una
 	 * domanda di tirocinio
 	 * 
 	 * 
@@ -225,7 +225,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione delle domande di
+	 * Il metodo fornisce la funzionalita' di visualizzazione delle domande di
 	 * tirocinio in attesa
 	 * 
 	 * @param piva
@@ -261,7 +261,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione delle domande di
+	 * Il metodo fornisce la funzionalita' di visualizzazione delle domande di
 	 * tirocinio inoltrate
 	 * 
 	 * @param piva
@@ -302,7 +302,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione dei tirocini in corso
+	 * Il metodo fornisce la funzionalita' di visualizzazione dei tirocini in corso
 	 * dell'azienda
 	 * 
 	 * @param piva
@@ -344,7 +344,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione delle domande di
+	 * Il metodo fornisce la funzionalita' di visualizzazione delle domande di
 	 * tirocinio inoltrate da uno studente
 	 * 
 	 * @param id
@@ -377,7 +377,7 @@ public class DomandaTirocinioService {
 	}
 	
 	/**
-	 *  Il metodo fornisce la funzionalità di visualizzazione dei tirocini in corso
+	 *  Il metodo fornisce la funzionalita' di visualizzazione dei tirocini in corso
 	 * di uno studente
 	 * 
 	 * @param id
@@ -416,7 +416,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione delle domande di
+	 * Il metodo fornisce la funzionalita' di visualizzazione delle domande di
 	 * tirocinio in attesa dell'ufficio
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista delle
@@ -441,7 +441,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione delle domande di
+	 * Il metodo fornisce la funzionalita' di visualizzazione delle domande di
 	 * tirocinio valutate dall'ufficio
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista delle
@@ -468,7 +468,7 @@ public class DomandaTirocinioService {
 	}
 
 	/**
-	 * Il metodo fornisce la funzionalità di visualizzazione dei tirocini in corso
+	 * Il metodo fornisce la funzionalita' di visualizzazione dei tirocini in corso
 	 * ufficio
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista dei

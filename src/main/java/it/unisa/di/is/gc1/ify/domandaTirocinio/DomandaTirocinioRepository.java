@@ -52,7 +52,7 @@ public interface DomandaTirocinioRepository extends JpaRepository<DomandaTirocin
 	 * @param stato String che rappresenta lo stato della domanda.
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista delle
-	 *         domande di tirocinio <b>Può essere vuota</b> se nel database non
+	 *         domande di tirocinio <b>Puo' essere vuota</b> se nel database non
 	 *         sono presenti domande di tirocinio per studente e stato passati come
 	 *         parametro 
 	 */
@@ -71,7 +71,7 @@ public interface DomandaTirocinioRepository extends JpaRepository<DomandaTirocin
 	 * @param stato String che rappresenta lo stato della domanda.
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista delle
-	 *         domande di tirocinio <b>Può essere vuota</b> se nel database non
+	 *         domande di tirocinio <b>Puo' essere vuota</b> se nel database non
 	 *         sono presenti domande di tirocinio per azienda e stato passati come
 	 *         parametro 
 	 */
@@ -89,7 +89,7 @@ public interface DomandaTirocinioRepository extends JpaRepository<DomandaTirocin
 	 * @param stato String che rappresenta lo stato della domanda.
 	 * 
 	 * @return Lista di {@link DomandaTirocinio} che rappresenta la lista delle
-	 *         domande di tirocinio <b>Può essere vuota</b> se nel database non
+	 *         domande di tirocinio <b>Puo' essere vuota</b> se nel database non
 	 *         sono presenti domande di tirocinio con lo stato passato come
 	 *         parametro 
 	 */
@@ -101,8 +101,8 @@ public interface DomandaTirocinioRepository extends JpaRepository<DomandaTirocin
 	 * @param id Long che rappresenta l'identificativo della domanda di tirocinio
 	 * 
 	 * @return Oggetto {@link DomandaTirocinio} che rappresenta la
-	 *         domanda di tirocinio <b>Può essere vuota</b> se nel database non
-	 *         è presente una domanda di tirocinio con id passato come
+	 *         domanda di tirocinio <b>Puo' essere vuota</b> se nel database non
+	 *         e' presente una domanda di tirocinio con id passato come
 	 *         parametro 
 	 */
 	public DomandaTirocinio findById(Long id);

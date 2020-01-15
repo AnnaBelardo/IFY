@@ -50,11 +50,18 @@ public class DomandaTirocinioNonValidaException extends Exception {
 		this.target = target;
 	}
 	
-	
+	/**
+	 * Metodo che ritorna la stringa che rappresenta il tipo di errore avvenuto.
+	 * @return target e' la stringa che rappresenta il tipo di errore avvenuto.
+	 */
 	public String getTarget() {
 		return target;
 	}
 
+	/**
+	 * Metodo che setta la stringa che rappresenta il tipo di errore avvenuto.
+	 * @param target e' la stringa che rappresenta il tipo di errore avvenuto.
+	 */
 	public void setTarget(String target) {
 		this.target = target;
 	}

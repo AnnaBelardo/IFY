@@ -33,7 +33,7 @@
 	
 	<nav class="fixed-top navbar navbar-dark  bg-dark flex-md-nowrap p-0">
 		<div>
-			<a style="margin-left: 5px;" href="/">
+			<a style="margin-left: 5px; text-decoration: none;" href="/">
 				<img src="./resources/images/logos/logo pre login.png" style="width:50px;">
 			</a>
 			<a class="navbar-brand col-sm-3 col-md-2 mr-0 ify-title" href="./">Internship For You</a>
