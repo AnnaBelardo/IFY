@@ -25,7 +25,6 @@ import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 /**
  * Controller per la gestione delle richieste di convenzionamento
- * 
  * @author Alessia Natale
  */
 
