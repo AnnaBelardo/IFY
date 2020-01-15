@@ -15,7 +15,6 @@ import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 /**
  * La classe fornisce i metodi per la logica di business delle richieste d'iscrizione
- * 
  * @author Carmine Ferrara Giacomo Izzo
  */
 
@@ -38,11 +37,11 @@ public class RichiestaIscrizioneService {
 
 	
 	/**
-	 * Il metodo fornisce la funzionalità di salvataggio di uno studente con la relativa
+	 * Il metodo fornisce la funzionalita' di salvataggio di uno studente con la relativa
 	 * richiesta d'iscrizione posta in stato di attesa
 	 * @param richiestaIscrizione
 	 * 
-	 * @return Richiesta Iscrizione richiestaIscrizione
+	 * @return RichiestaIscrizione richiestaIscrizione
 	 * @pre studente != null
 	 * @post richiestaIscrizione != null
 	 */
@@ -56,9 +55,8 @@ public class RichiestaIscrizioneService {
 	
 	
 	/**
-	 * Il metodo fornisce la funzionalità di accettazione di una richiesta d'iscrizione
-	 * 
-	 * 
+	 * Il metodo fornisce la funzionalita' di accettazione di una richiesta d'iscrizione
+	 *
 	 * @param idRichiesta
 	 * @return Oggetto {@link RichiestaIscrizione} che rappresenta la richiesta di
 	 *         iscrizione.
@@ -91,7 +89,7 @@ public class RichiestaIscrizioneService {
 		return richiestaIscrizione;
 	}
 		
-	 /** Il metodo fornisce la funzionalità di rifiuto di una richiesta d'iscrizione
+	 /** Il metodo fornisce la funzionalita' di rifiuto di una richiesta d'iscrizione
 	 * 
 	 * 
 	 * @param idRichiesta
@@ -126,12 +124,12 @@ public class RichiestaIscrizioneService {
 		return richiestaIscrizione;
 	}
 
-	 /** Il metodo fornisce la funzionalità di visualizzazione delle richieste di iscrizione
+	 /** Il metodo fornisce la funzionalita' di visualizzazione delle richieste di iscrizione
 	 * in attesa e relativi dettagli
 	 * 
 	 * @return Lista di {@link RichiestaIscrizione} che rappresenta la lista delle
-	 *         richieste di iscrizione <b>Può essere vuota</b> se nel database non
-	 *         sono presenti richieste di iscrizione in attesaù
+	 *         richieste di iscrizione <b>Puo' essere vuota</b> se nel database non
+	 *         sono presenti richieste di iscrizione in attesa
 	 * @throws OperazioneNonAutorizzataException
 	 */	
 	@Transactional(rollbackFor = Exception.class)

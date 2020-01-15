@@ -243,8 +243,14 @@ public class ConvenzioneController {
 		return "redirect:/visualizzaRichiesteConvenzionamento";
 	}
 	
+	/**
+	 * Metodo per visualizzare il form della richiesta di convenzionamento
+	 * 
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/iscrizioneAzienda", method = RequestMethod.GET)
-	public String iscrizioneStudente(Model model) {
+	public String iscrizioneAzienda(Model model) {
 
 		return "RichiestaConvenzionamento";
 	}

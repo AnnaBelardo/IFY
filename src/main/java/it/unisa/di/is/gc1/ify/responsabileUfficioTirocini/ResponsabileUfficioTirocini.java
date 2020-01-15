@@ -17,8 +17,8 @@ import it.unisa.di.is.gc1.ify.utenza.Utente;
 public class ResponsabileUfficioTirocini extends Utente {
 	
 	/**
-	 * Costruttore che crea un oggeto Responsabile Ufficio Tirocini vuoto, 
-	 * che verrà popolato con i metodi setters.
+	 * Costruttore che crea un oggetto Responsabile Ufficio Tirocini vuoto, 
+	 * che verra' popolato con i metodi setters.
 	 */
 	public ResponsabileUfficioTirocini() {
 		super();
@@ -26,13 +26,13 @@ public class ResponsabileUfficioTirocini extends Utente {
 	
 	/**
 	 * Costruttore di un responsabile ufficio tirocini con parametri utile nei casi di test.
-	 * @param nome è il nome del responsabile ufficio tirocini.
-	 * @param cognome è il cognome del responsabile ufficio tirocini.
-	 * @param sesso è il sesso del responsabile ufficio tirocini.
-	 * @param email è l'email del responsabile ufficio tirocini.
-	 * @param indirizzo è l'indirizzo del responsabile ufficio tirocini.
-	 * @param password è la password del responsabile ufficio tirocini.
-	 * @param ruolo è il ruolo che ricopre il responsabile ufficio tirocini.
+	 * @param nome e' il nome del responsabile ufficio tirocini.
+	 * @param cognome e' il cognome del responsabile ufficio tirocini.
+	 * @param sesso e' il sesso del responsabile ufficio tirocini.
+	 * @param email e' l'email del responsabile ufficio tirocini.
+	 * @param indirizzo e' l'indirizzo del responsabile ufficio tirocini.
+	 * @param password e' la password del responsabile ufficio tirocini.
+	 * @param ruolo e' il ruolo che ricopre il responsabile ufficio tirocini.
 	 */
 	public ResponsabileUfficioTirocini(String nome, String cognome, String sesso, String email, String indirizzo, String password, String ruolo) {
 		super(nome, cognome, sesso, email, indirizzo, password);
@@ -40,7 +40,7 @@ public class ResponsabileUfficioTirocini extends Utente {
 	
 	/**
 	 * Metodo che ritorna il ruolo del responsabile ufficio tirocini.
-	 * @return il ruolo del responsabile ufficio tirocini.
+	 * @return ruolo il ruolo del responsabile ufficio tirocini.
 	 */
 	public String getRuolo() {
 		return ruolo;
@@ -48,7 +48,7 @@ public class ResponsabileUfficioTirocini extends Utente {
 	
 	/**
 	 * Metodo che setta il ruolo del responsabile ufficio tirocini.
-	 * @param ruolo è il ruolo del responsabile ufficio tirocini.
+	 * @param ruolo il ruolo del responsabile ufficio tirocini.
 	 */
 	public void setRuolo(String ruolo) {
 		this.ruolo=ruolo;

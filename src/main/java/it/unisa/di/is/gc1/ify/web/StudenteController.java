@@ -23,7 +23,6 @@ import it.unisa.di.is.gc1.ify.utenza.UtenzaService;
 
 /**
  * Controller per la gestione delle richieste di iscrizione
- * 
  * @author Giusy Castaldo Alessia Natale
  *
  */
@@ -167,12 +166,24 @@ public class StudenteController {
 		return "redirect:/visualizzaRichiesteIscrizione";
 	}
 	
+	/**
+	 * Metodo per visualizzare la dashboard del responsabile dell'ufficio tirocini
+	 * 
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/responsabileDashboard", method = RequestMethod.GET)
-	public String dashboardResoinsabile(Model model) {
+	public String dashboardResponsabile(Model model) {
 
 		return "responsabileDashboard";
 	}
 	
+	/**
+	 * Metodo per visualizzare il form della richiesta di iscrizione
+	 * 
+	 * @param model
+	 * @return String stringa che rappresenta la pagina da visualizzare
+	 */
 	@RequestMapping(value = "/iscrizioneStudente", method = RequestMethod.GET)
 	public String iscrizioneStudente(Model model) {
 

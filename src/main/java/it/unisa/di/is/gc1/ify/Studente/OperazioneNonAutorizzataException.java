@@ -2,7 +2,6 @@ package it.unisa.di.is.gc1.ify.Studente;
 
 /**
  * Eccezione generata in caso di richiesta di operazioni per cui non si ha l'autorizzazione
- * 
  * @author Giacomo Izzo Geremia Cavezza
  */
 
@@ -22,7 +21,7 @@ public class OperazioneNonAutorizzataException extends Exception {
 	}
 
 	/**
-	 * Genera un'eccezione che riporta come messaggio, un messaggio passato come
+	 * Genera un'eccezione che riporta come messaggio un messaggio passato come
 	 * parametro
 	 * 
 	 * @param messaggio Stringa che rappresenta il messaggio da mostrare

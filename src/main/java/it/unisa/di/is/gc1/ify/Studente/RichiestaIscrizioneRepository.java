@@ -6,13 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * 
- * @author Geremia Cavezza
- * 
- *         Classe che definisce le operazioni per la modellazione e l'accesso
- *         alle informazioni persisteti relative ad una richiesta di iscrizione
- *
+ * Classe che definisce le operazioni per la modellazione e l'accesso
+ * alle informazioni persisteti relative ad una richiesta di iscrizione
  * @see RichiestaIscrizione
+ * @author Geremia Cavezza
  */
 
 @Repository
@@ -25,8 +22,8 @@ public interface RichiestaIscrizioneRepository extends JpaRepository<RichiestaIs
 	 * @param stato Stringa che rappresenta lo stato della richiesta di iscrizione
 	 * 
 	 * @return Lista di {@link RichiestaIscrizione} che rappresenta la lista delle
-	 *         richieste di iscrizione <b>Può essere vuota</b> se nel database non
-	 *         sono presenti richieste di iscrizione cone lo stato passato come
+	 *         richieste di iscrizione <b>Puo' essere vuota</b> se nel database non
+	 *         sono presenti richieste di iscrizione con lo stato passato come
 	 *         parametro
 	 * 
 	 * @pre stato = {@link RichiestaIscrizione#IN_ATTESA} or stato =

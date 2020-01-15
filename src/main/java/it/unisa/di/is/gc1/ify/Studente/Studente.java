@@ -15,10 +15,8 @@ import it.unisa.di.is.gc1.ify.domandaTirocinio.DomandaTirocinio;
 import it.unisa.di.is.gc1.ify.utenza.Utente;
 
 /**
- * 
+ * Classe che modella uno studente
  * @author Geremia Cavezza
- *
- *         Classe che modella uno studente
  */
 
 @Entity
@@ -32,6 +30,18 @@ public class Studente extends Utente {
 		this.domandeTirocinio = new ArrayList<DomandaTirocinio>();
 	}
 
+	/**
+	 * Costruttore di un oggetto Studente con parametri utile nei casi di test.
+	 * @param nome e' il nome dello studente.
+	 * @param cognome e' il cognome dello studente.
+	 * @param sesso e' il sesso dello studente.
+	 * @param email e' l'email dello studente.
+	 * @param indirizzo e' l'indirizzo dello studente.
+	 * @param password e' la password dello studente.
+	 * @param matricola e' la matricola dello studente.
+	 * @param dataNascita e' la data di nascita dello studente.
+	 * @param telefono e' il telefono dello studente.
+	 */
 	public Studente(String nome, String cognome, String sesso, String email, String indirizzo, String password,
 			String matricola, LocalDate dataNascita, String telefono) {
 		super(nome, cognome, sesso, email, indirizzo, password);
@@ -41,34 +51,66 @@ public class Studente extends Utente {
 		this.domandeTirocinio = new ArrayList<DomandaTirocinio>();
 	}
 
+	/**
+	 * Metodo che ritorna la matricola di uno studente.
+	 * @return matricola
+	 */
 	public String getMatricola() {
 		return matricola;
 	}
 
+	/**
+	 * Metodo che setta la matricola di uno studente.
+	 * @param matricola
+	 */
 	public void setMatricola(String matricola) {
 		this.matricola = matricola;
 	}
 
+	/**
+	 * Metodo che ritorna la data di nascita di uno studente.
+	 * @return dataNascita
+	 */
 	public LocalDate getDataNascita() {
 		return dataNascita;
 	}
 
+	/**
+	 * Metodo che setta la data di nascita di uno studente.
+	 * @param dataNascita
+	 */
 	public void setDataNascita(LocalDate dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 
+	/**
+	 * Metodo che ritorna il telefono di uno studente.
+	 * @return telefono
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * Metodo che setta il telefono di uno studente.
+	 * @param telefono
+	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
+	/**
+	 * Metodo che ritorna la lista delle domande di tirocinio di uno studente.
+	 * @return domandeTirocinio
+	 */
 	public List<DomandaTirocinio> getDomandeTirocinio() {
 		return domandeTirocinio;
 	}
 
+	/**
+	 * Metodo che setta la lista delle domande di tirocinio di uno studente.
+	 * @param domandeTirocinio
+	 */
 	public void setDomandeTirocinio(List<DomandaTirocinio> domandeTirocinio) {
 		this.domandeTirocinio = domandeTirocinio;
 	}

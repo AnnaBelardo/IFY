@@ -122,11 +122,4 @@ public class StudenteFormValidator implements Validator {
 			errors.reject(e11.getTarget(), e11.getMessage());
 		}
 	}
-
-	@RequestMapping(value = "/prova", method = RequestMethod.GET)
-	public String prova(Model model) {
-
-		return "richiestaIscrizioneForm";
-	}
-
 }

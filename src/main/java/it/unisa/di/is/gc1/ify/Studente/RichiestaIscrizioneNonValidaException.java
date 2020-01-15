@@ -3,7 +3,6 @@ package it.unisa.di.is.gc1.ify.Studente;
 /**
  * Eccezione generata in caso di parametri non validi durante il controllo di
  * una richiesta d'iscrizione
- * 
  * @author Giacomo Izzo Carmine Ferrara
  */
 public class RichiestaIscrizioneNonValidaException extends Exception {
@@ -27,7 +26,7 @@ public class RichiestaIscrizioneNonValidaException extends Exception {
 	}
 
 	/**
-	 * Genera un'eccezione che riporta come messaggio, un messaggio passato come
+	 * Genera un'eccezione che riporta come messaggio un messaggio passato come
 	 * parametro
 	 * 
 	 * @param messaggio Stringa che rappresenta il messaggio da mostrare
