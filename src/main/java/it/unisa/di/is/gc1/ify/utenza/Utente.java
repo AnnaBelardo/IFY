@@ -18,11 +18,24 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Utente {
-
+	
+	/**
+	 * Costruttore che crea un oggeto Utente vuoto, 
+	 * che verra' popolato con i metodi setters.
+	 */
 	public Utente() {
 
 	}
-
+	
+	/**
+	 * Costruttore di un utente con parametri utili nei casi di test.
+	 * @param nome e' il nome dell'utente.
+	 * @param cognome e' il cognome dell'utente.
+	 * @param sesso e' il sesso dell'utente.
+	 * @param email e' l'email dell'utente.
+	 * @param indirizzo e' l'indirizzo dell'utente.
+	 * @param password e' la password dell'utente.
+	 */
 	public Utente(String nome, String cognome, String sesso, String email, String indirizzo, String password) {
 		this.nome = nome;
 		this.cognome = cognome;
@@ -32,54 +45,106 @@ public abstract class Utente {
 		this.password = password;
 	}
 
+	/**
+	 * Metodo che ritorna l'id dell'utente.
+	 * @return id e'l'id dell'utente.
+	 */
 	public long getId() {
 		return id;
 	}
-
+	
+	/**
+	 * Metodo che ritorna il nome dell'utente.
+	 * @return nome e' il nome dell'utente.
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Metodo che setta il nome dell'utente.
+	 * @param nome e' il nome dell'utente.
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * Metodo che ritorna il cognome dell'utente.
+	 * @return cognome e' il cognome dell'utente.
+	 */
 	public String getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * Metodo che setta il cognome dell'utente.
+	 * @param cognome e' il cognome dell'utente.
+	 */
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
+	/**
+	 * Metodo che ritorna il sesso dell'utente.
+	 * @return sesso e' il sesso dell'utente.
+	 */
 	public String getSesso() {
 		return sesso;
 	}
 
+	/**
+	 * Metodo che setta il sesso dell'utente.
+	 * @param sesso e' il sesso dell'utente.
+	 */
 	public void setSesso(String sesso) {
 		this.sesso = sesso;
 	}
 
+	/**
+	 * Metodo che ritorna l'email dell'utente.
+	 * @return email e' l'email dell'utente.
+	 */
 	public String getEmail() {
 		return email.toLowerCase();
 	}
 
+	/**
+	 * Metodo che setta l'email dell'utente.
+	 * @param  email e' l'email dell'utente.
+	 */
 	public void setEmail(String email) {
 		this.email = email.toLowerCase();
 	}
 
+	/**
+	 * Metodo che ritorna l'indirizzo dell'utente.
+	 * @return indirizzo e' l'indirizzo dell'utente.
+	 */
 	public String getIndirizzo() {
 		return indirizzo;
 	}
 
+	/**
+	 * Metodo che setta l'indirizzo dell'utente.
+	 * @param  indirizzo e' l'indirizzo dell'utente.
+	 */	
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
 	}
 
+	/**
+	 * Metodo che ritorna la password dell'account dell'utente.
+	 * @return password e' la password dell'account dell'utente.
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Metodo che setta la password dell'account dell'utente.
+	 * @param  password e' la password dell'account dell'utente.
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
