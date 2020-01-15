@@ -39,7 +39,7 @@ public class ProgettoFormativoNonValidoException extends Exception {
 
 	
 	/**
-	 * Genera un'eccezione  etichettata con parametro di discriminazione
+	 * Genera un'eccezione etichettata con parametro di discriminazione
 	 * che riporta come messaggio, un messaggio passato come parametro
 	 * 
 	 * @param target Stringa che rappresenta il tipo di errore generato
@@ -50,11 +50,18 @@ public class ProgettoFormativoNonValidoException extends Exception {
 		this.target = target;
 	}
 	
-	
+	/**
+	 * Metodo che ritorna la stringa che rappresenta il tipo di errore avvenuto.
+	 * @return target e' la stringa che rappresenta il tipo di errore avvenuto.
+	 */
 	public String getTarget() {
 		return target;
 	}
 
+	/**
+	 * Metodo che setta la stringa che rappresenta il tipo di errore avvenuto.
+	 * @param target e' la stringa che rappresenta il tipo di errore avvenuto.
+	 */
 	public void setTarget(String target) {
 		this.target = target;
 	}

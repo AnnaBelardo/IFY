@@ -26,9 +26,9 @@ public class ProgettoFormativoService {
 	UtenzaService utenzaService;
 	
 	/**
-	 * Il metodo fornisce la funzionalità di salvataggio di un progetto formativo
+	 * Il metodo fornisce la funzionalita' di salvataggio di un progetto formativo
 	 * e viene posto nello stato di attivo
-	 * @param progettoFormativo è il progetto formativo che viene messo in attivo
+	 * @param progettoFormativo e' il progetto formativo che viene messo in attivo
 	 * @pre progettoFormativo!=null
 	 * @post progettoFormativo!=null
 	 * @return progetto formativo 
@@ -43,10 +43,10 @@ public class ProgettoFormativoService {
 	}
 	
 	/**
-	 * Il metodo fornisce la funzionalità di archiviazione di un progetto formativo
+	 * Il metodo fornisce la funzionalita' di archiviazione di un progetto formativo
 	 * 
 	 * 
-	 * @param idProgettoFormativo è l'id del progetto formativo
+	 * @param idProgettoFormativo e' l'id del progetto formativo
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * archiviato
 	 * @throws OperazioneNonAutorizzataException
@@ -58,7 +58,7 @@ public class ProgettoFormativoService {
 		
 		Utente utente = utenzaService.getUtenteAutenticato();
 		
-		//Solo il delegato aziendale può archiviare un progetto formativo
+		//Solo il delegato aziendale puo' archiviare un progetto formativo
 		if(!(utente instanceof DelegatoAziendale)) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -69,7 +69,7 @@ public class ProgettoFormativoService {
 
 		ProgettoFormativo progettoFormativo = progettoFormativoRepository.findById(idProgettoFormativo);
 	
-		//Un progetto formativo di un'azienda può essere archiviato solo dal delegato aziendale dell'azienda stessa
+		//Un progetto formativo di un'azienda puo' essere archiviato solo dal delegato aziendale dell'azienda stessa
 		if(!(delegatoAziendale.getAzienda().getpIva().equals(progettoFormativo.getAzienda().getpIva()))) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -85,10 +85,10 @@ public class ProgettoFormativoService {
 	}
 	
 	/**
-	 * Il metodo fornisce la funzionalità di riattivazione di un progetto formativo
+	 * Il metodo fornisce la funzionalita' di riattivazione di un progetto formativo
 	 * 
 	 * 
-	 * @param idProgettoFormativo è l'id del progetto formativo
+	 * @param idProgettoFormativo e' l'id del progetto formativo
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * riattivato
 	 * @throws OperazioneNonAutorizzataException
@@ -100,7 +100,7 @@ public class ProgettoFormativoService {
 		
 		Utente utente = utenzaService.getUtenteAutenticato();
 		
-		//Solo il delegato aziendale può riattivare un progetto formativo
+		//Solo il delegato aziendale puo' riattivare un progetto formativo
 		if(!(utente instanceof DelegatoAziendale)) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -109,7 +109,7 @@ public class ProgettoFormativoService {
 		
 		ProgettoFormativo progettoFormativo = progettoFormativoRepository.findById(idProgettoFormativo);
 	
-		//Un progetto formativo di un'azienda può essere archiviato solo dal delegato aziendale dell'azienda stessa
+		//Un progetto formativo di un'azienda puo' essere archiviato solo dal delegato aziendale dell'azienda stessa
 		if(!(delegatoAziendale.getAzienda().getpIva().equals(progettoFormativo.getAzienda().getpIva()))) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -124,7 +124,7 @@ public class ProgettoFormativoService {
 		return progettoFormativo;
 	}
 	
-	/** Il metodo fornisce la funzionalità di visualizzazione dei progetti formativi
+	/** Il metodo fornisce la funzionalita' di visualizzazione dei progetti formativi
 	 * attivi
 	 * 
 	 * @param pIva
@@ -142,7 +142,7 @@ public class ProgettoFormativoService {
 		return progettiFormativi;
 	}
 	
-	/** Il metodo fornisce la funzionalità di visualizzazione dei progetti formativi
+	/** Il metodo fornisce la funzionalita' di visualizzazione dei progetti formativi
 	 * archiviati
 	 * 
 	 * @param pIva
@@ -157,12 +157,12 @@ public class ProgettoFormativoService {
 		
 		Utente utente = utenzaService.getUtenteAutenticato();
 		
-		//Solo il delegato aziendale può visualizzare un progetto formativo archiviato
+		//Solo il delegato aziendale puo' visualizzare un progetto formativo archiviato
 		if(!(utente instanceof DelegatoAziendale)) {
 			throw new OperazioneNonAutorizzataException();
 		}
 		DelegatoAziendale delegatoAziendale=(DelegatoAziendale) utente;
-		//Un progetto formativo di un'azienda può essere visualizzato solo dal delegato aziendale dell'azienda stessa
+		//Un progetto formativo di un'azienda puo' essere visualizzato solo dal delegato aziendale dell'azienda stessa
 		if(!(delegatoAziendale.getAzienda().getpIva().equals(pIva))) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -180,10 +180,10 @@ public class ProgettoFormativoService {
 	 * Il metodo fornisce la funzionalità di modifica di un progetto formativo
 	 * 
 	 * 
-	 * @param idProgettoFormativo è l'id del progetto formativo
-	 * @param descrizione è la descrizione del progetto formativo
-	 * @param conoscenze è le conoscenze da avere per partecipare al progetto formativo
-	 * @param numPartecipanti è il numero massimo di partecipanti
+	 * @param idProgettoFormativo e' l'id del progetto formativo
+	 * @param descrizione e' la descrizione del progetto formativo
+	 * @param conoscenze e' le conoscenze da avere per partecipare al progetto formativo
+	 * @param numPartecipanti e' il numero massimo di partecipanti
 	 * @return Oggetto {@link ProgettoFormativo} che rappresenta il progetto formativo
 	 * da modificare
 	 * @throws OperazioneNonAutorizzataException
@@ -194,7 +194,7 @@ public class ProgettoFormativoService {
 		
 		Utente utente = utenzaService.getUtenteAutenticato();
 		
-		//Solo il delegato aziendale può modificare un progetto formativo
+		//Solo il delegato aziendale puo' modificare un progetto formativo
 		if(!(utente instanceof DelegatoAziendale)) {
 			throw new OperazioneNonAutorizzataException();
 		}
@@ -203,7 +203,7 @@ public class ProgettoFormativoService {
 		
 		ProgettoFormativo progettoFormativo = progettoFormativoRepository.findById(idProgettoFormativo);
 	
-		//Un progetto formativo di un'azienda può essere archiviato solo dal delegato aziendale dell'azienda stessa
+		//Un progetto formativo di un'azienda puo' essere archiviato solo dal delegato aziendale dell'azienda stessa
 		if(!(delegatoAziendale.getAzienda().getpIva().equals(progettoFormativo.getAzienda().getpIva()))) {
 			throw new OperazioneNonAutorizzataException();
 		}
