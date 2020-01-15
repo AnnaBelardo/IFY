@@ -63,7 +63,7 @@ public class InserimentoProgettoFormativoFormValidator implements Validator {
 
 		// Validazione del campo attività
 		try {
-			progettoFormativoService.validaAttività(inserimentoProgettoFormativoForm.getAttivita());
+			progettoFormativoService.validaAttivita(inserimentoProgettoFormativoForm.getAttivita());
 		} catch (ProgettoFormativoNonValidoException e4) {
 			errors.reject(e4.getTarget(), e4.getMessage());
 		}

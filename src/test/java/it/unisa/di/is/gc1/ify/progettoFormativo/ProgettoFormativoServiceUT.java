@@ -715,16 +715,16 @@ public class ProgettoFormativoServiceUT {
 	/**
 	 * Testa il caso in cui l'attività inserita sia null.
 	 * 
-	 * @test {@link ProgettoFormativoService#validaAttività(String)}
+	 * @test {@link ProgettoFormativoService#validaAttivita(String)}
 	 * 
 	 * @result Il test è superato se il messaggio generato dal sistema è uguale a quello 
 	 * previsto dall'oracolo.
 	 */
 	@Test
-	public void validaAttivitàNull() {
+	public void validaAttivitaNull() {
 		String message="Il campo attività non può essere nullo.";
 		try {
-			progettoFormativoService.validaAttività(null);
+			progettoFormativoService.validaAttivita(null);
 		} catch (ProgettoFormativoNonValidoException e) {
 			assertEquals(e.getMessage(), message);
 		}
@@ -739,10 +739,10 @@ public class ProgettoFormativoServiceUT {
 	 * previsto dall'oracolo.
 	 */
 	@Test
-	public void validaAttivitàLunghezzaMinFail() {
+	public void validaAttivitaLunghezzaMinFail() {
 		String message="Il campo attività deve contenere almeno 2 caratteri";
 		try {
-			progettoFormativoService.validaAttività("a");
+			progettoFormativoService.validaAttivita("a");
 		} catch (ProgettoFormativoNonValidoException e) {
 			assertEquals(e.getMessage(), message);
 		}
@@ -751,16 +751,16 @@ public class ProgettoFormativoServiceUT {
 	/**
 	 * Testa il caso in cui la lunghezza dell'attività inserito sia maggiore della lunghezza massima.
 	 * 
-	 * @test {@link ProgettoFormativoService#validaAttività(String)}
+	 * @test {@link ProgettoFormativoService#validaAttivita(String)}
 	 * 
 	 * @result Il test è superato se il messaggio generato dal sistema è uguale a quello 
 	 * previsto dall'oracolo.
 	 */
 	@Test
-	public void validaAttivitàLunghezzaMaxFail() {
+	public void validaAttivitaLunghezzaMaxFail() {
 		String message="Il campo attività deve contenere massimo 500 caratteri";
 		try {
-			progettoFormativoService.validaAttività("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			progettoFormativoService.validaAttivita("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		} catch (ProgettoFormativoNonValidoException e) {
 			assertEquals(e.getMessage(), message);
 		}
@@ -769,14 +769,14 @@ public class ProgettoFormativoServiceUT {
 	/**
 	 * Testa il caso in cui l'ambito inserito sia corretto.
 	 * 
-	 * @test {@link ProgettoFormativoService#validaAttività(String)}
+	 * @test {@link ProgettoFormativoService#validaAttivita(String)}
 	 * 
 	 * @result Il test è superato se il metodo invocato restituisce l'attività inserito.
 	 */
 	@Test
-	public void validaAttività() {
+	public void validaAttivita() {
 		try {
-			progettoFormativoService.validaAttività("Progetto");
+			progettoFormativoService.validaAttivita("Progetto");
 		} catch (ProgettoFormativoNonValidoException e) {
 			e.printStackTrace();
 		}

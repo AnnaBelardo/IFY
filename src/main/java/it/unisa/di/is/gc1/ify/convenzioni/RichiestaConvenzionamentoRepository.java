@@ -54,7 +54,7 @@ public interface RichiestaConvenzionamentoRepository extends JpaRepository<Richi
 	 * @pre id > 0
 	 */
 	public RichiestaConvenzionamento findById(Long id);
-	
+
 	/**
 	 * Permette di ottenere la richiesta di convenzionamento di un delegato aziendale.
 	 * 

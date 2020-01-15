@@ -291,7 +291,7 @@ public class ProgettoFormativoService {
 	 * @return attivita
 	 * @throws ProgettoFormativoNonValidoException
 	 */
-	public String validaAttività(String attivita) throws ProgettoFormativoNonValidoException {
+	public String validaAttivita(String attivita) throws ProgettoFormativoNonValidoException {
 	
 		if (attivita == null)
 			throw new ProgettoFormativoNonValidoException("AttivitaError", "Il campo attività non può essere nullo.");

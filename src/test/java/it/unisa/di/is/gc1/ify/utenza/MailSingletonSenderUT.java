@@ -98,10 +98,10 @@ public class MailSingletonSenderUT {
 	 * Testa il caso in cui l'oggetto passato al metodo sendEmal non sia un 
 	 * istanza di RichiestaIscrizione.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void message_Not_Instance() {
@@ -116,10 +116,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta d'iscrizione sia stata accettata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaIscrizioneAcettata() {
@@ -133,10 +133,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta d'iscrizione sia stata rifiutata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaIscrizioneRifiutata() {
@@ -150,10 +150,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta d'iscrizione sia stata posta in attesa.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaIscrizioneInAttesa() {
@@ -167,10 +167,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta di convenzionamento sia stata accettata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaConvenzionamentoAcettata() {
@@ -184,10 +184,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta di convenzionamento sia stata rifiutata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaConvenzionamentoRifiutata() {
@@ -201,10 +201,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la richiesta di convenzionamento sia stata posta in attesa.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageRichiestaConvenzionamentoInAttesa() {
@@ -218,10 +218,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la domanda di tirocinio sia stata accettata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageDomandaTirocinioAccettata() {
@@ -235,10 +235,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la domanda di tirocinio sia stata rifiutata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageDomandaTirocinioRifiutata() {
@@ -252,10 +252,10 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la domanda di tirocinio sia stata approvata.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
-	 * @result Il test è superato se il metodo send della classe javaMailSender 
-	 *		   è correttamente invocato
+	 * @result Il test e' superato se il metodo send della classe javaMailSender 
+	 *		   e' correttamente invocato
 	 */
 	@Test
 	public void messageDomandaTirocinioApprovata() {
@@ -269,7 +269,7 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la domanda di tirocinio sia stata respinta.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
 	 * @result Il test è superato se il metodo send della classe javaMailSender 
 	 *		   è correttamente invocato
@@ -286,7 +286,7 @@ public class MailSingletonSenderUT {
 	/**
 	 * Testa il caso in cui la domanda di tirocinio sia stata posta in attesa.
 	 * 
-	 * @test {@link MailSingletonSender#sendMail(Object,String)}
+	 * @test {@link MailSingletonSender#sendEmail(Object, String)}
 	 * 
 	 * @result Il test è superato se il metodo send della classe javaMailSender 
 	 *		   è correttamente invocato

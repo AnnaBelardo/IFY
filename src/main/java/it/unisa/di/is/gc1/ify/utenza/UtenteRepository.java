@@ -28,7 +28,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
 	 *         null</b> se nel database non è presente un utente con email e
 	 *         password passati come parametro
 	 * 
-	 * @pre email != null && password != null
+	 * @pre email != null and password != null
 	 */
 	Utente findByEmailAndPassword(String email, String password);
 

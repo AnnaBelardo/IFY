@@ -92,7 +92,7 @@ public class UtenzaServiceRepositoriesIT {
 	 * 
 	 * @test {@link UtenzaService#validaMail(String)}
 	 * 
-	 * @result Il test e superato se l'eccezione generata dal metodo è la
+	 * @result Il test e' superato se l'eccezione generata dal metodo e' la
 	 * stessa prevista dall'oracolo.
 	 */
 	@Test
@@ -113,7 +113,7 @@ public class UtenzaServiceRepositoriesIT {
 	 * 
 	 * @test {@link UtenzaService#validaMail(String)}
 	 * 
-	 * @result Il test e superato se l'eccezione generata dal metodo è la
+	 * @result Il test e' superato se l'eccezione generata dal metodo e' la
 	 * stessa prevista dall'oracolo.
 	 */
 	@Test
@@ -134,7 +134,7 @@ public class UtenzaServiceRepositoriesIT {
 	 * 
 	 * @test {@link UtenzaService#validaMail(String)}
 	 * 
-	 * @result Il test e superato se l'eccezione generata dal metodo è la
+	 * @result Il test e' superato se l'eccezione generata dal metodo e' la
 	 * stessa prevista dall'oracolo.
 	 */
 	@Test
@@ -422,7 +422,7 @@ public class UtenzaServiceRepositoriesIT {
 	 * 
 	 * @test {@link UtenzaService#logout()}
 	 * 
-	 * @result Il test e superato se il logout è effettuato con successo.
+	 * @result Il test e' superato se il logout e' effettuato con successo.
 	 */
 	@Test
 	public void logout() {
